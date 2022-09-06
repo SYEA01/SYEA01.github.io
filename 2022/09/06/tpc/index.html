@@ -16,21 +16,31 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+    <meta name="description" content="一、字符串函数concat(s1,s2,…sn)		字符串拼接lower(str)			将字符串str全部转为小写upper(str)			将字符串str全部转为大写lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度trim(str)				去掉字符串头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tpc">
+<meta property="og:url" content="http://example.com/2022/09/06/tpc/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、字符串函数concat(s1,s2,…sn)		字符串拼接lower(str)			将字符串str全部转为小写upper(str)			将字符串str全部转为大写lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度trim(str)				去掉字符串头">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-06T15:26:26.000Z">
+<meta property="article:modified_time" content="2022-09-06T15:27:49.145Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>归档 - Hexo</title>
+  <title>tpc - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -80,7 +90,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -185,9 +195,49 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="归档"></span>
+            <span id="subtitle" data-typed-text="tpc"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-06 23:26" pubdate>
+          2022年9月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          845 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -203,46 +253,152 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/06/tpc/" class="list-group-item list-group-item-action">
-      <time>09-06</time>
-      <div class="list-group-item-title">tpc</div>
-    </a>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tpc</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>一、字符串函数<br>concat(s1,s2,…sn)		字符串拼接<br>lower(str)			将字符串str全部转为小写<br>upper(str)			将字符串str全部转为大写<br>lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度<br>rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度<br>trim(str)				去掉字符串头部和尾部的空格<br>substring(str,start,len)	返回从字符串str到start位置起的len个长度的字符串		<br>substring_index(str,分隔符,第几个)	<br>二、数值函数<br>ceil(x)				向上取整<br>floor(x)			向下取整<br>mod(x,y)			返回x&#x2F;y的模    (取余数)<br>rand()				返回0～1的随机数<br>round(x,y)			求参数x的四舍五入的值，保留y位小数			<br>三、日期函数<br>curdate()			返回当前日期<br>curtime()			返回当前时间<br>now()				返回当前日期和时间<br>year(date)			获取指定date的年份<br>month(date)			获取指定date的月份<br>day(date)			获取指定date的日期<br>date_add(date,interval  expr  type)	返回一个日期&#x2F;时间值加上一个时间间隔expr后的时间值<br>datediff(date1,date2)	返回起始时间date1和结束时间date2之间的天数	<br>四、流程函数<br>if(value,t,f)			如果value为true，则返回t，否则返回f<br>ifnull(value1,value2)	如果value1不为空，返回value1，否则返回value2<br>case  when  [val1]  then  [res1]  …else  [default]  end		如果val1为True，返回res1，…否则返回default默认值<br>case  [expr]  when  [val1] then  [res1]  …else  [default]  end	如果expr的值等于val1，返回res1，…否则返回default默认值</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-    
-    <a href="/2022/09/05/hello-world/" class="list-group-item list-group-item-action">
-      <time>09-05</time>
-      <div class="list-group-item-title">Hello World</div>
-    </a>
   
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>tpc</div>
+      <div>http://example.com/2022/09/06/tpc/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月6日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/05/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -336,6 +492,72 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 
