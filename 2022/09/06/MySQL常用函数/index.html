@@ -18,19 +18,20 @@
   
     <meta name="description" content="一、字符串函数concat(s1,s2,…sn)		字符串拼接lower(str)			将字符串str全部转为小写upper(str)			将字符串str全部转为大写lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度trim(str)				去掉字符串头">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tpc">
-<meta property="og:url" content="http://example.com/2022/09/06/tpc/index.html">
+<meta property="og:title" content="MySQL常用函数">
+<meta property="og:url" content="http://example.com/2022/09/06/MySQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、字符串函数concat(s1,s2,…sn)		字符串拼接lower(str)			将字符串str全部转为小写upper(str)			将字符串str全部转为大写lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度trim(str)				去掉字符串头">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-06T15:26:26.000Z">
-<meta property="article:modified_time" content="2022-09-06T15:27:49.145Z">
+<meta property="article:modified_time" content="2022-09-07T14:46:03.250Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>tpc - Hexo</title>
+  <title>MySQL常用函数 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="tpc"></span>
+            <span id="subtitle" data-typed-text="MySQL常用函数"></span>
           
         </div>
 
@@ -267,12 +268,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tpc</h1>
+            <h1 style="display: none">MySQL常用函数</h1>
             
             
               <div class="markdown-body">
                 
-                <p>一、字符串函数<br>concat(s1,s2,…sn)		字符串拼接<br>lower(str)			将字符串str全部转为小写<br>upper(str)			将字符串str全部转为大写<br>lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度<br>rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度<br>trim(str)				去掉字符串头部和尾部的空格<br>substring(str,start,len)	返回从字符串str到start位置起的len个长度的字符串		<br>substring_index(str,分隔符,第几个)	<br>二、数值函数<br>ceil(x)				向上取整<br>floor(x)			向下取整<br>mod(x,y)			返回x&#x2F;y的模    (取余数)<br>rand()				返回0～1的随机数<br>round(x,y)			求参数x的四舍五入的值，保留y位小数			<br>三、日期函数<br>curdate()			返回当前日期<br>curtime()			返回当前时间<br>now()				返回当前日期和时间<br>year(date)			获取指定date的年份<br>month(date)			获取指定date的月份<br>day(date)			获取指定date的日期<br>date_add(date,interval  expr  type)	返回一个日期&#x2F;时间值加上一个时间间隔expr后的时间值<br>datediff(date1,date2)	返回起始时间date1和结束时间date2之间的天数	<br>四、流程函数<br>if(value,t,f)			如果value为true，则返回t，否则返回f<br>ifnull(value1,value2)	如果value1不为空，返回value1，否则返回value2<br>case  when  [val1]  then  [res1]  …else  [default]  end		如果val1为True，返回res1，…否则返回default默认值<br>case  [expr]  when  [val1] then  [res1]  …else  [default]  end	如果expr的值等于val1，返回res1，…否则返回default默认值</p>
+                <h2 id="一、字符串函数"><a href="#一、字符串函数" class="headerlink" title="一、字符串函数"></a>一、字符串函数</h2><p>concat(s1,s2,…sn)		字符串拼接<br>lower(str)			将字符串str全部转为小写<br>upper(str)			将字符串str全部转为大写<br>lpad(str,n,pad)		左填充，用字符串pad对str的左边进行填充，达到n个字符串长度<br>rpad(str,n,pad)		右填充，用字符串pad对str的右边进行填充，达到n个字符串长度<br>trim(str)				去掉字符串头部和尾部的空格<br>substring(str,start,len)	返回从字符串str到start位置起的len个长度的字符串		<br>substring_index(str,分隔符,第几个)	</p>
+<h2 id="二、数值函数"><a href="#二、数值函数" class="headerlink" title="二、数值函数"></a>二、数值函数</h2><p>ceil(x)				向上取整<br>floor(x)			向下取整<br>mod(x,y)			返回x&#x2F;y的模    (取余数)<br>rand()				返回0～1的随机数<br>round(x,y)			求参数x的四舍五入的值，保留y位小数			</p>
+<h2 id="三、日期函数"><a href="#三、日期函数" class="headerlink" title="三、日期函数"></a>三、日期函数</h2><p>curdate()			返回当前日期<br>curtime()			返回当前时间<br>now()				返回当前日期和时间<br>year(date)			获取指定date的年份<br>month(date)			获取指定date的月份<br>day(date)			获取指定date的日期<br>date_add(date,interval  expr  type)	返回一个日期&#x2F;时间值加上一个时间间隔expr后的时间值<br>datediff(date1,date2)	返回起始时间date1和结束时间date2之间的天数	</p>
+<h2 id="四、流程函数"><a href="#四、流程函数" class="headerlink" title="四、流程函数"></a>四、流程函数</h2><p>if(value,t,f)			如果value为true，则返回t，否则返回f<br>ifnull(value1,value2)	如果value1不为空，返回value1，否则返回value2<br>case  when  [val1]  then  [res1]  …else  [default]  end		如果val1为True，返回res1，…否则返回default默认值<br>case  [expr]  when  [val1] then  [res1]  …else  [default]  end	如果expr的值等于val1，返回res1，…否则返回default默认值</p>
 
                 
               </div>
@@ -282,6 +286,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+    </div>
+  
 </div>
 
 
@@ -290,8 +301,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>tpc</div>
-      <div>http://example.com/2022/09/06/tpc/</div>
+      <div>MySQL常用函数</div>
+      <div>http://example.com/2022/09/06/MySQL常用函数/</div>
     </div>
     <div class="license-meta">
       
