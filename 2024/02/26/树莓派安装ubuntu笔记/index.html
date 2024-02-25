@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <link rel="icon" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Ubuntu镜像网址 1、配置静态ip1.1、打开配置文件1sudo vi &#x2F;etc&#x2F;netplan&#x2F;50-cloud-init.yaml  1.2、修改其中的内容为1234567891011121314151617network:    version: 2    wifis:        renderer: networkd        wlan0:            access-p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派安装ubuntu笔记">
+<meta property="og:url" content="http://example.com/2024/02/26/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85ubuntu%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu镜像网址 1、配置静态ip1.1、打开配置文件1sudo vi &#x2F;etc&#x2F;netplan&#x2F;50-cloud-init.yaml  1.2、修改其中的内容为1234567891011121314151617network:    version: 2    wifis:        renderer: networkd        wlan0:            access-p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/ubuntu_img/ubuntu-logo.jpg">
+<meta property="article:published_time" content="2024-02-25T17:39:59.000Z">
+<meta property="article:modified_time" content="2024-02-25T17:42:01.491Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/ubuntu_img/ubuntu-logo.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>树莓派安装ubuntu笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Taoao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/aaaa.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树莓派安装ubuntu笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-26 01:39" pubdate>
+          2024年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">树莓派安装ubuntu笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong><a target="_blank" rel="noopener" href="https://releases.ubuntu-mate.org/">Ubuntu镜像网址</a></strong></p>
+<h2 id="1、配置静态ip"><a href="#1、配置静态ip" class="headerlink" title="1、配置静态ip"></a>1、配置静态ip</h2><h3 id="1-1、打开配置文件"><a href="#1-1、打开配置文件" class="headerlink" title="1.1、打开配置文件"></a>1.1、打开配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vi /etc/netplan/50-cloud-init.yaml<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2、修改其中的内容为"><a href="#1-2、修改其中的内容为" class="headerlink" title="1.2、修改其中的内容为"></a>1.2、修改其中的内容为</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell">network:<br>    version: 2<br>    wifis:<br>        renderer: networkd<br>        wlan0:<br>            access-points:<br>                &#x27;213&#x27;:			# wifi名称<br>                    password: 123456   # wifi密码<br>            dhcp4: False			# 关闭dhcp<br>            addresses:<br>              - 192.168.0.110/24	# 静态ip<br>            routes:<br>              - to: default<br>                via: 192.168.0.1	# 网关  网关必须这么设置<br>            nameservers:<br>              addresses: [8.8.8.8,192.168.0.1,1.1.1.1]<br>            optional: true<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3、运行sudo-netplan-apply"><a href="#1-3、运行sudo-netplan-apply" class="headerlink" title="1.3、运行sudo netplan apply"></a>1.3、运行<code>sudo netplan apply</code></h3><p>参考：<a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server">https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#4-boot-ubuntu-server</a></p>
+<h2 id="2、安装桌面"><a href="#2、安装桌面" class="headerlink" title="2、安装桌面"></a>2、安装桌面</h2><h3 id="2-1、先更新软件包"><a href="#2-1、先更新软件包" class="headerlink" title="2.1、先更新软件包"></a>2.1、先更新软件包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt update<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt upgrade<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2、下载桌面"><a href="#2-2、下载桌面" class="headerlink" title="2.2、下载桌面"></a>2.2、下载桌面</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install ubuntu-desktop<br></code></pre></td></tr></table></figure>
+
+<p><strong>还有其他桌面：<code>lubuntu-desktop、xubuntu-desktop、kubuntu-desktop</code></strong></p>
+<h3 id="2-3、重启"><a href="#2-3、重启" class="headerlink" title="2.3、重启"></a>2.3、重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo reboot<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、安装桌面美化"><a href="#3、安装桌面美化" class="headerlink" title="3、安装桌面美化"></a>3、安装桌面美化</h2><h3 id="3-1、安装chrome浏览器"><a href="#3-1、安装chrome浏览器" class="headerlink" title="3.1、安装chrome浏览器"></a>3.1、安装chrome浏览器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install chromium-browser<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2、安装依赖"><a href="#3-2、安装依赖" class="headerlink" title="3.2、安装依赖"></a>3.2、安装依赖</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install gtk2-engines-murrine gtk2-engines-pixbuf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install sassc optipng inkscape<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-3、安装gnome工具"><a href="#3-3、安装gnome工具" class="headerlink" title="3.3、安装gnome工具"></a>3.3、安装gnome工具</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install gnome-tweak-tool<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-4、安装主题"><a href="#3-4、安装主题" class="headerlink" title="3.4、安装主题"></a>3.4、安装主题</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone https://github.com/vinceliuice/WhiteSur-gtk-theme<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd WhiteSur-gtk-theme<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./install.sh<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-5、安装图标"><a href="#3-5、安装图标" class="headerlink" title="3.5、安装图标"></a>3.5、安装图标</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone https://github.com/yeyushengfan258/BigSur-icon-theme<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd BigSur-icon-theme<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./install.sh<br></code></pre></td></tr></table></figure>
+
+<p><strong>安装完成之后就可以在工具中配置了</strong></p>
+<p><strong>参考：<a target="_blank" rel="noopener" href="https://www.a7la-home.com/zh-CN/make-ubuntu-look-like-macos-big-sur/">https://www.a7la-home.com/zh-CN/make-ubuntu-look-like-macos-big-sur/</a></strong></p>
+<h3 id="3-6、安装dock栏"><a href="#3-6、安装dock栏" class="headerlink" title="3.6、安装dock栏"></a>3.6、安装dock栏</h3><p>通过chrome进入网页：<a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/307/dash-to-dock/">https://extensions.gnome.org/extension/307/dash-to-dock/</a> ，选择32以下的版本进行下载</p>
+<p>下载完成之后，需要解压放到<code>~/.local/share/gnome-shell/extensions</code> 下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir dash-to-dock@micxgx.gmail.com<br>unzip dash-to-dock@micxgx.gmail.com.v63.shell-extension.zip -d dash-to-dock@micxgx.gmail.com/<br>sudo cp -r  dash-to-dock@micxgx.gmail.com/ ~/.local/share/gnome-shell/extensions<br></code></pre></td></tr></table></figure>
+
+<p>重启gnome，可以按<code>Alt + F2</code>，然后输入<code>r</code>，就可以重启gnome</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/double_ZZZ/article/details/120106093">https://blog.csdn.net/double_ZZZ/article/details/120106093</a></p>
+<h3 id="3-7、-安装dock栏调整工具-Dconf-editor"><a href="#3-7、-安装dock栏调整工具-Dconf-editor" class="headerlink" title="3.7、 安装dock栏调整工具 Dconf-editor"></a>3.7、 安装dock栏调整工具 Dconf-editor</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> dconf-editor<br></code></pre></td></tr></table></figure>
+
+<p>安装完成之后进行调整</p>
+<p><img src="/img/ubuntu_img/ubuntu%E7%BE%8E%E5%8C%96.png" alt="ubuntu美化"></p>
+<h2 id="4、Ubuntu20-04更换源"><a href="#4、Ubuntu20-04更换源" class="headerlink" title="4、Ubuntu20.04更换源"></a>4、Ubuntu20.04更换源</h2><h3 id="4-1、备份源"><a href="#4-1、备份源" class="headerlink" title="4.1、备份源"></a>4.1、备份源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2、在清华大学开源软件镜像站上找到合适的版本-放到-etc-apt-sources-list中"><a href="#4-2、在清华大学开源软件镜像站上找到合适的版本-放到-etc-apt-sources-list中" class="headerlink" title="4.2、在清华大学开源软件镜像站上找到合适的版本,放到/etc/apt/sources.list中"></a>4.2、在<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu-ports/">清华大学开源软件镜像站</a>上找到合适的版本,放到<code>/etc/apt/sources.list</code>中</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse<br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse</span><br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse<br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse</span><br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse<br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse</span><br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse<br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">预发布软件源，不建议启用</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3、更新"><a href="#4-3、更新" class="headerlink" title="4.3、更新"></a>4.3、更新</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get update<br>sudo apt-get upgrade<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、安装Vim编辑器"><a href="#5、安装Vim编辑器" class="headerlink" title="5、安装Vim编辑器"></a>5、安装Vim编辑器</h2><h3 id="5-1、安装"><a href="#5-1、安装" class="headerlink" title="5.1、安装"></a>5.1、安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install vim<br></code></pre></td></tr></table></figure>
+
+<p><strong>报错：<code>报错 vim-common (= 2:8.1.2269-1ubuntu5) but 2:8.2.0716-3ubuntu2 is to be installed</code></strong></p>
+<h3 id="5-2、解决"><a href="#5-2、解决" class="headerlink" title="5.2、解决"></a>5.2、解决</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get purge vim-common<br>sudo apt-get update<br>sudo apt-get upgrade<br>sudo apt-get install vim<br></code></pre></td></tr></table></figure>
+
+<h2 id="6、开启ssh服务"><a href="#6、开启ssh服务" class="headerlink" title="6、开启ssh服务"></a>6、开启ssh服务</h2><h3 id="6-1、安装ssh服务端"><a href="#6-1、安装ssh服务端" class="headerlink" title="6.1、安装ssh服务端"></a>6.1、安装ssh服务端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install openssh-server<br></code></pre></td></tr></table></figure>
+
+<p><strong>如果报错，解决方案和上面安装Vim报错类似</strong></p>
+<h3 id="6-2、确定sshserver是否启动了"><a href="#6-2、确定sshserver是否启动了" class="headerlink" title="6.2、确定sshserver是否启动了"></a>6.2、确定sshserver是否启动了</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -e | grep ssh<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-3、启动sshserver"><a href="#6-3、启动sshserver" class="headerlink" title="6.3、启动sshserver"></a>6.3、启动sshserver</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">/etc/init.d/ssh start<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-4、ssh配置（如果需要）"><a href="#6-4、ssh配置（如果需要）" class="headerlink" title="6.4、ssh配置（如果需要）"></a>6.4、ssh配置（如果需要）</h3><p><strong>修改配置文件<code>/etc/ssh/sshd_config</code>，在配置文件中可以自定义SSH的服务端口</strong></p>
+<h3 id="6-5、重启ssh"><a href="#6-5、重启ssh" class="headerlink" title="6.5、重启ssh"></a>6.5、重启ssh</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs she">/etc/init.d/ssh restart<br></code></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46392035/article/details/124835203">https://blog.csdn.net/m0_46392035/article/details/124835203</a></p>
+<h3 id="6-6、设置ssh连接不自动断开"><a href="#6-6、设置ssh连接不自动断开" class="headerlink" title="6.6、设置ssh连接不自动断开"></a>6.6、设置ssh连接不自动断开</h3><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45327082/article/details/120022630">https://blog.csdn.net/weixin_45327082/article/details/120022630</a></p>
+<h2 id="7、Ubuntu切换终端模式与桌面模式"><a href="#7、Ubuntu切换终端模式与桌面模式" class="headerlink" title="7、Ubuntu切换终端模式与桌面模式"></a>7、Ubuntu切换终端模式与桌面模式</h2><h3 id="7-1、桌面切换成终端"><a href="#7-1、桌面切换成终端" class="headerlink" title="7.1、桌面切换成终端"></a>7.1、桌面切换成终端</h3><p><code>Ctrl + F1/F2/F3/F4/F5/F6</code></p>
+<p><strong>Ubuntu可以有6个终端页面</strong></p>
+<h3 id="7-2、终端切换成页面"><a href="#7-2、终端切换成页面" class="headerlink" title="7.2、终端切换成页面"></a>7.2、终端切换成页面</h3><p><code>Ctrl + F7</code></p>
+<h2 id="8、切换root用户"><a href="#8、切换root用户" class="headerlink" title="8、切换root用户"></a>8、切换root用户</h2><h3 id="8-1、先修改root用户密码"><a href="#8-1、先修改root用户密码" class="headerlink" title="8.1、先修改root用户密码"></a>8.1、先修改root用户密码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">taoao@taoao-desktop:~$ sudo passwd<br>[sudo] password for taoao: <br>New password: <br>Retype new password: <br>passwd: password updated successfully<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-2、切换root用户"><a href="#8-2、切换root用户" class="headerlink" title="8.2、切换root用户"></a>8.2、切换root用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">taoao@taoao-desktop:~$ su - root<br>Password: <br>root@taoao-desktop:/home/taoao# <br></code></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022940061">https://segmentfault.com/a/1190000022940061</a></p>
+<h2 id="9、Ubuntu设置中文"><a href="#9、Ubuntu设置中文" class="headerlink" title="9、Ubuntu设置中文"></a>9、Ubuntu设置中文</h2><p><strong>参考：<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_296714/5588562">https://blog.51cto.com/u_296714/5588562</a></strong></p>
+<h2 id="10、开启防火墙"><a href="#10、开启防火墙" class="headerlink" title="10、开启防火墙"></a>10、开启防火墙</h2><p><strong>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/harbor1981/article/details/82787619">https://blog.csdn.net/harbor1981/article/details/82787619</a></strong><br><strong><a target="_blank" rel="noopener" href="https://www.myfreax.com/how-to-list-and-delete-ufw-firewall-rules/">https://www.myfreax.com/how-to-list-and-delete-ufw-firewall-rules/</a></strong></p>
+<h2 id="11、内网穿透步骤frp"><a href="#11、内网穿透步骤frp" class="headerlink" title="11、内网穿透步骤frp"></a>11、内网穿透步骤frp</h2><p><strong>参考：<a target="_blank" rel="noopener" href="https://help.aliyun.com/practice_detail/433395">https://help.aliyun.com/practice_detail/433395</a></strong></p>
+<h2 id="12、安装docker"><a href="#12、安装docker" class="headerlink" title="12、安装docker"></a>12、安装docker</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2fefc493e1c3">https://www.jianshu.com/p/2fefc493e1c3</a></p>
+<h5 id="12-1、树莓派ubuntu的docker使用阿里云的容器镜像服务"><a href="#12-1、树莓派ubuntu的docker使用阿里云的容器镜像服务" class="headerlink" title="12.1、树莓派ubuntu的docker使用阿里云的容器镜像服务"></a>12.1、树莓派ubuntu的docker使用阿里云的容器镜像服务</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir -p /etc/docker<br>sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;<br>&#123;<br>  &quot;registry-mirrors&quot;: [&quot;https://xe5y9to9.mirror.aliyuncs.com&quot;]<br>&#125;<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="12-2、配置Docker图形化界面portainer"><a href="#12-2、配置Docker图形化界面portainer" class="headerlink" title="12.2、配置Docker图形化界面portainer"></a>12.2、配置Docker图形化界面portainer</h5><ul>
+<li>下载 Docker 图形化界面 portainer:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo docker pull portainer/portainer<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建 portainer 容器并命名为portainer_data:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo docker volume create portainer_data<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer<br></code></pre></td></tr></table></figure>
+
+<h2 id="13、安装mamba"><a href="#13、安装mamba" class="headerlink" title="13、安装mamba"></a>13、安装mamba</h2><p><strong>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/codedancing/article/details/103936542">https://blog.csdn.net/codedancing/article/details/103936542</a></strong></p>
+<h2 id="14、ubuntu查看版本号"><a href="#14、ubuntu查看版本号" class="headerlink" title="14、ubuntu查看版本号"></a>14、ubuntu查看版本号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">lsb_release -a<br>No LSB modules are available.<br>Distributor ID: Ubuntu<br>Description:    Ubuntu 22.10<br>Release:        22.10<br>Codename:       kinetic<br></code></pre></td></tr></table></figure>
+
+<h2 id="15、树莓派搭建samba"><a href="#15、树莓派搭建samba" class="headerlink" title="15、树莓派搭建samba"></a>15、树莓派搭建samba</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt install samba<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/samba/smb.conf <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">sudo vim /etc/samba/smb.conf</span> <br>[share]<br>   comment = sailfishsharing<br>   path = /media/taoao/Taoao/samba/<br>   valid users = taoao<br>   read only = no<br>   create mask = 0777<br>   directory mask = 0777<br>   guest ok = no<br>   browseable = yes<br>   public = yes<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo smbpasswd -a 用户名<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo samba restart<br></code></pre></td></tr></table></figure>
+
+<h2 id="16、windows-修复硬盘命令"><a href="#16、windows-修复硬盘命令" class="headerlink" title="16、windows 修复硬盘命令"></a>16、windows 修复硬盘命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">chkdsk /f I：<br></code></pre></td></tr></table></figure>
+
+<p>其中<code>I:</code>是硬盘的盘符，可以根据实际情况进行替换。</p>
+<h2 id="17、树莓派挂载exFAT硬盘步骤【方法没问题，但是exFAT有些地方不方便，比如安装mamba的时候坑太多】"><a href="#17、树莓派挂载exFAT硬盘步骤【方法没问题，但是exFAT有些地方不方便，比如安装mamba的时候坑太多】" class="headerlink" title="17、树莓派挂载exFAT硬盘步骤【方法没问题，但是exFAT有些地方不方便，比如安装mamba的时候坑太多】"></a>17、树莓派挂载exFAT硬盘步骤【方法没问题，但是exFAT有些地方不方便，比如安装mamba的时候坑太多】</h2><p>树莓派Ubuntu默认不支持exFAT文件系统，因此无法直接挂载。以下是解决该问题的步骤：</p>
+<p>安装exFAT支持<br>首先，需要安装exFAT文件系统的支持。可以使用以下命令安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get update<br>sudo apt-get install exfat-fuse exfat-utils<br></code></pre></td></tr></table></figure>
+
+<p>安装完成后，重新插入exFAT格式的存储设备。</p>
+<p>exFAT 文件系统默认不支持文件和目录的权限控制，因此在 exFAT 文件系统中新建的文件和目录的所有者和所有组都会被设置为 root。</p>
+<p>为了解决这个问题，你可以在挂载 exFAT 硬盘时使用 <code>uid</code> 和 <code>gid</code> 参数来指定默认的所有者和所有组。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mount -t exfat -o uid=taoao,gid=taoao /dev/sda1 /media/taoao/Taoao<br></code></pre></td></tr></table></figure>
+
+<p>其中，<code>taoao</code> 和 <code>taoao</code> 分别是你想要设置的用户名和用户组名，<code>/dev/sda1</code> 是硬盘的设备名，<code>/media/taoao/Taoao</code> 是挂载点的路径。</p>
+<p>这样，在 exFAT 硬盘中新建的文件和目录的所有者和所有组就会被设置为指定的用户名和用户组了。</p>
+<p>如果你已经挂载了 exFAT 硬盘，可以使用 <code>umount</code> 命令卸载硬盘，然后重新挂载时指定 <code>uid</code> 和 <code>gid</code> 参数。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo umount /media/taoao/Taoao<br>sudo mount -t exfat -o uid=taoao,gid=taoao /dev/sda1 /media/taoao/Taoao<br></code></pre></td></tr></table></figure>
+
+<p>注意，exFAT 文件系统默认不支持权限控制，因此指定的 <code>uid</code> 和 <code>gid</code> 参数只会影响新建文件和目录的所有者和所有组，而不会修改已经存在的文件和目录的所有者和所有组。</p>
+<p>要让 exFAT 硬盘在系统启动时自动挂载，你可以编辑 <code>/etc/fstab</code> 文件，添加挂载信息。</p>
+<p>首先，你需要查找 exFAT 硬盘的设备名和分区 UUID。可以使用以下命令查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo blkid<br></code></pre></td></tr></table></figure>
+
+<p>找到你的 exFAT 硬盘对应的设备名和分区 UUID，记录下来。</p>
+<p>然后，你需要创建一个挂载点，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir /media/taoao/Taoao<br></code></pre></td></tr></table></figure>
+
+<p>接下来，打开 <code>/etc/fstab</code> 文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo nano /etc/fstab<br></code></pre></td></tr></table></figure>
+
+<p>在文件末尾添加以下行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">UUID=your_partition_uuid /media/taoao/Taoao exfat defaults,uid=taoao,gid=taoao 0 0<br></code></pre></td></tr></table></figure>
+
+<p>将 <code>your_partition_uuid</code>、<code>uid</code> 和 <code>gid</code> 替换为你实际的分区 UUID、用户名和用户组名。</p>
+<p>保存并关闭文件。</p>
+<p>这样，系统在启动时就会自动挂载 exFAT 硬盘到 <code>/mnt/exfat</code> 目录，并使用指定的用户名和用户组设置文件和目录的所有者和所有组。</p>
+<h2 id="18、将exFAT硬盘格式化为ext4，并设置为开机自动挂载"><a href="#18、将exFAT硬盘格式化为ext4，并设置为开机自动挂载" class="headerlink" title="18、将exFAT硬盘格式化为ext4，并设置为开机自动挂载"></a>18、将exFAT硬盘格式化为ext4，并设置为开机自动挂载</h2><h4 id="1、硬盘格式化为ext4"><a href="#1、硬盘格式化为ext4" class="headerlink" title="1、硬盘格式化为ext4"></a>1、硬盘格式化为ext4</h4><p>在windows电脑上下载一个工具 <a target="_blank" rel="noopener" href="https://www.diskgenius.cn/">DiskGenius</a>,利用工具将硬盘格式化为ext4格式，<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1UAXv8CJf63vXG2cTgK-WUQ?pwd=gwa1">网盘链接</a></p>
+<h4 id="2、设置开机自动挂载"><a href="#2、设置开机自动挂载" class="headerlink" title="2、设置开机自动挂载"></a>2、设置开机自动挂载</h4><h5 id="2-1、查看硬盘信息"><a href="#2-1、查看硬盘信息" class="headerlink" title="2.1、查看硬盘信息"></a>2.1、查看硬盘信息</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo fdisk -l<br></code></pre></td></tr></table></figure>
+
+<h5 id="2-2、查看分区id"><a href="#2-2、查看分区id" class="headerlink" title="2.2、查看分区id"></a>2.2、查看分区id</h5><p>通过<code>sudo blkid</code> 命令查看硬盘设备的UUID、格式</p>
+<p><img src="/img/ubuntu_img/%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98_%E6%9F%A5%E7%9C%8B%E8%AE%BE%E5%A4%87%E7%9A%84UUID.png" alt="开机自动挂载硬盘_查看设备的UUID.png"></p>
+<h5 id="2-3、编辑-etc-fstab-文件"><a href="#2-3、编辑-etc-fstab-文件" class="headerlink" title="2.3、编辑/etc/fstab 文件"></a>2.3、编辑<code>/etc/fstab</code> 文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">打开 /etc/fstab 文件</span><br>sudo vim /etc/fstab<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">在文件最后一行添加 设备的UUID    挂载目录       硬盘格式    defaults,uid=用户名,gid=用户名,rw,<span class="hljs-built_in">exec</span>,<span class="hljs-built_in">umask</span>=000    0       0</span><br>UUID=&quot;5a6e92fe-09123&quot;     /media/taoao/Taoao      ext4    defaults,uid=用户名,gid=用户名,rw,exec,umask=000    0       0<br></code></pre></td></tr></table></figure>
+
+<p><code>uid=用户名</code> 和 <code>uid=用户名</code> 将设置 该用户和 root 用户为该目录的所有者。<code>rw,exec</code> 将设置该目录为可读可写可执行。<code>umask=000</code> 将设置该目录的权限掩码为 000，这意味着任何用户都可以访问该目录的文件和子目录</p>
+<h5 id="2-4、执行以下命令，重新挂载所有文件系统："><a href="#2-4、执行以下命令，重新挂载所有文件系统：" class="headerlink" title="2.4、执行以下命令，重新挂载所有文件系统："></a>2.4、执行以下命令，重新挂载所有文件系统：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">sudo mount -<span class="hljs-selector-tag">a</span><br></code></pre></td></tr></table></figure>
+
+<p>这将重新挂载所有在 <code>/etc/fstab</code> 中定义的文件系统，包括您的 ext4 硬盘。</p>
+<p>现在，您的 ext4 硬盘应该在系统启动时自动挂载到 <code>/media/taoao/Taoao</code> 目录，并设置所有用户的权限为可读可写可执行。</p>
+<h2 id="19、树莓派安装mamba，并设置所有用户都可用【非root用户不用输入sudo】"><a href="#19、树莓派安装mamba，并设置所有用户都可用【非root用户不用输入sudo】" class="headerlink" title="19、树莓派安装mamba，并设置所有用户都可用【非root用户不用输入sudo】"></a>19、树莓派安装mamba，并设置所有用户都可用【非root用户不用输入sudo】</h2><ol>
+<li><p>首先，从Mambaforge的官方网站下载适用于aarch64架构的Linux版本。您可以使用以下命令在终端中下载安装包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://github.com/conda-forge/miniforge/releases/download/4.9.2-6/Mambaforge-pypy3-4.9.2-6-Linux-aarch64.sh<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将下载的安装包移动到您希望安装Mambaforge的目录中。在此示例中，我们将把安装包移动到&#x2F;media&#x2F;taoao&#x2F;Taoao&#x2F;samba目录中。您可以使用以下命令将安装包移动到目录中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mv Mambaforge-pypy3-4.9.2-6-Linux-aarch64.sh /media/taoao/Taoao/samba/<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /media/taoao/Taoao/samba/<br>sh Mambaforge-pypy3-4.9.2-6-Linux-aarch64.sh<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装程序会首先回车；然后是否同意安装，填yes；然后提示您输入安装目录，这里手动输入 &#x2F;media&#x2F;taoao&#x2F;Taoao&#x2F;samba&#x2F;mambaforge-pypy3；最后会询问是否自动配置，这里直接回车，代表自动配置。安装完成</p>
+<p>安装完成之后重新启动shell</p>
+</li>
+<li><p>安装完成后，您需要将Mambaforge添加到系统路径中。打开终端并输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/environment<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">在最后一行添加以下字段</span><br>PATH=/media/taoao/Taoao/samba/mambaforge-pypy3/bin:$PATH<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">完成之后退出，重新加载环境变量</span><br>source /etc/environment<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>接下来，您需要为taoao用户设置PATH环境变量，以便他们也可以使用Mambaforge。打开终端并输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /home/taoao/.bashrc<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">在最后一行添加以下字段</span><br>export PATH=/media/taoao/Taoao/samba/mambaforge-pypy3/bin:$PATH<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>现在，taoao用户可以在终端中使用Mambaforge，而无需使用sudo命令。如果您想让root用户也可以这样做，请重复步骤6，但将文件名更改为&#x2F;root&#x2F;.bashrc.</p>
+</li>
+<li><p>之后输入<code>mamba -V</code> 过着 <code>conda -V</code> 即可查看新安装的conda版本</p>
+</li>
+</ol>
+<h2 id="20、树莓派搭建unblockneteasemusic-解锁网易云音乐灰色链接和VIP歌曲"><a href="#20、树莓派搭建unblockneteasemusic-解锁网易云音乐灰色链接和VIP歌曲" class="headerlink" title="20、树莓派搭建unblockneteasemusic 解锁网易云音乐灰色链接和VIP歌曲"></a>20、树莓派搭建unblockneteasemusic 解锁网易云音乐灰色链接和VIP歌曲</h2><p>1、下载 <code>nondanee/unblockneteasemusic</code> 的 Docker 镜像，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo docker pull nondanee/unblockneteasemusic<br></code></pre></td></tr></table></figure>
+
+<p>2、运行 Docker 镜像，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d -p 8080:8080 --name unblockneteasemusic nondanee/unblockneteasemusic<br></code></pre></td></tr></table></figure>
+
+<p>这个命令会在后台运行 Docker 容器，并将容器内的 8080 端口映射到主机的 8080 端口，容器的名称为 <code>unblockneteasemusic</code>。</p>
+<p>3、现在可以在树莓派 Ubuntu 中访问 <code>UnblockNeteaseMusic</code> 了，可以在浏览器中输入 <code>http://localhost:8080</code> 或者树莓派 Ubuntu 的 IP 地址加上端口号来访问。</p>
+<p>需要注意的是，由于 <code>nondanee/unblockneteasemusic</code> 使用了代理服务器来解除网易云音乐的地域限制，因此需要根据自己的情况配置代理服务器的地址和端口号。同时，由于 Docker 镜像的大小可能比较大，因此在下载镜像时需要注意网络速度和文件大小的限制。</p>
+<h2 id="21、得到每条命令输入的时间"><a href="#21、得到每条命令输入的时间" class="headerlink" title="21、得到每条命令输入的时间"></a>21、得到每条命令输入的时间</h2><p>Ubuntu可以使用<code>history</code>命令查看之前执行过的命令，但默认情况下不会显示每条命令的输入时间。如果想要得到每条命令输入的时间，可以通过修改<code>.bashrc</code>文件来实现。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p>打开终端，输入以下命令打开<code>.bashrc</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在文件末尾添加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> HISTTIMEFORMAT=<span class="hljs-string">&quot;%F %T &quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>这个命令会设置环境变量<code>HISTTIMEFORMAT</code>，使得在执行命令时记录每条命令的输入时间。</p>
+</li>
+<li><p>保存并退出文件，输入以下命令使修改生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<p>这个命令会重新加载<code>.bashrc</code>文件，使得修改生效。</p>
+</li>
+</ol>
+<p>现在，每次执行命令时，都会记录下命令的输入时间。可以使用<code>history</code>命令查看之前执行过的命令，每条命令的输入时间会显示在命令前面。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/ubuntu/" class="print-no-link">#ubuntu</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树莓派安装ubuntu笔记</div>
+      <div>http://example.com/2024/02/26/树莓派安装ubuntu笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/26/JavaWeb%E7%AC%94%E8%AE%B0/" title="JavaWeb笔记">
+                        <span class="hidden-mobile">JavaWeb笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://syea01.github.io" target="_blank" rel="nofollow noopener"><span>首页</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

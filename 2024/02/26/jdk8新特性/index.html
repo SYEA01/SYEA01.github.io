@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <link rel="icon" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、Lambda表达式1、Lambda表达式可以简化匿名内部类的书写 1、Lambda表达式的标准格式1234&#x2F;&#x2F; 方法的参数如果是接口，就可以考虑使用Lambda表达式来替代匿名内部类(参数列表)-&gt;&#123;    &#125;  2、Lambda表达式的原理 匿名内部类在编译时会形成一个新的类，类的名字会带上$符号 Lambda表达式在编译后不会形成新的类  1、在类中新增一个方法，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jdk8新特性">
+<meta property="og:url" content="http://example.com/2024/02/26/jdk8%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Lambda表达式1、Lambda表达式可以简化匿名内部类的书写 1、Lambda表达式的标准格式1234&#x2F;&#x2F; 方法的参数如果是接口，就可以考虑使用Lambda表达式来替代匿名内部类(参数列表)-&gt;&#123;    &#125;  2、Lambda表达式的原理 匿名内部类在编译时会形成一个新的类，类的名字会带上$符号 Lambda表达式在编译后不会形成新的类  1、在类中新增一个方法，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-25T17:36:44.000Z">
+<meta property="article:modified_time" content="2024-02-25T17:58:52.610Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>jdk8新特性 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Taoao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/aaaa.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="jdk8新特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-26 01:36" pubdate>
+          2024年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">jdk8新特性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、Lambda表达式"><a href="#一、Lambda表达式" class="headerlink" title="一、Lambda表达式"></a>一、Lambda表达式</h1><h2 id="1、Lambda表达式"><a href="#1、Lambda表达式" class="headerlink" title="1、Lambda表达式"></a>1、Lambda表达式</h2><p>可以简化匿名内部类的书写</p>
+<h3 id="1、Lambda表达式的标准格式"><a href="#1、Lambda表达式的标准格式" class="headerlink" title="1、Lambda表达式的标准格式"></a>1、Lambda表达式的标准格式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 方法的参数如果是接口，就可以考虑使用Lambda表达式来替代匿名内部类</span><br>(参数列表)-&gt;&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、Lambda表达式的原理"><a href="#2、Lambda表达式的原理" class="headerlink" title="2、Lambda表达式的原理"></a>2、Lambda表达式的原理</h3><blockquote>
+<p>匿名内部类在编译时会形成一个新的类，类的名字会带上$符号</p>
+<p>Lambda表达式在编译后不会形成新的类</p>
+</blockquote>
+<p>1、在类中新增一个方法，这个方法的方法体就是Lambda表达式中的代码</p>
+<p>2、还会形成一个匿名内部类，实现接口重新方法</p>
+<p>3、在接口的重新方法中会调用新生成的方法</p>
+<h3 id="3、Lambda表达式的省略格式"><a href="#3、Lambda表达式的省略格式" class="headerlink" title="3、Lambda表达式的省略格式"></a>3、Lambda表达式的省略格式</h3><p>1、小括号内的参数类型可以省略</p>
+<p>2、如果小括号内有且仅有一个参数，则小括号可以省略</p>
+<p>3、如果大括号内有且仅有一个语句，可以同时省略大括号、return关键字、分号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 举例</span><br>Collections.sort(persons,(Person o1,Person o2)-&gt;&#123;<br>    <span class="hljs-keyword">return</span> o1.getAge()-o2.getAge();<br>&#125;);<br><br><span class="hljs-comment">// 省略写法</span><br>Collections.sort(persons, (o1, o2) -&gt; o1.getAge() - o2.getAge());<br></code></pre></td></tr></table></figure>
+
+<h3 id="4、Lambda表达式的前提条件"><a href="#4、Lambda表达式的前提条件" class="headerlink" title="4、Lambda表达式的前提条件"></a>4、Lambda表达式的前提条件</h3><p>1、方法的参数或局部变量类型必须为接口才能使用Lambda表达式</p>
+<p>2、接口中有且仅有一个抽象方法</p>
+<p><em><strong>只有一个抽象方法的接口称为函数式接口，就可以使用Lambda表达式</strong></em></p>
+<blockquote>
+<p>JDK8提供了一个注解 ,用于检测这个接口是不是只有一个抽象方法 <code>@FunctionalInterface</code></p>
+</blockquote>
+<h3 id="5、Lambda表达式和匿名内部类对比"><a href="#5、Lambda表达式和匿名内部类对比" class="headerlink" title="5、Lambda表达式和匿名内部类对比"></a>5、Lambda表达式和匿名内部类对比</h3><p>1、所需的类型不一样</p>
+<ul>
+<li>匿名内部类：需要的类型可以是类，抽象类，接口</li>
+<li>Lambda表示式：需要的类型必须是接口</li>
+</ul>
+<p>2、抽象方法的数量不一样</p>
+<ul>
+<li>匿名内部类：抽象方法的数量随意</li>
+<li>Lambda表达式：只能有一个抽象方法</li>
+</ul>
+<p>3、实现原理不同</p>
+<ul>
+<li>匿名内部类：在编译后会形成class文件</li>
+<li>Lambda表示式：在程序运行的时候动态生成class</li>
+</ul>
+<p>当接口中只有一个抽象方法时，建议使用Lambda表达式。其他情况还是需要使用匿名内部类</p>
+<h2 id="2、JDK8接口新增两种方法"><a href="#2、JDK8接口新增两种方法" class="headerlink" title="2、JDK8接口新增两种方法"></a>2、JDK8接口新增两种方法</h2><p>1、默认方法（Default Methods）：接口中可以定义默认方法，即在接口中提供了方法的默认实现。默认方法使用关键字<code>default</code>修饰，可以在接口中直接实现方法体，而无需在实现类中重新实现。这个特性主要是为了解决接口升级的问题，当接口新增方法时，已有的实现类不需要修改代码即可使用默认方法。</p>
+<p>2、静态方法（Static Methods）：接口中可以定义静态方法，即使用关键字<code>static</code>修饰的方法。静态方法可以直接通过接口名称调用，无需通过实现类实例化对象。这样可以将一些与接口紧密相关的功能组织在一起，并提供工具方法或实用函数。</p>
+<h2 id="3、常用的内置的函数式接口"><a href="#3、常用的内置的函数式接口" class="headerlink" title="3、常用的内置的函数式接口"></a>3、常用的内置的函数式接口</h2><p>内置的函数式接口主要在<code>java.util.function</code>包中</p>
+<h3 id="1、Supplier接口（供给型接口）"><a href="#1、Supplier接口（供给型接口）" class="headerlink" title="1、Supplier接口（供给型接口）"></a>1、Supplier接口（供给型接口）</h3><p><code>Supplier</code>接口是Java 8中的一个函数式接口，它属于<code>java.util.function</code>包，用于表示一个供给型操作，即该接口不接受任何参数，但返回一个结果。<code>Supplier</code>接口定义了一个名为<code>get()</code>的抽象方法，用于获取结果。</p>
+<p><code>Supplier</code>接口的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Supplier</span>&lt;T&gt; &#123;<br>    T <span class="hljs-title function_">get</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Supplier</code>接口只包含一个抽象方法<code>get()</code>，该方法没有参数，返回类型为<code>T</code>，表示提供一个结果。</p>
+<p>由于<code>Supplier</code>接口是函数式接口，因此可以使用Lambda表达式或方法引用来创建<code>Supplier</code>接口的实例。通过调用<code>get()</code>方法，可以获取<code>Supplier</code>接口提供的结果。</p>
+<p>下面是一个示例，演示如何使用<code>Supplier</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.function.Supplier;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SupplierExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个返回字符串的Supplier</span><br>        Supplier&lt;String&gt; supplier = () -&gt; <span class="hljs-string">&quot;Hello, World!&quot;</span>;<br>        <br>        <span class="hljs-comment">// 调用get()方法获取结果</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> supplier.get();<br>        System.out.println(result); <span class="hljs-comment">// 输出: Hello, World!</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们创建了一个返回字符串的<code>Supplier</code>实例，并使用<code>get()</code>方法获取结果并打印输出。</p>
+<p><code>Supplier</code>接口在函数式编程中经常用于延迟计算或惰性求值的场景，可以用来提供一个值或对象，供其他方法使用。它是Java 8中函数式编程特性的重要组成部分之一，广泛应用于Stream API、Optional类以及其他函数式接口的方法中。</p>
+<h3 id="2、Consumer接口（消费型接口）"><a href="#2、Consumer接口（消费型接口）" class="headerlink" title="2、Consumer接口（消费型接口）"></a>2、Consumer接口（消费型接口）</h3><p><code>Consumer</code>接口是Java 8中的一个函数式接口，它属于<code>java.util.function</code>包，用于表示一个消费型操作，即该接口接受一个参数，但不返回任何结果。<code>Consumer</code>接口定义了一个名为<code>accept(T t)</code>的抽象方法，用于消费给定的参数。</p>
+<p><code>Consumer</code>接口的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Consumer</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(T t)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Consumer</code>接口只包含一个抽象方法<code>accept(T t)</code>，该方法接受一个参数<code>T</code>，表示消费一个值或对象。</p>
+<p>由于<code>Consumer</code>接口是函数式接口，因此可以使用Lambda表达式或方法引用来创建<code>Consumer</code>接口的实例。通过调用<code>accept(T t)</code>方法，可以消费<code>Consumer</code>接口接受的参数。</p>
+<p>下面是一个示例，演示如何使用<code>Consumer</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.function.Consumer;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConsumerExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个打印字符串的Consumer</span><br>        Consumer&lt;String&gt; consumer = (s) -&gt; System.out.println(s);<br>        <br>        <span class="hljs-comment">// 调用accept()方法消费参数</span><br>        consumer.accept(<span class="hljs-string">&quot;Hello, World!&quot;</span>); <span class="hljs-comment">// 输出: Hello, World!</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们创建了一个打印字符串的<code>Consumer</code>实例，并使用<code>accept()</code>方法消费给定的参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        printHello(s -&gt; System.out.println(s.toUpperCase()), s -&gt; System.out.println(s.toLowerCase()));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printHello</span><span class="hljs-params">(Consumer&lt;String&gt; c1, Consumer&lt;String&gt; c2)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;aaa&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello World&quot;</span>;<br><span class="hljs-comment">//        c1.accept(str);</span><br><span class="hljs-comment">//        c2.accept(str);</span><br>        c1.andThen(c2).accept(str);  <span class="hljs-comment">// 先执行c1，再执行c2</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Consumer</code>接口在函数式编程中经常用于需要对给定的参数执行一些操作，而不需要返回结果的场景。它可以用于迭代、遍历、输出、修改等操作。在Java 8中，<code>Consumer</code>接口广泛应用于Stream API以及其他函数式接口的方法中。</p>
+<h3 id="3、Function接口（类型转换接口）"><a href="#3、Function接口（类型转换接口）" class="headerlink" title="3、Function接口（类型转换接口）"></a>3、Function接口（类型转换接口）</h3><p><code>Function</code>接口是Java 8中的一个函数式接口，它属于<code>java.util.function</code>包，用于表示一个函数，接受一个参数并返回一个结果。<code>Function</code>接口定义了一个名为<code>apply(T t)</code>的抽象方法，用于对给定的参数进行转换或计算，并返回结果。</p>
+<p><code>Function</code>接口的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Function</span>&lt;T, R&gt; &#123;<br>    R <span class="hljs-title function_">apply</span><span class="hljs-params">(T t)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Function</code>接口包含一个抽象方法<code>apply(T t)</code>，该方法接受一个参数<code>T</code>，表示输入值，返回类型为<code>R</code>，表示输出结果。</p>
+<p>由于<code>Function</code>接口是函数式接口，因此可以使用Lambda表达式或方法引用来创建<code>Function</code>接口的实例。通过调用<code>apply(T t)</code>方法，可以对给定的参数进行转换或计算，并返回结果。</p>
+<p>下面是一个示例，演示如何使用<code>Function</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.function.Function;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FunctionExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个将字符串转换为整数的Function</span><br>        Function&lt;String, Integer&gt; function = Integer::parseInt;<br>        <br>        <span class="hljs-comment">// 调用apply()方法对参数进行转换</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> function.apply(<span class="hljs-string">&quot;123&quot;</span>); <span class="hljs-comment">// 将字符串&quot;123&quot;转换为整数</span><br>        System.out.println(result); <span class="hljs-comment">// 输出: 123</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们创建了一个将字符串转换为整数的<code>Function</code>实例，并使用<code>apply()</code>方法对字符串参数进行转换，并将结果打印输出。</p>
+<p><code>Function</code>接口在函数式编程中经常用于对给定的参数执行转换、计算或映射等操作，并返回结果。它可以用于数据转换、类型转换、映射处理等场景。在Java 8中，<code>Function</code>接口广泛应用于Stream API以及其他函数式接口的方法中。</p>
+<h3 id="4、Predicate接口（判断接口）"><a href="#4、Predicate接口（判断接口）" class="headerlink" title="4、Predicate接口（判断接口）"></a>4、Predicate接口（判断接口）</h3><p><code>Predicate</code>接口是Java 8中的一个函数式接口，它属于<code>java.util.function</code>包，用于表示一个断言（判断条件），接受一个参数并返回一个布尔值。<code>Predicate</code>接口定义了一个名为<code>test(T t)</code>的抽象方法，用于对给定的参数进行判断，并返回布尔结果。</p>
+<p><code>Predicate</code>接口的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Predicate</span>&lt;T&gt; &#123;<br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(T t)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>Predicate</code>接口包含一个抽象方法<code>test(T t)</code>，该方法接受一个参数<code>T</code>，表示要进行判断的值，返回类型为<code>boolean</code>，表示判断的结果。</p>
+<p>由于<code>Predicate</code>接口是函数式接口，因此可以使用Lambda表达式或方法引用来创建<code>Predicate</code>接口的实例。通过调用<code>test(T t)</code>方法，可以对给定的参数进行判断，并返回布尔结果。</p>
+<p>下面是一个示例，演示如何使用<code>Predicate</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.function.Predicate;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PredicateExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个判断字符串是否为空的Predicate</span><br>        Predicate&lt;String&gt; predicate = String::isEmpty;<br>        <br>        <span class="hljs-comment">// 调用test()方法对参数进行判断</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> predicate.test(<span class="hljs-string">&quot;Hello&quot;</span>); <span class="hljs-comment">// 判断字符串是否为空</span><br>        System.out.println(result); <span class="hljs-comment">// 输出: false</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们创建了一个判断字符串是否为空的<code>Predicate</code>实例，并使用<code>test()</code>方法对给定的字符串参数进行判断，并将结果打印输出。</p>
+<p><code>Predicate</code>接口在函数式编程中经常用于对给定的参数进行条件判断，返回布尔结果。它可以用于过滤、筛选、匹配等场景。在Java 8中，<code>Predicate</code>接口广泛应用于Stream API以及其他函数式接口的方法中。</p>
+<h2 id="4、方法引用"><a href="#4、方法引用" class="headerlink" title="4、方法引用"></a>4、方法引用</h2><p>方法引用（Method Reference）是Java中一种简化Lambda表达式的语法，它提供了一种直接引用已有方法的方式，用于代替Lambda表达式的使用。方法引用可以使代码更简洁、易读，并提高可维护性。</p>
+<p>方法引用可以用于以下几种情况：</p>
+<ol>
+<li>静态方法的引用：引用静态方法。</li>
+<li>实例方法的引用：引用某个对象的实例方法。</li>
+<li>构造方法的引用：引用类的构造方法。</li>
+</ol>
+<p>方法引用的语法形式如下：</p>
+<ol>
+<li>静态方法引用：<code>类名::静态方法名</code></li>
+<li>实例方法引用：<ul>
+<li>引用特定对象的实例方法：<code>对象::实例方法名</code></li>
+<li>引用特定类型任意对象的实例方法：<code>类名::实例方法名</code></li>
+</ul>
+</li>
+<li>构造方法引用：<ul>
+<li>引用类的构造方法：<code>类名::new</code></li>
+<li>引用数组的构造方法：<code>类型[]::new</code></li>
+</ul>
+</li>
+</ol>
+<p>下面是一些示例，展示不同类型的方法引用的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.function.Function;<br><span class="hljs-keyword">import</span> java.util.function.Supplier;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MethodReferenceExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 静态方法引用</span><br>        Function&lt;Integer, Integer&gt; staticMethodRef = Math::abs;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">result1</span> <span class="hljs-operator">=</span> staticMethodRef.apply(-<span class="hljs-number">10</span>);<br>        System.out.println(result1); <span class="hljs-comment">// 输出: 10</span><br>        <br>        <span class="hljs-comment">// 实例方法引用</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;<br>        Function&lt;Integer, Character&gt; instanceMethodRef = str::charAt;<br>        <span class="hljs-type">char</span> <span class="hljs-variable">result2</span> <span class="hljs-operator">=</span> instanceMethodRef.apply(<span class="hljs-number">2</span>);<br>        System.out.println(result2); <span class="hljs-comment">// 输出: l</span><br>        <br>        <span class="hljs-comment">// 构造方法引用</span><br>        Supplier&lt;String&gt; constructorRef = String::<span class="hljs-keyword">new</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">result3</span> <span class="hljs-operator">=</span> constructorRef.get();<br>        System.out.println(result3); <span class="hljs-comment">// 输出: &quot;&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们展示了静态方法引用、实例方法引用和构造方法引用的使用方式。通过方法引用，我们可以直接引用已有的方法，并将其作为函数式接口的实现。</p>
+<p>方法引用能够简化代码并提高可读性，特别适用于将已有的方法作为Lambda表达式的实现，避免编写重复的代码。同时，方法引用也能够使代码更加易于理解和维护。</p>
+<h1 id="二、Stream流"><a href="#二、Stream流" class="headerlink" title="二、Stream流"></a>二、Stream流</h1><p>Stream流是Java 8中引入的一个新的API，用于处理集合（Collection）和数组等数据源的元素序列。Stream流提供了一种函数式编程的方式来操作数据，可以进行过滤、映射、排序、聚合等操作，使得数据处理更加简洁、灵活和可读。</p>
+<p>Stream流的特点和用法如下：</p>
+<ol>
+<li>数据源：Stream流可以操作集合、数组、I&#x2F;O通道、生成器等不同类型的数据源。</li>
+<li>惰性求值：Stream流的操作一般是惰性求值的，也就是说在调用终止操作之前，中间操作不会立即执行，而是等待终止操作触发才会进行计算和处理。这种惰性求值的特性使得Stream流能够提高性能，避免不必要的计算。</li>
+<li>中间操作：Stream流提供了丰富的中间操作方法，如<code>filter</code>、<code>map</code>、<code>distinct</code>、<code>sorted</code>等，用于对数据进行过滤、转换、去重、排序等操作。中间操作可以根据需要进行链式调用，形成一个操作序列。</li>
+<li>终止操作：Stream流提供了多种终止操作方法，如<code>forEach</code>、<code>collect</code>、<code>reduce</code>、<code>count</code>等，用于对数据进行最终的处理和结果的获取。终止操作会触发中间操作的执行，并产生最终的结果。</li>
+<li>并行处理：Stream流支持并行处理，可以通过<code>parallel</code>方法将流转换为并行流，利用多线程来加速处理。并行处理适用于大规模数据和耗时操作。</li>
+</ol>
+<p>下面是一个简单的示例，展示Stream流的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StreamExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);<br>        <br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.stream()<br>            .filter(n -&gt; n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>            .mapToInt(n -&gt; n * <span class="hljs-number">2</span>)<br>            .sum();<br>        <br>        System.out.println(sum); <span class="hljs-comment">// 输出: 12</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们创建了一个包含整数的列表，并使用Stream流对列表中的元素进行过滤、映射和求和操作。通过链式调用中间操作和终止操作，最终计算出符合条件的元素的两倍之和。</p>
+<p>Stream流提供了一种更简洁、灵活的数据处理方式，通过函数式编程的风格，使得代码更加清晰、易读。它使得数据处理和操作变得更加高效和可维护，同时也提供了并行处理的能力，适应了现代多核处理器的特点。</p>
+<h2 id="1、获取Stream流的两种方式"><a href="#1、获取Stream流的两种方式" class="headerlink" title="1、获取Stream流的两种方式"></a>1、获取Stream流的两种方式</h2><p>获取Stream流的两种常用方式是通过集合（Collection）和通过数组（Array）。</p>
+<ol>
+<li><p>通过集合获取Stream流：可以使用集合类提供的<code>stream()</code>方法来获取一个Stream流。例如，对于<code>List</code>、<code>Set</code>和<code>Map</code>等集合，可以使用它们的<code>stream()</code>方法来获取相应的Stream流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; list = Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);<br>Stream&lt;String&gt; stream = list.stream();<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过数组获取Stream流：可以使用<code>Arrays</code>类的静态方法<code>stream()</code>来获取一个数组的Stream流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String[] array = &#123;<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>&#125;;<br>Stream&lt;String&gt; stream = Arrays.stream(array);<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>此外，还可以使用<code>Stream</code>类的静态方法<code>of()</code>获取一个包含指定元素的Stream流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Stream&lt;String&gt; stream = Stream.of(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>通过以上两种方式，我们可以获得包含集合或数组元素的Stream流，并对其进行各种中间和终端操作。</p>
+<p>值得注意的是，Stream流是一次性使用的，一旦使用终端操作，就无法再对同一个Stream进行其他操作。如果需要对同一组数据进行多次操作，需要重新获取一个新的Stream流。</p>
+<h2 id="2、Stream流的常用方法和注意事项"><a href="#2、Stream流的常用方法和注意事项" class="headerlink" title="2、Stream流的常用方法和注意事项"></a>2、Stream流的常用方法和注意事项</h2><p>常用的中间操作方法：</p>
+<ol>
+<li><code>filter(Predicate&lt;T&gt; predicate)</code>: 根据指定的条件（Predicate）过滤元素。</li>
+<li><code>map(Function&lt;T, R&gt; mapper)</code>: 将元素进行映射转换，将类型T的元素转换为类型R的元素。</li>
+<li><code>flatMap(Function&lt;T, Stream&lt;R&gt;&gt; mapper)</code>: 将元素进行扁平化处理，将类型T的元素转换为多个类型R的元素，并合并为一个流。</li>
+<li><code>distinct()</code>: 去除流中的重复元素。</li>
+<li><code>sorted()</code>: 对流中的元素进行自然排序。</li>
+<li><code>limit(long n)</code>: 截取流中的前N个元素。</li>
+<li><code>skip(long n)</code>: 跳过流中的前N个元素。</li>
+<li><code>concat(Stream&lt;? extends T&gt; a, Stream&lt;? extends T&gt; b)</code>：用于将两个流合并成一个新的流。它是<code>Stream</code>接口的静态方法，可以通过<code>Stream.concat()</code>来调用。</li>
+</ol>
+<p>常用的终端操作方法：</p>
+<ol>
+<li><code>forEach(Consumer&lt;T&gt; action)</code>: 对流中的每个元素执行指定的操作。</li>
+<li><code>collect(Collector&lt;T, A, R&gt; collector)</code>: 将流中的元素进行收集，生成一个集合或其他数据结构。</li>
+<li><code>count()</code>: 返回流中的元素个数。</li>
+<li><code>anyMatch(Predicate&lt;T&gt; predicate)</code>: 判断流中是否存在满足条件的元素。</li>
+<li><code>allMatch(Predicate&lt;T&gt; predicate)</code>: 判断流中的所有元素是否都满足条件。</li>
+<li><code>noneMatch(Predicate&lt;T&gt; predicate)</code>: 判断流中的所有元素是否都不满足条件。</li>
+<li><code>findFirst()</code>: 返回流中的第一个元素。</li>
+<li><code>findAny()</code>: 返回流中的任意一个元素。</li>
+<li><code>reduce()</code>：用于将流中的元素进行归约操作，将流中的元素按照指定的规约方式合并为一个结果。（相加、最大值、最小值）</li>
+</ol>
+<p>注意事项：</p>
+<ol>
+<li>Stream流是一次性的，一旦进行终端操作，就无法再对同一个Stream进行其他操作。</li>
+<li>中间操作只定义了数据的转换流程，并不会进行真正的计算，只有在终端操作时才会触发计算。</li>
+<li>Stream流的操作可以进行链式调用，形成一个操作流水线，但需要注意操作的顺序，可能会影响结果。</li>
+<li>并行流（Parallel Stream）可以通过<code>parallel()</code>方法将流转换为并行流，利用多线程进行并行处理，适用于大规模数据和耗时操作。</li>
+<li>对于无限流（Infinite Stream），需要使用适当的终止操作来限制元素的数量，否则会导致无限循环。</li>
+</ol>
+<h2 id="3、并行的Stream流"><a href="#3、并行的Stream流" class="headerlink" title="3、并行的Stream流"></a>3、并行的Stream流</h2><h3 id="1、获取并行流的两种方式"><a href="#1、获取并行流的两种方式" class="headerlink" title="1、获取并行流的两种方式"></a>1、获取并行流的两种方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//方式1</span><br>Stream&lt;Student&gt; stream = list.parallelStream();<br><br><span class="hljs-comment">//方式2：将已有的stream流转成并行流</span><br>Stream&lt;Student&gt; stream2 = list.stream().parallel();<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、解决parallelStream线程不安全，三种方式"><a href="#2、解决parallelStream线程不安全，三种方式" class="headerlink" title="2、解决parallelStream线程不安全，三种方式"></a>2、解决parallelStream线程不安全，三种方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java">        <span class="hljs-comment">// 解决parallelStream线程安全问题方案一：使用同步代码块</span><br>        <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>        ArrayList&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        IntStream.rangeClosed(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>).parallel().forEach(i -&gt; &#123;<br>            <span class="hljs-keyword">synchronized</span> (obj) &#123;   <span class="hljs-comment">// 同步代码块</span><br>                list.add(i);<br>            &#125;<br>        &#125;);<br>        System.out.println(<span class="hljs-string">&quot;list.size() = &quot;</span> + list.size());<br><br>        <span class="hljs-comment">//解决parallelStream线程安全问题方案二：使用线程安全的集合</span><br><span class="hljs-comment">//        Vector&lt;Integer&gt; v = new Vector&lt;&gt;();</span><br>        ArrayList&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        List&lt;Integer&gt; synchronizedList = Collections.synchronizedList(list);<br>        IntStream.rangeClosed(<span class="hljs-number">1</span>,<span class="hljs-number">1000</span>).parallel().forEach(i-&gt;synchronizedList.add(i));<br>        System.out.println(<span class="hljs-string">&quot;synchronizedList.size() = &quot;</span> + synchronizedList.size());<br><br><br>        <span class="hljs-comment">//解决parallelStream线程安全问题方案三：调用Stream流的collect()/toArray()</span><br>        List&lt;Integer&gt; list = IntStream.rangeClosed(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>).parallel().boxed().collect(Collectors.toList());<br>        System.out.println(<span class="hljs-string">&quot;list.size() = &quot;</span> + list.size());<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="三、JDK8新增的Optional类"><a href="#三、JDK8新增的Optional类" class="headerlink" title="三、JDK8新增的Optional类"></a>三、JDK8新增的Optional类</h1><p><code>Optional</code>是Java 8中引入的一个类，它的目的是解决空指针异常（NullPointerException）的问题。在Java中，当一个变量的值可以为空时，如果没有进行有效的空值检查，使用该变量可能会导致空指针异常。<code>Optional</code>类提供了一种优雅的方式来处理可能为空的值，以避免空指针异常。</p>
+<p><code>Optional</code>类的设计是基于容器（Container）模式。它可以包含一个非空的值，也可以为空。如果一个<code>Optional</code>对象包含非空值，可以使用<code>get()</code>方法来获取该值；如果<code>Optional</code>为空，<code>get()</code>方法将抛出一个<code>NoSuchElementException</code>异常。</p>
+<p>除了<code>get()</code>方法外，<code>Optional</code>类还提供了一些其他常用的方法，如：</p>
+<ul>
+<li><code>isPresent()</code>：检查<code>Optional</code>对象是否包含非空值。</li>
+<li><code>orElse(T other)</code>：如果<code>Optional</code>对象为空，则返回指定的默认值。</li>
+<li><code>orElseGet(Supplier&lt;? extends T&gt; other)</code>：如果<code>Optional</code>对象为空，则根据提供的<code>Supplier</code>函数生成一个默认值。</li>
+<li><code>orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</code>：如果<code>Optional</code>对象为空，则抛出由提供的<code>Supplier</code>函数生成的异常。</li>
+<li><code>map(Function&lt;? super T, ? extends U&gt; mapper)</code>：如果<code>Optional</code>对象非空，则对其进行映射操作并返回一个新的<code>Optional</code>对象。</li>
+<li><code>flatMap(Function&lt;? super T, Optional&lt;U&gt;&gt; mapper)</code>：如果<code>Optional</code>对象非空，则对其进行映射操作并返回一个新的<code>Optional</code>对象，该映射操作的结果已经是一个<code>Optional</code>对象。</li>
+</ul>
+<p>通过使用<code>Optional</code>类，我们可以更清晰地表达一个值可能为空的情况，并且可以避免频繁的空值检查和空指针异常。但是，需要注意的是，过度使用<code>Optional</code>也可能导致代码变得过于冗长，因此在使用时需要适度。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>jdk8新特性</div>
+      <div>http://example.com/2024/02/26/jdk8新特性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://syea01.github.io" target="_blank" rel="nofollow noopener"><span>首页</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

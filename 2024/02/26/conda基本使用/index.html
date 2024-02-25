@@ -1,0 +1,728 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <link rel="icon" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、linux安装miniconda1、首先在Anaconda官网下载合适的miniconda，下载完成后上传到linux【树莓派只支持4.9以及以前的】2、输入命令 bash Miniconda3-py39_4.12.0-Linux-x86_64.sh 按照顺序进行安装脚本安装步骤中，修改安装路径：&#x2F;opt&#x2F;miniconda3&#x2F; 遇到在询问是否将conda加入环境变量的时候选择no 3、安装完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="conda基本使用">
+<meta property="og:url" content="http://example.com/2024/02/26/conda%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、linux安装miniconda1、首先在Anaconda官网下载合适的miniconda，下载完成后上传到linux【树莓派只支持4.9以及以前的】2、输入命令 bash Miniconda3-py39_4.12.0-Linux-x86_64.sh 按照顺序进行安装脚本安装步骤中，修改安装路径：&#x2F;opt&#x2F;miniconda3&#x2F; 遇到在询问是否将conda加入环境变量的时候选择no 3、安装完">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/conda_img/conda.jpg">
+<meta property="article:published_time" content="2024-02-25T17:38:24.000Z">
+<meta property="article:modified_time" content="2024-02-25T17:52:21.101Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="conda">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/conda_img/conda.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>conda基本使用 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Taoao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/aaaa.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="conda基本使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-26 01:38" pubdate>
+          2024年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          558 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">conda基本使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、linux安装miniconda"><a href="#一、linux安装miniconda" class="headerlink" title="一、linux安装miniconda"></a>一、linux安装miniconda</h1><h2 id="1、首先在Anaconda官网下载合适的miniconda，下载完成后上传到linux【树莓派只支持4-9以及以前的】"><a href="#1、首先在Anaconda官网下载合适的miniconda，下载完成后上传到linux【树莓派只支持4-9以及以前的】" class="headerlink" title="1、首先在Anaconda官网下载合适的miniconda，下载完成后上传到linux【树莓派只支持4.9以及以前的】"></a>1、首先在<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html#linux-installers">Anaconda官网</a>下载合适的miniconda，下载完成后上传到linux【树莓派只支持4.9以及以前的】</h2><h2 id="2、输入命令-bash-Miniconda3-py39-4-12-0-Linux-x86-64-sh-按照顺序进行安装"><a href="#2、输入命令-bash-Miniconda3-py39-4-12-0-Linux-x86-64-sh-按照顺序进行安装" class="headerlink" title="2、输入命令 bash Miniconda3-py39_4.12.0-Linux-x86_64.sh 按照顺序进行安装"></a>2、输入命令 <code>bash Miniconda3-py39_4.12.0-Linux-x86_64.sh</code> 按照顺序进行安装</h2><p><strong>脚本安装步骤中，修改安装路径：<code>/opt/miniconda3/</code></strong></p>
+<p><strong>遇到在询问是否将conda加入环境变量的时候选择no</strong></p>
+<h2 id="3、安装完成后，修改权限-加入环境变量到-etc-profile"><a href="#3、安装完成后，修改权限-加入环境变量到-etc-profile" class="headerlink" title="3、安装完成后，修改权限,加入环境变量到&#x2F;etc&#x2F;profile"></a>3、安装完成后，修改权限,加入环境变量到&#x2F;etc&#x2F;profile</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo chmod ugo+w -R /opt/miniconda3/<br>vim /etc/profile<br><span class="hljs-meta prompt_"># </span><span class="language-bash">最后添加</span><br>PATH=/opt/miniconda3/bin:$PATH<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="4、安装完成后，输入conda-version验证是否安装成功"><a href="#4、安装完成后，输入conda-version验证是否安装成功" class="headerlink" title="4、安装完成后，输入conda --version验证是否安装成功"></a>4、安装完成后，输入<code>conda --version</code>验证是否安装成功</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[localhost]~ conda --version<br>conda 4.12.0<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、设置默认不进入conda环境"><a href="#5、设置默认不进入conda环境" class="headerlink" title="5、设置默认不进入conda环境"></a>5、设置默认不进入conda环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">默认不进入conda环境</span><br>conda config --set auto_activate_base false<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">退出当前conda环境</span><br>conda deactivate<br></code></pre></td></tr></table></figure>
+
+<p><strong>安装mamba拓展：<code>conda install -c conda-forge mamba</code>   【命令中可以使用mamba代替conda】</strong></p>
+<h1 id="二、conda基本使用"><a href="#二、conda基本使用" class="headerlink" title="二、conda基本使用"></a>二、conda基本使用</h1><h2 id="1、创建虚拟环境"><a href="#1、创建虚拟环境" class="headerlink" title="1、创建虚拟环境"></a>1、创建虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">conda create --name 虚拟环境名 python版本</span><br>conda create --name py36 python=3.6<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、安装包"><a href="#2、安装包" class="headerlink" title="2、安装包"></a>2、安装包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda/pip/pip3 install 包名<br><span class="hljs-meta prompt_"># </span><span class="language-bash">也可以指定版本安装</span><br>conda install 包名=版本<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、删除包"><a href="#3、删除包" class="headerlink" title="3、删除包"></a>3、删除包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda uninstall 包名<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、切换虚拟环境"><a href="#4、切换虚拟环境" class="headerlink" title="4、切换虚拟环境"></a>4、切换虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda activate 环境名<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、删除虚拟环境"><a href="#5、删除虚拟环境" class="headerlink" title="5、删除虚拟环境"></a>5、删除虚拟环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda env remove -n 环境名<br></code></pre></td></tr></table></figure>
+
+<h2 id="6、其他命令"><a href="#6、其他命令" class="headerlink" title="6、其他命令"></a>6、其他命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看所有环境</span><br>conda env list<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看活跃的环境【带*号的就是当前环境】</span><br>conda info --envs<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看当前环境下安装的包和版本</span><br>conda list<br></code></pre></td></tr></table></figure>
+
+<p><strong>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/SARACH_WONG/article/details/89328307">https://blog.csdn.net/SARACH_WONG/article/details/89328307</a></strong></p>
+<h1 id="三、安装配置jupyter"><a href="#三、安装配置jupyter" class="headerlink" title="三、安装配置jupyter"></a>三、安装配置jupyter</h1><h2 id="1、进入对应的conda环境"><a href="#1、进入对应的conda环境" class="headerlink" title="1、进入对应的conda环境"></a>1、进入对应的conda环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda activate py36<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、pip安装jupyter-lab"><a href="#2、pip安装jupyter-lab" class="headerlink" title="2、pip安装jupyter lab"></a>2、pip安装jupyter lab</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install jupyterlab<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、配置远程登录和密码"><a href="#3、配置远程登录和密码" class="headerlink" title="3、配置远程登录和密码"></a>3、配置远程登录和密码</h2><p>首先进入python环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python3<br></code></pre></td></tr></table></figure>
+
+<p>执行以下命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> jupyter_server.auth <span class="hljs-keyword">import</span> passwd<br><span class="hljs-meta">&gt;&gt;&gt; </span>passwd()<br>Enter password:<br>Verify password:<br><span class="hljs-string">&#x27;sha1:2ba1cfd96ec3:abedd88f3701f0d6f80f2fa6142bc2a2b1dc461b&#x27;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>退出python环境，使用jupyterlab生成配置文件,可以看到生成文件<code>~/.jupyter/jupyter_lab_config.py</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jupyter lab --generate-config<br></code></pre></td></tr></table></figure>
+
+<p>编辑文件，修改一下配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">将ip设置为*，意味允许任何IP访问</span><br>c.ServerApp.ip = &#x27;*&#x27;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">这里的密码就是上边我们生成的那一串</span><br>c.NotebookApp.password = &#x27;sha1:2ba1cfd96ec3:abedd88f3701f0d6f80f2fa6142bc2a2b1dc461b&#x27;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">服务器上并没有浏览器可以供Jupyter打开</span><br>c.ServerApp.open_browser = False<br><span class="hljs-meta prompt_"># </span><span class="language-bash">监听端口设置为8888或其他自己喜欢的端口</span><br>c.ServerApp.port = 8888<br><span class="hljs-meta prompt_"># </span><span class="language-bash">允许远程访问</span><br>c.Server.allow_remote_access = True<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">工作目录</span><br>c.ServerApp.root_dir = &quot;/home/taoao/Desktop&quot;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="4、阿里云添加对应的端口号"><a href="#4、阿里云添加对应的端口号" class="headerlink" title="4、阿里云添加对应的端口号"></a>4、阿里云添加对应的端口号</h2><h2 id="5、配置成功，可以使用jupyter-lab或jupyter-lab启动了"><a href="#5、配置成功，可以使用jupyter-lab或jupyter-lab启动了" class="headerlink" title="5、配置成功，可以使用jupyter lab或jupyter-lab启动了"></a>5、配置成功，可以使用<code>jupyter lab</code>或<code>jupyter-lab</code>启动了</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29427541/article/details/123390390">https://blog.csdn.net/qq_29427541/article/details/123390390</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/conda/" class="print-no-link">#conda</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>conda基本使用</div>
+      <div>http://example.com/2024/02/26/conda基本使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/26/git%E7%AC%94%E8%AE%B0/" title="git笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">git笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/26/Django%E7%AC%94%E8%AE%B0/" title="Django笔记">
+                        <span class="hidden-mobile">Django笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://syea01.github.io" target="_blank" rel="nofollow noopener"><span>首页</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

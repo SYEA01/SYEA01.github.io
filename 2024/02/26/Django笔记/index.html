@@ -1,0 +1,1956 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <link rel="icon" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="视频连接 安装Django 12345# 安装Djangopip3 install django&#x3D;&#x3D;版本号# 检查是否安装成功pip3 freeze | grep -i &#x27;Django&#x27;  其他笔记：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_45718715&#x2F;article&#x2F;details&#x2F;118819640?spm&#x3D;1001.2014.3001.5501 一、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django笔记">
+<meta property="og:url" content="http://example.com/2024/02/26/Django%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="视频连接 安装Django 12345# 安装Djangopip3 install django&#x3D;&#x3D;版本号# 检查是否安装成功pip3 freeze | grep -i &#x27;Django&#x27;  其他笔记：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_45718715&#x2F;article&#x2F;details&#x2F;118819640?spm&#x3D;1001.2014.3001.5501 一、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/django_img/Django.jpg">
+<meta property="article:published_time" content="2024-02-25T17:38:16.000Z">
+<meta property="article:modified_time" content="2024-02-25T17:52:59.052Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/django_img/Django.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Django笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Taoao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/aaaa.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Django笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-26 01:38" pubdate>
+          2024年2月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          107 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Django笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><em><strong><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vK4y1o7jH/?spm&vd_source=e710048bca758289bcc6b7e0e07eec72">视频连接</a></strong></em></p>
+<p><strong>安装Django</strong></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 安装Django<br>pip3 install django==版本号<br><br># 检查是否安装成功<br>pip3 <span class="hljs-keyword">freeze</span> | grep -i <span class="hljs-string">&#x27;Django&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>其他笔记：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45718715/article/details/118819640?spm=1001.2014.3001.5501">https://blog.csdn.net/weixin_45718715/article/details/118819640?spm=1001.2014.3001.5501</a></strong></p>
+<h1 id="一、Django项目"><a href="#一、Django项目" class="headerlink" title="一、Django项目"></a>一、Django项目</h1><h2 id="1、创建、启动项目"><a href="#1、创建、启动项目" class="headerlink" title="1、创建、启动项目"></a>1、创建、启动项目</h2><h3 id="1-1、创建项目"><a href="#1-1、创建项目" class="headerlink" title="1.1、创建项目"></a>1.1、创建项目</h3><ul>
+<li><p>成功安装Django后，终端会有 <code>django-admin</code> 命令</p>
+</li>
+<li><p>执行 <code>django-admin startproject 项目名</code>  即可创建出对应项目文件夹</p>
+<p><img src="/img/django_img/%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg" alt="创建项目"></p>
+</li>
+</ul>
+<h3 id="1-2、启动服务【测试开发阶段】"><a href="#1-2、启动服务【测试开发阶段】" class="headerlink" title="1.2、启动服务【测试开发阶段】"></a>1.2、启动服务【测试开发阶段】</h3><ol>
+<li>终端cd进入到项目文件夹</li>
+</ol>
+<p><img src="/img/django_img/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE_1.jpg" alt="启动项目"></p>
+<ol start="2">
+<li>进入到项目文件夹后，执行 <code>python3 manage.py runserver</code> 启动django服务【注：该启动方式下，Django在前台启动服务，默认监听8000端口】</li>
+</ol>
+<p><img src="/img/django_img/%E5%90%AF%E5%8A%A8Django_2.jpg" alt="启动项目2"></p>
+<ol start="3">
+<li><p>浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/">http://127.0.0.1:8000</a> 可以看到django的启动页面</p>
+<p><img src="/img/django_img/%E9%A1%B5%E9%9D%A2.jpg" alt="初始化页面"></p>
+</li>
+</ol>
+<p>注：如果想更换端口，则可以用 <code>python3 manage.py runserver 端口号</code></p>
+<h3 id="1-3、关闭服务"><a href="#1-3、关闭服务" class="headerlink" title="1.3、关闭服务"></a>1.3、关闭服务</h3><ul>
+<li>方式1：在runserver启动终端下<ul>
+<li>执行 <code>Ctrl+c</code> 可以关闭Django服务</li>
+</ul>
+</li>
+<li>方式2:在其他终端下<ul>
+<li>执行 <code>lsof -i:8000</code> 查询出Django的进程id</li>
+<li>执行 <code>kill -9 Django进程id</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="2、项目的基础结构"><a href="#2、项目的基础结构" class="headerlink" title="2、项目的基础结构"></a>2、项目的基础结构</h2><h3 id="2-1、manage-py"><a href="#2-1、manage-py" class="headerlink" title="2.1、manage.py"></a>2.1、manage.py</h3><p><strong>manage.py 包含项目管理的子命令，如：</strong></p>
+<ul>
+<li><code>python3 manage.py runserver</code> 	启动服务</li>
+<li><code>python3 manage.py startapp</code>       创建应用</li>
+<li><code>python3 manage.py migrate</code>         数据库迁移</li>
+</ul>
+<p><strong>直接执行  <code>python3 manage.py </code>  可以列出所有的Django子命令</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs shell">(py36) taoaodeMacBook-Pro:mysite1 taoao$ python3 manage.py<br><br>Type &#x27;manage.py help &lt;subcommand&gt;&#x27; for help on a specific subcommand.<br><br>Available subcommands:<br><br>[auth]<br>    changepassword<br>    createsuperuser<br><br>[contenttypes]<br>    remove_stale_contenttypes<br><br>[django]<br>    check<br>    compilemessages<br>    createcachetable<br>    dbshell<br>    diffsettings<br>    dumpdata<br>    flush<br>    inspectdb<br>    loaddata<br>    makemessages<br>    makemigrations<br>    migrate<br>    sendtestemail<br>    shell<br>    showmigrations<br>    sqlflush<br>    sqlmigrate<br>    sqlsequencereset<br>    squashmigrations<br>    startapp<br>    startproject<br>    test<br>    testserver<br><br>[sessions]<br>    clearsessions<br><br>[staticfiles]<br>    collectstatic<br>    findstatic<br>    runserver<br>(py36) taoaodeMacBook-Pro:mysite1 taoao$ <br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2、项目同名文件夹-mysite1-mysite1"><a href="#2-2、项目同名文件夹-mysite1-mysite1" class="headerlink" title="2.2、项目同名文件夹 - mysite1&#x2F;mysite1"></a>2.2、项目同名文件夹 - mysite1&#x2F;mysite1</h3><ul>
+<li>_<em>init_</em>.py：	Python包的初始化文件</li>
+<li>wsgi.py：     Web服务网关的配置文件  -  Django正式启动时，需要用到</li>
+<li>urls.py：      项目的主路由配置  -  http请求进入Django时，优先调用该文件</li>
+<li>settings.py：项目的配置文件  -  包含项目启动时需要的配置</li>
+</ul>
+<h3 id="2-3、settings-py配置文件"><a href="#2-3、settings-py配置文件" class="headerlink" title="2.3、settings.py配置文件"></a>2.3、settings.py配置文件</h3><ul>
+<li><p>settings.py  包含了Django项目启动的所有配置项</p>
+</li>
+<li><p>配置项分为 <strong>公有配置</strong> 和 <strong>自定义配置</strong></p>
+</li>
+<li><p>配置项格式例： BASE_DIR&#x3D;’xxxx’    【名字必须是大写】</p>
+</li>
+<li><p>共有配置  -  Django官方提供的基础配置</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/settings/">https://docs.djangoproject.com/zh-hans/3.2/ref/settings/</a></p>
+<h4 id="1、公有配置"><a href="#1、公有配置" class="headerlink" title="1、公有配置"></a>1、公有配置</h4><ul>
+<li><p><strong>BASE_DIR</strong></p>
+<ul>
+<li>用于绑定当前项目的绝对路径（动态计算出来的），所有文件夹都可以依赖此路径</li>
+</ul>
+</li>
+<li><p><strong>DEBUG</strong></p>
+<ul>
+<li>用于配置Django项目的启动模式，取值：<ul>
+<li>True：表示开发环境中使用开发调试模式（用于开发中）</li>
+<li>False：表示当前项目运行在生产环境中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>ALLOWED_HOSTS</strong></p>
+<ul>
+<li><p>设置允许访问到本项目的host头值</p>
+<ul>
+<li>[]  空列表，表示只有请求头中host为 127.0.0.1、localhost能访问本项目。-DEBUG &#x3D; True 时有效</li>
+<li>[‘*’]  表示任何请求头的host都能访问到当前项目</li>
+<li>[‘192.168.1.3’, ‘127.0.0.1’]  表示只有当前两个host头的值能访问当前项目</li>
+</ul>
+<p>示例：如果要在局域网其他主机也能访问此主机的Django服务，启动方式如下</p>
+<ul>
+<li><code>python3 manage.py runserver 0.0.0.0:端口号</code></li>
+<li>指定网络设备，如果内网环境下其他主机想正常访问该站点，需加 <code>ALLOWED_HOSTS=[&#39;内网ip&#39;]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>INSTALLED_APPS</strong></p>
+<ul>
+<li>指定当前项目中安装的应用列表</li>
+</ul>
+</li>
+<li><p><strong>MIDDLEWARE</strong></p>
+<ul>
+<li>用于注册中间件</li>
+</ul>
+</li>
+<li><p><strong>TEMPLATES</strong></p>
+<ul>
+<li>用于指定模版的配置信息</li>
+</ul>
+</li>
+<li><p><strong>DATBASES</strong></p>
+<ul>
+<li>用于指定数据库的配置信息</li>
+</ul>
+</li>
+<li><p><strong>LANGUAGE_CODE</strong></p>
+<ul>
+<li>用于指定语言配置<ul>
+<li>英文：”en-us”</li>
+<li>中文：”zh-Hans”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>TIME_ZONE</strong></p>
+<ul>
+<li>用于指定当前服务器端时区<ul>
+<li>世界标准时间：”UTC”</li>
+<li>中国时区：”Asia&#x2F;Shanghai”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>ROOT_URLCONF</strong></p>
+<ul>
+<li>用于配置主url配置’ mystie1.urls’</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、自定义配置"><a href="#2、自定义配置" class="headerlink" title="2、自定义配置"></a>2、自定义配置</h4><ul>
+<li>settings.py 中也可以添加自定义的配置</li>
+<li>配置建议：名字尽量个性化  -  以防覆盖掉公有配置</li>
+</ul>
+<p>settings.py 中的所有配置项，都可以按需在代码中引入</p>
+<p>​	引入方式： <code>from django.conf import settings</code></p>
+<p><strong>settings.py文件内容:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Django settings for mysite1 project.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Generated by &#x27;django-admin startproject&#x27; using Django 3.2.16.</span><br><span class="hljs-string"></span><br><span class="hljs-string">For more information on this file, see</span><br><span class="hljs-string">https://docs.djangoproject.com/zh-hans/3.2/topics/settings/</span><br><span class="hljs-string"></span><br><span class="hljs-string">For the full list of settings and their values, see</span><br><span class="hljs-string">https://docs.djangoproject.com/zh-hans/3.2/ref/settings/</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path<br><br><span class="hljs-comment"># Build paths inside the project like this: BASE_DIR / &#x27;subdir&#x27;.</span><br>BASE_DIR = Path(__file__).resolve().parent.parent  <span class="hljs-comment"># 【当前项目的绝对路径】</span><br><br><span class="hljs-comment"># Quick-start development settings - unsuitable for production</span><br><span class="hljs-comment"># See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/</span><br><br><span class="hljs-comment"># SECURITY WARNING: keep the secret key used in production secret!</span><br>SECRET_KEY = <span class="hljs-string">&#x27;django-insecure-a1$i)bimiqb)3(0sob_i28d7zih_w2or0%pr102+902ki1q1i4&#x27;</span><br><br><span class="hljs-comment"># SECURITY WARNING: don&#x27;t run with debug turned on in production!</span><br>DEBUG = <span class="hljs-literal">True</span><br><span class="hljs-comment"># DE<span class="hljs-doctag">BUG:</span> 启动模式</span><br><span class="hljs-comment"># 1、True  -  调试模式</span><br><span class="hljs-comment"># 1.1、自动检测代码改动后，立刻重启服务。【修改的代码立刻生效】</span><br><span class="hljs-comment"># 1.2、代码报错时，浏览器会显示详细报错信息</span><br><span class="hljs-comment"># 2、False  -  正式启动模式 / 上线模式</span><br><br><span class="hljs-comment"># 请求头中的 Host头   例子：ALLOWED_HOSTS = [&#x27;127.0.0.1&#x27;]</span><br>ALLOWED_HOSTS = []<br><br><span class="hljs-comment"># Application definition</span><br><br><span class="hljs-comment"># 配置Django的应用</span><br>INSTALLED_APPS = [<br>    <span class="hljs-string">&#x27;django.contrib.admin&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.auth&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.contenttypes&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.sessions&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.messages&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.staticfiles&#x27;</span>,<br>]<br><br><span class="hljs-comment"># 中间件</span><br>MIDDLEWARE = [<br>    <span class="hljs-string">&#x27;django.middleware.security.SecurityMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.sessions.middleware.SessionMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.middleware.common.CommonMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.auth.middleware.AuthenticationMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.messages.middleware.MessageMiddleware&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.middleware.clickjacking.XFrameOptionsMiddleware&#x27;</span>,<br>]<br><br><span class="hljs-comment"># 表明Django的主路由文件位置</span><br>ROOT_URLCONF = <span class="hljs-string">&#x27;mysite1.urls&#x27;</span><br><br><span class="hljs-comment"># 模版</span><br>TEMPLATES = [<br>    &#123;<br>        <span class="hljs-string">&#x27;BACKEND&#x27;</span>: <span class="hljs-string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,<br>        <span class="hljs-string">&#x27;DIRS&#x27;</span>: [],<br>        <span class="hljs-string">&#x27;APP_DIRS&#x27;</span>: <span class="hljs-literal">True</span>,<br>        <span class="hljs-string">&#x27;OPTIONS&#x27;</span>: &#123;<br>            <span class="hljs-string">&#x27;context_processors&#x27;</span>: [<br>                <span class="hljs-string">&#x27;django.template.context_processors.debug&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.template.context_processors.request&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.contrib.auth.context_processors.auth&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.contrib.messages.context_processors.messages&#x27;</span>,<br>            ],<br>        &#125;,<br>    &#125;,<br>]<br><br><span class="hljs-comment"># 网关</span><br>WSGI_APPLICATION = <span class="hljs-string">&#x27;mysite1.wsgi.application&#x27;</span><br><br><span class="hljs-comment"># Database</span><br><span class="hljs-comment"># https://docs.djangoproject.com/en/3.2/ref/settings/#databases</span><br><span class="hljs-comment"># 数据库</span><br>DATABASES = &#123;<br>    <span class="hljs-string">&#x27;default&#x27;</span>: &#123;<br>        <span class="hljs-string">&#x27;ENGINE&#x27;</span>: <span class="hljs-string">&#x27;django.db.backends.sqlite3&#x27;</span>,<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: BASE_DIR / <span class="hljs-string">&#x27;db.sqlite3&#x27;</span>,<br>    &#125;<br>&#125;<br><br><span class="hljs-comment"># Password validation</span><br><span class="hljs-comment"># https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators</span><br><br>AUTH_PASSWORD_VALIDATORS = [<br>    &#123;<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;django.contrib.auth.password_validation.UserAttributeSimilarityValidator&#x27;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;django.contrib.auth.password_validation.MinimumLengthValidator&#x27;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;django.contrib.auth.password_validation.CommonPasswordValidator&#x27;</span>,<br>    &#125;,<br>    &#123;<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;django.contrib.auth.password_validation.NumericPasswordValidator&#x27;</span>,<br>    &#125;,<br>]<br><br><span class="hljs-comment"># Internationalization</span><br><span class="hljs-comment"># https://docs.djangoproject.com/en/3.2/topics/i18n/</span><br><br><span class="hljs-comment"># 语言信息配置    中文：&#x27;zh-Hans&#x27;</span><br><span class="hljs-comment"># LANGUAGE_CODE = &#x27;en-us&#x27;</span><br>LANGUAGE_CODE = <span class="hljs-string">&#x27;zh-Hans&#x27;</span><br><br><span class="hljs-comment"># 时区  东八区：&#x27;Asia/Shanghai&#x27;</span><br>TIME_ZONE = <span class="hljs-string">&#x27;UTC&#x27;</span><br><br>USE_I18N = <span class="hljs-literal">True</span><br><br>USE_L10N = <span class="hljs-literal">True</span><br><br>USE_TZ = <span class="hljs-literal">True</span><br><br><span class="hljs-comment"># Static files (CSS, JavaScript, Images)</span><br><span class="hljs-comment"># https://docs.djangoproject.com/en/3.2/howto/static-files/</span><br><br>STATIC_URL = <span class="hljs-string">&#x27;/static/&#x27;</span><br><br><span class="hljs-comment"># Default primary key field type</span><br><span class="hljs-comment"># https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field</span><br><br>DEFAULT_AUTO_FIELD = <span class="hljs-string">&#x27;django.db.models.BigAutoField&#x27;</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3、URL和视图函数"><a href="#3、URL和视图函数" class="headerlink" title="3、URL和视图函数"></a>3、URL和视图函数</h2><h3 id="3-1、URL"><a href="#3-1、URL" class="headerlink" title="3.1、URL"></a>3.1、URL</h3><h4 id="URL结构"><a href="#URL结构" class="headerlink" title="URL结构"></a>URL结构</h4><ul>
+<li><p>定义  -  即统一资源定位符  Uniform Resource Locator</p>
+</li>
+<li><p>作用  -  用来表示互联网上某个资源的地址</p>
+</li>
+<li><p>URL的一般语法格式为（注：[] 代表其中的内容可省略）</p>
+<ul>
+<li>protocol:&#x2F;&#x2F;hostname[:port]&#x2F; path [?query][#fragment]</li>
+<li>协议:&#x2F;&#x2F;主机名[:端口] &#x2F; 路由 [?查询字符串][#锚点]</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/">https://docs.djangoproject.com/zh-hans/3.2/</a></li>
+</ul>
+</li>
+<li><p><strong>protocol（协议）</strong> </p>
+<ul>
+<li>http 通过HTTP访问该资源。格式 http:&#x2F;&#x2F;</li>
+<li>https 通过安全的HTTPS访问该资源。格式 https:&#x2F;&#x2F;</li>
+<li>file 资源时本地计算机伤的文件。格式 file:&#x2F;&#x2F;&#x2F;</li>
+</ul>
+</li>
+<li><p><strong>hostname（主机名）</strong></p>
+<ul>
+<li>是指存放资源的服务器的域名系统（DNS）主机名、域名 或 IP地址</li>
+</ul>
+</li>
+<li><p><strong>port（端口号）</strong></p>
+<ul>
+<li>整数，可选，省略时使用方案的默认端口</li>
+<li>各种传输协议都有默认的端口号，如http的默认端口为80</li>
+</ul>
+</li>
+<li><p><strong>path（路由地址）</strong></p>
+<ul>
+<li>由零或多个”&#x2F;“ 符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</li>
+<li>路由地址决定了服务器端如何处理这个请求。</li>
+</ul>
+</li>
+<li><p><strong>query（查询）</strong></p>
+<ul>
+<li>可选，以? 开头，用于给动态网页传递参数。可有多个参数，，用&amp; 符号隔开，每个参数的名和值用&#x3D; 符号隔开</li>
+</ul>
+</li>
+<li><p><strong>fragment（锚点）</strong></p>
+<ul>
+<li>字符串，用于指定网络资源中的片段。例如一个网页中有多个名次解释，可使用fragment直接定位到某一名词解释</li>
+</ul>
+</li>
+</ul>
+<p><strong>urls.py结构：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># file：&lt;项目同名文件夹下&gt;/urls.py</span><br>  <span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin<br>  <span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br>  <span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views			<span class="hljs-comment"># 视图函数文件路径</span><br><br>  <span class="hljs-comment"># 此处配置主路由 </span><br>  urlpatterns=[<br>    path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin.site.urls),<br>    <span class="hljs-comment"># http://127.0.0.1:8000/path路径</span><br>    path(<span class="hljs-string">&#x27;path路径&#x27;</span>,视图函数文件名.视图函数)<br>    ... <br>  ]<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2、Django处理URL请求流程"><a href="#3-2、Django处理URL请求流程" class="headerlink" title="3.2、Django处理URL请求流程"></a>3.2、Django处理URL请求流程</h3><ul>
+<li><p>浏览器 地址栏  -&gt; <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/page/2003/">http://127.0.0.1:8000/page/2003/</a> </p>
+<p>1、Django 从settings.py配置文件中根据<strong>ROOT_URLCONF</strong>找到主路由文件【urls.py】；默认情况下，该文件在 项目同名目录下的urls；例如 mysite1&#x2F;mysite1&#x2F;urls.py</p>
+<p>2、Django加载主路由文件中的urlpatterns变量[包含很多路由的数组]</p>
+<p>3、依次匹配urlpatterns 中的URL，匹配到第一个合适的中断后续的匹配</p>
+<p>4、匹配成功  -  调用对应的视图函数处理请求，返回响应</p>
+<p>5、匹配失败  -  返回404响应</p>
+</li>
+</ul>
+<h3 id="3-3、视图函数"><a href="#3-3、视图函数" class="headerlink" title="3.3、视图函数"></a>3.3、视图函数</h3><ul>
+<li><p>视图函数是用于接收一个浏览器请求（HttpRequest对象）并通过HttpResponse对象返回响应的函数。</p>
+</li>
+<li><p>此函数可以接收浏览器请求并根据业务逻辑返回相应的响应内容给浏览器</p>
+</li>
+<li><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">xxx_view</span>(<span class="hljs-params">request [,其他参数...]</span>):<br>  <span class="hljs-keyword">return</span> HttpResponse对象<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># file: &lt;项目同名文件夹下&gt;/views.py</span><br>	<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse<br>  <br>  <span class="hljs-keyword">def</span> <span class="hljs-title function_">page1_view</span>(<span class="hljs-params">request</span>):<br>    html=<span class="hljs-string">&quot;&lt;h1&gt;这是第一个页面&lt;/h1&gt;&quot;</span><br>    <span class="hljs-keyword">return</span> HttpResponse(html)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4、路由配置"><a href="#4、路由配置" class="headerlink" title="4、路由配置"></a>4、路由配置</h2><h3 id="4-1、path"><a href="#4-1、path" class="headerlink" title="4.1、path"></a>4.1、path</h3><ul>
+<li><p>path()函数</p>
+<ul>
+<li><p>导入  -  <code>from django.urls import path</code></p>
+</li>
+<li><p>语法  -  <code>path(route路由,views视图函数,name=None)</code></p>
+</li>
+<li><p>参数：</p>
+<ul>
+<li>1、route：字符串类型，匹配的请求路径</li>
+<li>2、views：指定路径所对应的视图处理函数的名称  【函数名。注意：不能加括号】</li>
+<li>3、name：为地址起别名，在模版中地址反向解析时使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>path转换器</p>
+<ul>
+<li>语法：&lt;转换器类型：自定义名&gt;</li>
+<li>作用：若转换器类型匹配到对应类型的数据，则将数据按照关键字传参的方式传递给视图函数</li>
+<li>例子：<code>path(&#39;page/\&lt;int:page&gt;&#39;,views.xxx)</code></li>
+<li><strong>此时在urls.py中，xxx函数不光要传request参数。还要传转换器类型后面的自定义名</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/django_img/path.jpg" alt="path转换器类型"></p>
+<h3 id="4-2、re-path"><a href="#4-2、re-path" class="headerlink" title="4.2、re_path()"></a>4.2、re_path()</h3><ul>
+<li>re_path()函数<ul>
+<li>在url的匹配过程中可以使用正则表达式进行精确匹配</li>
+<li>语法：<ul>
+<li><code>re_path(reg，view，na me=xxx)</code></li>
+<li>正则表达式为命名分组模式（?P&lt;name&gt;pattern）；匹配提取参数后用关键字传参方式传递给视图函数</li>
+<li>正则命名分组：（?P&lt;name&gt;pattern）<ul>
+<li>（）代表是分组</li>
+<li>（?P&lt;参数名&gt;正则）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5、HTTP协议的请求和响应"><a href="#5、HTTP协议的请求和响应" class="headerlink" title="5、HTTP协议的请求和响应"></a>5、HTTP协议的请求和响应</h2><h3 id="5-1、定义"><a href="#5-1、定义" class="headerlink" title="5.1、定义"></a>5.1、定义</h3><ul>
+<li>请求是指浏览器端通过HTTP协议发送给服务器端的数据</li>
+<li>响应是指服务器端接收到请求后做相应的处理后再回复给浏览器端的数据</li>
+</ul>
+<h3 id="5-2、请求"><a href="#5-2、请求" class="headerlink" title="5.2、请求"></a>5.2、请求</h3><p><img src="/img/django_img/%E8%AF%B7%E6%B1%82.jpg" alt="请求"></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ada">起始行<br><br>请求头headers<br><br>请求体<span class="hljs-keyword">body</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-2-1、请求中的方法"><a href="#5-2-1、请求中的方法" class="headerlink" title="5.2.1、请求中的方法"></a>5.2.1、请求中的方法</h4><ul>
+<li>根据HTTP标准，HTTP请求可以使用多种请求方法</li>
+<li>HTTP1.0定义了三种请求方法：get、post和head方法（get、post最常用）</li>
+<li>HTTP1.1新增了五种请求方法：options、put、delete、trace和connect方法</li>
+</ul>
+<p><img src="/img/django_img/%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%B3%95.jpg" alt="请求中的方法"></p>
+<p><img src="/img/django_img/%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%B3%952.jpg" alt="请求中的方法"></p>
+<p>【 get请求：跟服务端要数据</p>
+<p>head请求：跟get类似，但是只会拿到响应头</p>
+<p>post请求：向服务端提交数据 </p>
+<p>put请求：更新数据</p>
+<p>delete请求：删除数据</p>
+<p>connect请求：代理</p>
+<p>options请求、trace请求：测试服务器】</p>
+<h4 id="5-2-2、Django中的请求"><a href="#5-2-2、Django中的请求" class="headerlink" title="5.2.2、Django中的请求"></a>5.2.2、Django中的请求</h4><ul>
+<li>请求在Django中就是 视图函数中的第一个参数，即HttpRequest对象</li>
+<li>Django接收到http协议的请求后，会根据请求数据报文创建HttpRequest对象</li>
+<li>HttpRequest对象 通过属性 描述了 请求的 所有相关信息</li>
+<li>HttpRequest对象的属性和方法：<ul>
+<li>path_info：URL字符串			调用：【例如：<code>request.path_info</code>,其他方法类似】</li>
+<li>method：字符串，表示HTTP请求的方法，常用值：‘GET’、‘POST’</li>
+<li>GET：QueryDict查询字典的对象，包含get请求方式的所有数据</li>
+<li>POST：QueryDict查询字典的对象，包含post请求方式的所有数据</li>
+<li>FILES：类似于字典的对象，包含所有的上传文件信息</li>
+<li>COKKIES：Python字典，包含所有的cookie，键和值都是字符串</li>
+<li>session：类似于字典的对象，表示当前的会话</li>
+<li>body：字符串，请求体的内容（POST或PUT）</li>
+<li>scheme：请求协议（‘http’&#x2F;‘https’）</li>
+<li>request.get_full_path()：请求的完整路径</li>
+<li>request.META：请求中的元数据（消息头、请求头）<ul>
+<li>request.META[‘REMOTE_ADDR’]：客户端IP地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-3、响应"><a href="#5-3、响应" class="headerlink" title="5.3、响应"></a>5.3、响应</h3><p><img src="/img/django_img/%E5%93%8D%E5%BA%94.jpg" alt="响应"></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ada">起始行<br><br>响应头headers<br><br>响应体<span class="hljs-keyword">body</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-3-1、响应状态码"><a href="#5-3-1、响应状态码" class="headerlink" title="5.3.1、响应状态码"></a>5.3.1、响应状态码</h4><p>常见的HTTP状态码  HTTP Status Code</p>
+<pre><code class="hljs">- 200  -  请求成功
+- 301  -  永久重定向 - 资源（网页等）被永久转移到其它URL
+- 302  -  临时重定向
+- 404  -  请求的资源（网页等）不存在
+- 500  -  内部服务器错误
+</code></pre>
+<p><img src="/img/django_img/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81.jpg" alt="响应状态码"></p>
+<h4 id="5-3-2、Django中的响应对象"><a href="#5-3-2、Django中的响应对象" class="headerlink" title="5.3.2、Django中的响应对象"></a>5.3.2、Django中的响应对象</h4><p>构造函数格式：<code>HttpResponse(conntent=响应体,content_type=响应体数据类型,status=状态码)</code></p>
+<p>作用：向客户端浏览器返回响应，同时携带响应体内容</p>
+<ul>
+<li><p>参数</p>
+<ul>
+<li>content：表示返回的内容</li>
+<li>content_type：指定返回数据的MIME类型（默认是“text&#x2F;html”）。浏览器会根据这个属性来显示数据。如果是text&#x2F;html，那么就会解析这个字符串；如果是text&#x2F;plain，那么就会显示一个纯文本</li>
+<li>status：返回HTTP响应的状态码（默认是200）</li>
+</ul>
+</li>
+<li><p>常见的Content-Type如下：</p>
+<ul>
+<li>‘text&#x2F;html’（默认的，html文件）</li>
+<li>‘text&#x2F;plain’（纯文本）</li>
+<li>‘text&#x2F;css’（css文件）</li>
+<li>‘text&#x2F;javascript’（js文件）</li>
+<li>‘multipart&#x2F;form-data’（文件提交）</li>
+<li>‘application&#x2F;json’（json传输）</li>
+<li>‘application&#x2F;xml’（xml文件）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/django_img/HttpResponse%E5%AD%90%E7%B1%BB.jpg" alt="HttpResponse子类"></p>
+<h2 id="6、GET请求和POST请求"><a href="#6、GET请求和POST请求" class="headerlink" title="6、GET请求和POST请求"></a>6、GET请求和POST请求</h2><ul>
+<li><strong>无论是GET还是POST，统一都由视图函数接收请求，通过判断request.method区分具体的请求动作</strong></li>
+</ul>
+<h3 id="6-1、GET处理"><a href="#6-1、GET处理" class="headerlink" title="6.1、GET处理"></a>6.1、GET处理</h3><ul>
+<li><p>GET请求动作，一般用于向服务器获取数据</p>
+</li>
+<li><p>能够产生GET请求的场景：</p>
+<ul>
+<li>浏览器地址栏中输入URL，回车后</li>
+<li>&lt;a href&#x3D;”地址?参数&#x3D;值&amp;参数&#x3D;值”&gt;</li>
+<li>form表单中的method为get</li>
+</ul>
+</li>
+<li><p>GET请求方式中，如果有数据需要传递给服务器，通常会用查询字符串(QueryString)传递</p>
+<ul>
+<li>URL格式：xxx?参数名1&#x3D;值1&amp;参数名2&#x3D;值2…		如：<a target="_blank" rel="noopener" href="http://127.0.0.1/page1?a=100&b=200">http://127.0.0.1/page1?a=100&amp;b=200</a></li>
+</ul>
+</li>
+<li><p>服务器端接收参数：获取客户端请求GET请求提交的数据</p>
+<ul>
+<li>方法示例：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">request.GET[<span class="hljs-string">&#x27;参数名&#x27;</span>]							<span class="hljs-comment"># 获取参数对应的值</span><br>request.GET.get(<span class="hljs-string">&#x27;参数名&#x27;</span>,<span class="hljs-string">&#x27;默认值&#x27;</span>)	<span class="hljs-comment"># 获取参数对应的值，如果没有，可以设个默认值</span><br>request.GET.getlist(<span class="hljs-string">&#x27;参数名&#x27;</span>)			<span class="hljs-comment"># 如果参数是多个值，必须使用getlist()</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2、POST处理"><a href="#6-2、POST处理" class="headerlink" title="6.2、POST处理"></a>6.2、POST处理</h3><ul>
+<li>POST请求动作，一般用于向服务器提交大量&#x2F;隐私数据</li>
+<li>客户端通过表单等POST请求将数据传递给服务器端，如：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;post&#x27;</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;/login&#x27;</span>&gt;</span><br>  	姓名:<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;text&#x27;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;username&#x27;</span>&gt;</span><br>  	<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#x27;登录&#x27;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>服务器端接收参数：通过request.method来判断是否为POST请求</p>
+</li>
+<li><p>使用POST方式接收客户端数据  与GET完全一致</p>
+</li>
+<li><p>取消csrf验证，否则Django将会拒绝客户端发来的POST请求，报403响应</p>
+<ul>
+<li><p>– 禁止掉settings.py中的MIDDLEWARE中的CsrfViewsMiddleWare的中间件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">MIDDLEWARE = [<br>  ...<br>  <span class="hljs-comment"># &#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;,</span><br>  ...<br>]<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="7、Django的设计模式及模版层"><a href="#7、Django的设计模式及模版层" class="headerlink" title="7、Django的设计模式及模版层"></a>7、Django的设计模式及模版层</h2><h3 id="7-1、MVC和MTV"><a href="#7-1、MVC和MTV" class="headerlink" title="7.1、MVC和MTV"></a>7.1、MVC和MTV</h3><h4 id="7-1-1、传统的MVC"><a href="#7-1-1、传统的MVC" class="headerlink" title="7.1.1、传统的MVC"></a>7.1.1、传统的MVC</h4><p><strong>MCV代表Model-View-Controller（模型-视图-控制层）模式</strong></p>
+<ul>
+<li>M 模型层（Model），主要用于对数据库层的封装</li>
+<li>V 视图层（View），用于向用户展示结果</li>
+<li>C 控制（Controller），用于处理请求、获取数据、返回结果</li>
+</ul>
+<p><strong>作用：降低模块间的耦合度（解耦）</strong></p>
+<p><img src="/img/django_img/MVC.jpg" alt="MVC"></p>
+<h4 id="7-1-2、Django的MTV模式"><a href="#7-1-2、Django的MTV模式" class="headerlink" title="7.1.2、Django的MTV模式"></a>7.1.2、Django的MTV模式</h4><p><strong>MTV代表Model-Template-View（模型-模版-视图）模式</strong></p>
+<ul>
+<li>M 模型层（Model），负责与数据库交互</li>
+<li>T 模版层（Template），负责呈现内容到浏览器</li>
+<li>V 视图层（View）是核心，负责接收请求、获取数据、返回结果</li>
+</ul>
+<p><strong>作用：降低模块间的耦合度（解耦）</strong></p>
+<p><img src="/img/django_img/MTV.jpg" alt="MTV"></p>
+<h3 id="7-2、模版层"><a href="#7-2、模版层" class="headerlink" title="7.2、模版层"></a>7.2、模版层</h3><p><strong>模版可以根据视图中传递的字典数据动态生成相应的html网页</strong></p>
+<h4 id="7-2-1、模版配置"><a href="#7-2-1、模版配置" class="headerlink" title="7.2.1、模版配置"></a>7.2.1、模版配置</h4><ul>
+<li><p>1、创建模版主文件夹 &lt;项目名&gt;&#x2F;templates</p>
+</li>
+<li><p>2、在settings.py中的TEMPLATES配置项配置</p>
+<ul>
+<li>1）BACKEND：指定模版的引擎</li>
+<li>2）DIRS：模版的搜索目录（可以是一个或多个）</li>
+<li>3）APP_DIRS：是否要在应用中的templates文件夹中搜索模版文件</li>
+<li>4）OPTIONS：有关模版的选项</li>
+</ul>
+</li>
+<li><p>3、配置项中需要修改的部分</p>
+<ul>
+<li>设置DIRS  -  <code>&#39;DIRS&#39;:[os.path.join(BASE_DIR,&#39;templates&#39;)],</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="7-2-2、模版的加载方式"><a href="#7-2-2、模版的加载方式" class="headerlink" title="7.2.2、模版的加载方式"></a>7.2.2、模版的加载方式</h4><ul>
+<li><p>方案1 - 通过loader获取模版，通过HttpResponse进行响应</p>
+<p>在视图函数中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.template <span class="hljs-keyword">import</span> loader<br><br><span class="hljs-comment"># 1、通过loader加载模版</span><br>t = loader.get_template(<span class="hljs-string">&#x27;模版文件名&#x27;</span>)<br><span class="hljs-comment"># 2、将t转换成HTML字符串</span><br>html = t.render(字典数据)<br><span class="hljs-comment"># 3、用响应对象将转换的字符串内容返回给浏览器</span><br><span class="hljs-keyword">return</span> HttpResponse(html)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>方案2 - 使用render() 直接加载并响应模版</p>
+<p>在视图函数中</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">return</span> render(request,<span class="hljs-string">&#x27;模版文件名&#x27;</span>,字典数据)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="7-2-3、视图层与模版层之间的交互"><a href="#7-2-3、视图层与模版层之间的交互" class="headerlink" title="7.2.3、视图层与模版层之间的交互"></a>7.2.3、视图层与模版层之间的交互</h4><p>1、视图函数中可以将Python变量封装到字典中传递到模版</p>
+<p>样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">xxx_view</span>(<span class="hljs-params">request</span>):<br>  dic = &#123;<br>    <span class="hljs-string">&#x27;变量1&#x27;</span>:<span class="hljs-string">&#x27;值1&#x27;</span>,<br>    <span class="hljs-string">&#x27;变量2&#x27;</span>:<span class="hljs-string">&#x27;值2&#x27;</span><br>  &#125;<br>  <span class="hljs-keyword">return</span> render(request,<span class="hljs-string">&#x27;xxx.html&#x27;</span>,dic)<br></code></pre></td></tr></table></figure>
+
+<p>2、模版中，可以用<code>&#123;&#123; 变量名 &#125;&#125;</code> 的语法 调用视图传进来的变量</p>
+<h2 id="8、模版层"><a href="#8、模版层" class="headerlink" title="8、模版层"></a>8、模版层</h2><h3 id="8-1、模版的变量"><a href="#8-1、模版的变量" class="headerlink" title="8.1、模版的变量"></a>8.1、模版的变量</h3><ul>
+<li><p>能传递到模版中的数据结构</p>
+<ul>
+<li>str - 字符串</li>
+<li>int - 整型</li>
+<li>list - 数组</li>
+<li>tuple - 元组</li>
+<li>dict - 字典</li>
+<li>func - 方法</li>
+<li>obj - 类实例化的对象</li>
+</ul>
+</li>
+<li><p>在模版中使用变量语法</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2、模版标签"><a href="#8-2、模版标签" class="headerlink" title="8.2、模版标签"></a>8.2、模版标签</h3><ul>
+<li><p>作用：将一些服务器端的功能嵌入到模版中，例如流程控制等</p>
+<ul>
+<li><p>标签语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;% 标签 %&#125;<br>...<br>&#123;% 结束标签 %&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="8-2-1、if标签"><a href="#8-2-1、if标签" class="headerlink" title="8.2.1、if标签"></a>8.2.1、if标签</h4><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;% <span class="hljs-keyword">if</span> 条件表达式<span class="hljs-number">1</span> %&#125;<br>...<br>&#123;% <span class="hljs-keyword">elif</span> 条件表达式<span class="hljs-number">2</span> %&#125;<br>...<br>&#123;% <span class="hljs-keyword">elif</span> 条件表达式<span class="hljs-number">3</span> %&#125;<br>...<br>&#123;% <span class="hljs-keyword">else</span> %&#125;<br>...<br>&#123;% endif %&#125;<br></code></pre></td></tr></table></figure>
+
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#if">https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#if</a></p>
+<h4 id="8-2-2、for标签"><a href="#8-2-2、for标签" class="headerlink" title="8.2.2、for标签"></a>8.2.2、for标签</h4><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;% <span class="hljs-keyword">for</span> 变量 <span class="hljs-keyword">in</span> 可迭代对象 %&#125;<br>	... 循环语句<br>&#123;% empty %&#125;<br>	... 可迭代对象无数据时填充的语句<br>&#123;% endfor %&#125;<br></code></pre></td></tr></table></figure>
+
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#for-empty">https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#for-empty</a></p>
+<p><strong>for标签内置变量 - forloop</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">在 &#123;% for %&#125; 标签里可以通过 &#123;&#123;forloop&#125;&#125; 变量获取循环序号。<br>- forloop.counter: 顺序获取循环序号，从 1 开始计算<br>- forloop.counter0: 顺序获取循环序号，从 0 开始计算<br>- forloop.revcounter: 倒序获取循环序号，结尾序号为 1<br>- forloop.revcounter0: 倒序获取循环序号，结尾序号为 0<br>- forloop.first（一般配合if标签使用）: 第一条数据返回 True，其他数据返回 False<br>- forloop.last（一般配合if标签使用）: 最后一条数据返回 True，其他数据返回 False<br>- For loop.parentloop: 当嵌套循环，parentloop表示外层循环<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-3、模版层过滤器"><a href="#8-3、模版层过滤器" class="headerlink" title="8.3、模版层过滤器"></a>8.3、模版层过滤器</h3><ul>
+<li>定义：在变量输出时对变量的值进行处理</li>
+<li>作用：可以通过使用 过滤器来改变变量的输出显示</li>
+<li>语法：<code>&#123;&#123; 变量 | 过滤器1:'参数值1' ｜ 过滤器2:'参数值2' ... &#125;&#125;</code></li>
+</ul>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#built-in-template-tags-and-filters">https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#built-in-template-tags-and-filters</a></p>
+<p><img src="/img/django_img/filter.jpg" alt="常用过滤器"></p>
+<h3 id="8-4、模版的继承"><a href="#8-4、模版的继承" class="headerlink" title="8.4、模版的继承"></a>8.4、模版的继承</h3><p>模版继承可以使父模版的内容重用，子模版直接继承父模版的全部内容并可以覆盖父模版中相应的块</p>
+<p><strong>语法 - 父模版中：</strong></p>
+<ul>
+<li>定义父模版中的块 block 标签</li>
+<li>标识出哪些在子模版中是允许被修改的</li>
+<li>block标签：在父模版中定义，可以在子模版中覆盖</li>
+</ul>
+<p><strong>语法 - 子模版中：</strong></p>
+<ul>
+<li><p>继承模版extends标签（写在模版文件的第一行）</p>
+<ul>
+<li>例如 <code>&#123;% extends 'base.html'%&#125;</code></li>
+</ul>
+</li>
+<li><p>子模版重写父模版中的内容块</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% block block_name %&#125;<br>子模版块用来覆盖父模版中block_name块的内容<br>&#123;% endblock block_name %&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>重写的覆盖规则</strong></p>
+<ul>
+<li>不重写，将按照父模版的效果显示</li>
+<li>重写，则按照重写效果显示</li>
+</ul>
+<p><strong>注意：模版继承时，服务器端的动态内容无法继承</strong></p>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/templates/language/#template-inheritance">https://docs.djangoproject.com/zh-hans/3.2/ref/templates/language/#template-inheritance</a></p>
+<h2 id="9、url反向解析"><a href="#9、url反向解析" class="headerlink" title="9、url反向解析"></a>9、url反向解析</h2><h3 id="9-1、代码中url出现位置"><a href="#9-1、代码中url出现位置" class="headerlink" title="9.1、代码中url出现位置"></a>9.1、代码中url出现位置</h3><ul>
+<li><p>1、模版html中</p>
+<ul>
+<li><p>1、<code>&lt;a href=&#39;url&#39;&gt;超链接&lt;/a&gt;</code></p>
+<p>点击后页面挑战至url</p>
+</li>
+<li><p>2、<code>&lt;form action=&#39;url&#39; method=&#39;post&#39;&gt;</code></p>
+<p>form表单中的数据用post方法提交至url</p>
+</li>
+</ul>
+</li>
+<li><p>2、视图函数中 - 302挑战 <code>HttpResponseRedirect(&#39;url&#39;)</code></p>
+<ul>
+<li>将用户地址栏中的地址跳转到url</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-2、代码中url书写规范"><a href="#9-2、代码中url书写规范" class="headerlink" title="9.2、代码中url书写规范"></a>9.2、代码中url书写规范</h3><ul>
+<li><p>1、绝对地址</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/page/1">http://127.0.0.1:8000/page/1</a></li>
+</ul>
+</li>
+<li><p>2、相对地址</p>
+<ul>
+<li><p>1、’&#x2F;page&#x2F;1’ - ‘&#x2F;‘ 开头的相对地址，</p>
+<ul>
+<li><strong>浏览器会把当前地址栏里的协议、ip和端口加上这个地址，作为最终访问地址。</strong></li>
+<li>即如果当前页面地址栏为<a target="_blank" rel="noopener" href="http://127.0.0.1/page/3%EF%BC%8C%E5%BD%93%E5%89%8D%E7%9B%B8%E5%AF%B9%E5%9C%B0%E5%9D%80%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C%E4%B8%BAhttp://127.0.0.1:8000">http://127.0.0.1/page/3，当前相对地址最终结果为http://127.0.0.1:8000</a> + &#x2F;page&#x2F;3</li>
+</ul>
+</li>
+<li><p>2、’page&#x2F;1’ - 没有’&#x2F;‘开头的相对地址</p>
+<ul>
+<li><strong>浏览器会根据当前url的最后一个 &#x2F; 之前的内容 加上 该相对地址，作为最终访问地址。</strong></li>
+<li>例如当前地址栏为 <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/topic/detail,%E5%88%99%E8%AF%A5%E7%9B%B8%E5%AF%B9%E5%9C%B0%E5%9D%80%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C%E4%B8%BA">http://127.0.0.1:8000/topic/detail,则该相对地址最终结果为</a> <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/topic/">http://127.0.0.1:8000/topic/</a> + page&#x2F;1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-3、url反向解析"><a href="#9-3、url反向解析" class="headerlink" title="9.3、url反向解析"></a>9.3、url反向解析</h3><p><strong>url反向解析是指在视图或模版中，用path定义的名称来 动态查找 或 计算出相应的路由</strong></p>
+<p>1、path 函数的语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">path(route, views,name=<span class="hljs-string">&#x27;别名&#x27;</span>)<br>例子：path(<span class="hljs-string">&#x27;page&#x27;</span>, views.page_view,name=<span class="hljs-string">&#x27;page_url&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>根据path中的’name&#x3D;’关键字传参给 url确定了个唯一确定的名字，在模版或视图中，可以通过这个名字反向推断出此url信息</strong></li>
+</ul>
+<p>2、在模版中 - 通过 url标签 实现地址的反向解析</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">&#123;% url <span class="hljs-string">&#x27;别名&#x27;</span> %&#125;<br>&#123;% url <span class="hljs-string">&#x27;别名&#x27;</span> <span class="hljs-string">&#x27;参数值1&#x27;</span> <span class="hljs-string">&#x27;参数值2&#x27;</span> %&#125;<br><span class="hljs-comment"># 例子</span><br>&#123;% url <span class="hljs-string">&#x27;person&#x27;</span> <span class="hljs-string">&#x27;400&#x27;</span> %&#125;<br>&#123;% url <span class="hljs-string">&#x27;person&#x27;</span> age=<span class="hljs-string">&#x27;18&#x27;</span> name=<span class="hljs-string">&#x27;zhangsan&#x27;</span> %&#125;<br></code></pre></td></tr></table></figure>
+
+<p>3、在视图函数中 -&gt; 可调用django中的reverse()方法进行反向解析</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> reverse<br>reverse(<span class="hljs-string">&#x27;别名&#x27;</span>,args=[],kwargs=&#123;&#125;)<br><span class="hljs-comment"># 例子</span><br><span class="hljs-built_in">print</span>(reverse(<span class="hljs-string">&#x27;person&#x27;</span>,args=[<span class="hljs-number">300</span>],kwargs=&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;lisi&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-number">18</span>&#125;))<br></code></pre></td></tr></table></figure>
+
+<h2 id="10、静态文件"><a href="#10、静态文件" class="headerlink" title="10、静态文件"></a>10、静态文件</h2><h3 id="10-1、静态文件配置"><a href="#10-1、静态文件配置" class="headerlink" title="10.1、静态文件配置"></a>10.1、静态文件配置</h3><ul>
+<li><p>静态文件配置 - 在 settings.py 中</p>
+<h4 id="10-1-1、配置静态文件的访问路径-STATIC-URL【该配置默认存在】"><a href="#10-1-1、配置静态文件的访问路径-STATIC-URL【该配置默认存在】" class="headerlink" title="10.1.1、配置静态文件的访问路径 STATIC_URL【该配置默认存在】"></a>10.1.1、配置静态文件的访问路径 STATIC_URL【该配置默认存在】</h4><ul>
+<li>通过哪个url地址找静态文件</li>
+<li>STATIC_URL &#x3D; ‘&#x2F;static&#x2F;‘</li>
+<li>说明：<ul>
+<li>指定访问静态文件时是需要通过 &#x2F;static&#x2F;xxx 或 <a target="_blank" rel="noopener" href="http://127.0.0.1:8000/static/xxx">http://127.0.0.1:8000/static/xxx</a> </li>
+<li>[xxx]表示具体的静态资源位置</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-1-2、配置静态文件的存储路径-STATICFILES-DIRS"><a href="#10-1-2、配置静态文件的存储路径-STATICFILES-DIRS" class="headerlink" title="10.1.2、配置静态文件的存储路径 STATICFILES_DIRS"></a>10.1.2、配置静态文件的存储路径 STATICFILES_DIRS</h4><p><strong>STATICFILES_DIRS保存的是静态文件在服务器端的存储位置</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># file: settings.py</span><br>STATICFILES_DIRS = (<br>		os.path.join(BASE_DIR,<span class="hljs-string">&#x27;static&#x27;</span>),  <span class="hljs-comment"># 元组 一定要有逗号 ,</span><br>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="10-2、静态文件访问"><a href="#10-2、静态文件访问" class="headerlink" title="10.2、静态文件访问"></a>10.2、静态文件访问</h3><h4 id="10-2-1、直接拼接访问路径"><a href="#10-2-1、直接拼接访问路径" class="headerlink" title="10.2.1、直接拼接访问路径"></a>10.2.1、直接拼接访问路径</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://127.0.0.1:8000/static/image/aae.png&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;300px&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/static/image/aae.png&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;700px&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="10-2-2、通过标签访问静态文件"><a href="#10-2-2、通过标签访问静态文件" class="headerlink" title="10.2.2、通过标签访问静态文件"></a>10.2.2、通过标签访问静态文件</h4><ul>
+<li><p>1、加载static  -  <code>&#123;% load static %&#125;</code></p>
+</li>
+<li><p>2、使用静态文件  -  <code>&#123;% static '静态资源路径' %&#125;</code></p>
+</li>
+<li><p>3、样例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% load static %&#125;<br><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#123;% static &#x27;image/aae.png&#x27; %&#125;&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="二、Django-应用及分布式路由"><a href="#二、Django-应用及分布式路由" class="headerlink" title="二、Django 应用及分布式路由"></a>二、Django 应用及分布式路由</h1><p>应用在Django项目中是一个独立的业务模块，可以包含自己的路由、视图、模版、模型</p>
+<h2 id="1、应用"><a href="#1、应用" class="headerlink" title="1、应用"></a>1、应用</h2><h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><p>步骤1:用manage.py 中的字命令startapp创建应用文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python3 manage.py startapp 应用名<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/django_img/%E5%BA%94%E7%94%A8.jpg" alt="应用"></p>
+<p>步骤2:在settings.py 的 INSTALLED_APPS 列表中配置注册此应用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># settings.py 配置样例</span><br>INSTALLED_APPS = [<br>  	<span class="hljs-comment"># ....</span><br>  <span class="hljs-string">&#x27;user&#x27;</span>,  <span class="hljs-comment"># 用户信息模块</span><br>  <span class="hljs-string">&#x27;music&#x27;</span>,  <span class="hljs-comment"># 音乐模块</span><br>]<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、分布式路由"><a href="#2、分布式路由" class="headerlink" title="2、分布式路由"></a>2、分布式路由</h2><p>Django中，主路由配置文件（urls.py）可以不处理用户具体路由，主路由配置文件可以做请求的分发（分布式请求处理）。具体的请求可以由各自的应用来进行处理</p>
+<p><img src="/img/django_img/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%AF%E7%94%B1.jpg" alt="分布式路由"></p>
+<h3 id="2-1、配置分布式路由"><a href="#2-1、配置分布式路由" class="headerlink" title="2.1、配置分布式路由"></a>2.1、配置分布式路由</h3><p><strong>步骤1 - 主路由中调用include函数</strong></p>
+<p>语法：<code>path(&#39;url前缀&#39;, include(&#39;app名字.url模块名&#39;))</code></p>
+<p>作用：用于将当前路由转到各个应用的路由配置文件的urlpatterns进行分布式处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path, include<br><br>urlpatterns = [<br>  	path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin.site.urls),<br>  	path(<span class="hljs-string">&#x27;music/&#x27;</span>,include(<span class="hljs-string">&#x27;music.urls&#x27;</span>))<br>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>步骤2  - 应用中新建配置urls.py</strong></p>
+<ul>
+<li>首先在应用下手动创建urls.py 文件，内容结构和主路由完全一样</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br><span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views<br><br>urlpatterns = [<br>  	<span class="hljs-comment"># http://127.0.0.1:8000/music/index</span><br>  	path(<span class="hljs-string">&#x27;index&#x27;</span>,views.index_view)<br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2、应用下的模版"><a href="#2-2、应用下的模版" class="headerlink" title="2.2、应用下的模版"></a>2.2、应用下的模版</h3><p><strong>应用内部可以配置模版目录</strong></p>
+<ul>
+<li>1、应用下手动创建templates文件夹</li>
+<li>2、settings.py中开启 应用模版功能<ul>
+<li>TEMPLATE配置项中 的 ‘APP_DIRS’ 值为True即可</li>
+</ul>
+</li>
+</ul>
+<p><strong>应用下templates 和 外层templates都存在时，django得查找模版规则</strong></p>
+<ul>
+<li>1、优先查找外层templates目录下的模版</li>
+<li>2、按INSTALLED_APPS配置下的 应用顺序 逐层查找</li>
+</ul>
+<h2 id="3、模型层及ORM介绍"><a href="#3、模型层及ORM介绍" class="headerlink" title="3、模型层及ORM介绍"></a>3、模型层及ORM介绍</h2><h3 id="3-1、模型层"><a href="#3-1、模型层" class="headerlink" title="3.1、模型层"></a>3.1、模型层</h3><ul>
+<li><strong>模型层 - 负责跟数据库之间进行通信</strong></li>
+</ul>
+<h4 id="3-1-1、Django配置MySQL"><a href="#3-1-1、Django配置MySQL" class="headerlink" title="3.1.1、Django配置MySQL"></a>3.1.1、Django配置MySQL</h4><ul>
+<li>安装mysqlclient【版本mysqlclient 1.4以上】     <code>pip install mysqlclient</code></li>
+</ul>
+<p><strong>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/databases/">https://docs.djangoproject.com/zh-hans/3.2/ref/databases/</a></strong></p>
+<ul>
+<li><p>步骤</p>
+<ul>
+<li><p>1、创建数据库</p>
+</li>
+<li><p>2、进入mysql数据库执行</p>
+<ul>
+<li><code>create database 数据库名 default charset utf8</code></li>
+<li>通常数据库名跟项目名保持一致</li>
+</ul>
+</li>
+<li><p>3、settings.py里进行数据库的配置</p>
+<ul>
+<li><p>修改DATABASES 配置项的内容，由sqlite3 变成 mysql</p>
+</li>
+<li><p>ENGINE - 指定数据库存储引擎</p>
+<ul>
+<li>‘django.db.backends.mysql’</li>
+<li>‘django.db.backends.sqlite3’</li>
+<li>‘django.db.backends.oracle’</li>
+<li>‘django.db.backends.postgresql’</li>
+</ul>
+</li>
+<li><p>NAME - 指定要连接的数据库的名称</p>
+</li>
+<li><p>USER - 指定登录到数据库的用户名</p>
+</li>
+<li><p>PASSWORD - 数据库的密码</p>
+</li>
+<li><p>HOST - 连接具体数据库的IP</p>
+</li>
+<li><p>PORT - 端口号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 模型层 连接数据库</span><br>DATABASES = &#123;<br>    <span class="hljs-string">&#x27;default&#x27;</span>: &#123;<br>        <span class="hljs-string">&#x27;ENGINE&#x27;</span>: <span class="hljs-string">&#x27;django.db.backends.mysql&#x27;</span>,<br>        <span class="hljs-string">&#x27;HOST&#x27;</span>: <span class="hljs-string">&#x27;123.56.95.151&#x27;</span>,<br>        <span class="hljs-string">&#x27;PORT&#x27;</span>: <span class="hljs-string">&#x27;3308&#x27;</span>,<br>        <span class="hljs-string">&#x27;USER&#x27;</span>: <span class="hljs-string">&#x27;root&#x27;</span>,<br>        <span class="hljs-string">&#x27;PASSWORD&#x27;</span>: <span class="hljs-string">&#x27;139309641480&#x27;</span>,<br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;mysite3&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-1-2、什么是模型"><a href="#3-1-2、什么是模型" class="headerlink" title="3.1.2、什么是模型"></a>3.1.2、什么是模型</h4><ul>
+<li>模型是一个Python类，它是由django.db.models.Model 派生出的子类</li>
+<li>一个模型类代表数据库中的一张数据表</li>
+<li>模型类中的每一个类属性都代表数据库中的一个字段</li>
+<li>模型是数据交互的借口，是表示和操作数据库的方法和方式</li>
+</ul>
+<h3 id="3-2、ORM框架"><a href="#3-2、ORM框架" class="headerlink" title="3.2、ORM框架"></a>3.2、ORM框架</h3><ul>
+<li><p>定义：ORM（Object Relational Mapping）即对象关系映射，它是一种程序技术，它允许使用类和对象对数据库进行操作，从而避免通过SQL语句操作数据库</p>
+</li>
+<li><p>作用：</p>
+<ul>
+<li>1、建立模型类和表之间的对应关系，允许通过面向对象的方式来操作数据库</li>
+<li>2、根据设计的模型类生成数据库中的表格</li>
+<li>3、通过简单的配置就可以进行数据库的切换</li>
+</ul>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>只需要面向对象编程，不需要面向数据库编写代码<ul>
+<li>对数据的操作都转化成对类属性和方法的操作</li>
+<li>不用编写各种数据库的sql语句</li>
+</ul>
+</li>
+<li>实现了数据模型和数据库的解耦，屏蔽了不同数据库操作上的差异<ul>
+<li>不在关注用的是mysql、oracle…等数据库的内部细节</li>
+<li>通过简单的配置就可以轻松更换数据库，而不需要修改代码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>对于复杂业务，使用成本较高</li>
+<li>根据对象的操作转换成SQL语句，根据查询的结果转换成对象，在映射过程中有性能损失</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/django_img/ORM%E6%98%A0%E5%B0%84.jpg" alt="ORM映射"></p>
+<h3 id="3-3、数据库迁移"><a href="#3-3、数据库迁移" class="headerlink" title="3.3、数据库迁移"></a>3.3、数据库迁移</h3><ul>
+<li>迁移是Django同步对模型所做更改（添加字段，删除模型等）到数据库模式的方式<ul>
+<li>生产迁移文件 - 执行 <code>python3 manage.py makemigrations</code><ul>
+<li>将应用下的models.py文件生成一个中间文件，并保存在migrations文件夹中</li>
+</ul>
+</li>
+<li>执行迁移脚本程序 - 执行<code>python3 manage.py migrate</code><ul>
+<li>执行迁移程序实现迁移。将每个应用下的migrations目录中的中间文件同步到数据库</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>报错解决：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43996007/article/details/104065678">https://blog.csdn.net/weixin_43996007/article/details/104065678</a></p>
+<h3 id="3-4、模型类-创建"><a href="#3-4、模型类-创建" class="headerlink" title="3.4、模型类 - 创建"></a>3.4、模型类 - 创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">模型类名</span>(models.Model):<br>  	字段名 = models.字段类型(字段选项)<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、ORM"><a href="#4、ORM" class="headerlink" title="4、ORM"></a>4、ORM</h2><h3 id="4-1、创建模型类流程"><a href="#4-1、创建模型类流程" class="headerlink" title="4.1、创建模型类流程"></a>4.1、创建模型类流程</h3><ul>
+<li>1、创建应用</li>
+<li>2、在应用下的models.py中编写模型类</li>
+<li>3、迁移同步  <code>makemigrations &amp; migrate</code></li>
+</ul>
+<p><strong>任何关于表结构的修改，务必在对应模型类上修改</strong></p>
+<h3 id="4-2、基础字段及选项"><a href="#4-2、基础字段及选项" class="headerlink" title="4.2、基础字段及选项"></a>4.2、基础字段及选项</h3><h4 id="4-2-1、字段类型"><a href="#4-2-1、字段类型" class="headerlink" title="4.2.1、字段类型"></a>4.2.1、字段类型</h4><ul>
+<li><p>1、BooleanField()</p>
+<ul>
+<li>数据库类型： tinyint(1)</li>
+<li>Django中：使用True或False来表示值</li>
+<li>在数据库中：使用1或0来表示具体的值</li>
+</ul>
+</li>
+<li><p>2、CharField()</p>
+<ul>
+<li>数据库类型：varchar</li>
+<li>注意：必须要指定max_length参数值</li>
+</ul>
+</li>
+<li><p>3、DateField()</p>
+<ul>
+<li><p>数据库类型：date</p>
+</li>
+<li><p>作用：表示日期</p>
+</li>
+<li><p>参数：</p>
+<ul>
+<li><p>1、auto_now：每次保存对象时，自动设置该字段为当前时间（取值：True&#x2F;False）</p>
+</li>
+<li><p>2、auto_now_add：当对象第一次被创建时自动设置当前时间（取值：True&#x2F;False）</p>
+</li>
+<li><p>3、default：设置当前时间（取值：字符串格式时间，如：‘2019-6-1’）</p>
+<p><strong>以上三个参数只能 多选一</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>4、DateTimeField()</p>
+<ul>
+<li>数据库类型：datetime(6)</li>
+<li>作用：表示日期和时间</li>
+<li>参数同DateField</li>
+</ul>
+</li>
+<li><p>5、FloatField()</p>
+<ul>
+<li>数据库类型：double</li>
+<li>Django中和数据库中都使用小数表示值</li>
+</ul>
+</li>
+<li><p>6、DecimalField()</p>
+<ul>
+<li>数据库类型：decimal(x,y)</li>
+<li>Django中：使用小数表示该列的值</li>
+<li>在数据库中：使用小数</li>
+<li>参数：<ul>
+<li>max_digits：位数总数，包括小数点后的位数。该值必须大于等于decimal_places</li>
+<li>decimal_places：小数点后的数字数量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>7、EmailField()   专门存邮箱</p>
+<ul>
+<li>数据库类型varchar</li>
+<li>Django和数据库中使用字符串</li>
+</ul>
+</li>
+<li><p>8、IntegerField()</p>
+<ul>
+<li>数据库类型：int</li>
+<li>Django和数据库中使用整数</li>
+</ul>
+</li>
+<li><p>9、ImageField()</p>
+<ul>
+<li>数据库类型：varchar(100)</li>
+<li>作用：在数据库中为了保存图片的路径</li>
+<li>Django和数据库中使用字符串</li>
+</ul>
+</li>
+<li><p>10、TextField()</p>
+<ul>
+<li>数据库类型：longtext</li>
+<li>作用：表示不定长的字符数据</li>
+</ul>
+</li>
+</ul>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/models/fields/#field-types">https://docs.djangoproject.com/zh-hans/3.2/ref/models/fields/#field-types</a></p>
+<h4 id="4-2-2、字段选项"><a href="#4-2-2、字段选项" class="headerlink" title="4.2.2、字段选项"></a>4.2.2、字段选项</h4><ul>
+<li><p>字段选项，指定创建的列的额外的信息</p>
+</li>
+<li><p>允许出现多个字段选项，多个选项之间使用 , 隔开</p>
+</li>
+<li><p>primary_key</p>
+<ul>
+<li>如果设置为True，表示该列的主键，如果指定一个字段为主键，则此数据库表不会自动创建id字段</li>
+</ul>
+</li>
+<li><p>blank</p>
+<ul>
+<li>设置为True时，字段可以为空；设置为False时，字段必须填写</li>
+</ul>
+</li>
+<li><p>null</p>
+<ul>
+<li>如果设置为True，表示该列值允许为空</li>
+<li>默认是False，如果此选项为False，建议加入default选项来设置默认值</li>
+</ul>
+</li>
+<li><p>default</p>
+<ul>
+<li>设置所在列的默认值，如果字段选项null&#x3D;False，建议添加此项</li>
+</ul>
+</li>
+<li><p>db_index      普通索引</p>
+<ul>
+<li>如果设置为True，表示为该列增加索引</li>
+</ul>
+</li>
+<li><p>unique          唯一索引</p>
+<ul>
+<li>如果设置为True，表示该字段在数据库中的值必须是唯一</li>
+</ul>
+</li>
+<li><p>db_column</p>
+<ul>
+<li>指定列的名称，如果不指定的话，则采用属性名作为列名</li>
+</ul>
+</li>
+<li><p>verbose_name</p>
+<ul>
+<li>设置此字段在admin界面上的显示名称</li>
+</ul>
+</li>
+</ul>
+<p>样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个属性，表示拥护名称，长度30个字符，必须是唯一的，不能为空，添加索引</span><br>name = models.CharField(max_length = <span class="hljs-number">30</span>, unique = <span class="hljs-literal">True</span>, null = <span class="hljs-literal">False</span>, db_index = <span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/models/fields/#field-options">https://docs.djangoproject.com/zh-hans/3.2/ref/models/fields/#field-options</a></p>
+<p><em><strong>修改过字段选项【添加或更改】 都要执行 makemigrations 和 migrate</strong></em></p>
+<h4 id="4-2-3、模型类-Meta类"><a href="#4-2-3、模型类-Meta类" class="headerlink" title="4.2.3、模型类 - Meta类"></a>4.2.3、模型类 - Meta类</h4><p><strong>使用内部Meta类 来给模型赋予属性，Meta类下有很多内建的类属性，可以对模型类做一些控制</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models<br><br><span class="hljs-comment"># Create your models here.</span><br><span class="hljs-comment"># 创建模型类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Book</span>(models.Model):<br>    title = models.CharField(<span class="hljs-string">&#x27;书名&#x27;</span>, max_length=<span class="hljs-number">50</span>, default=<span class="hljs-string">&#x27;&#x27;</span>)<br>    price = models.DecimalField(<span class="hljs-string">&#x27;价格&#x27;</span>, max_digits=<span class="hljs-number">7</span>, decimal_places=<span class="hljs-number">2</span>)<br>    info = models.CharField(<span class="hljs-string">&#x27;描述&#x27;</span>, max_length=<span class="hljs-number">100</span>, default=<span class="hljs-string">&#x27;&#x27;</span>)<br>    <br>    <span class="hljs-comment"># Meta类，可以设置表的属性</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Meta</span>:<br>        db_table = <span class="hljs-string">&#x27;book&#x27;</span>  <span class="hljs-comment"># 可改变当前模型类对应的表名</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3、常见问题"><a href="#4-3、常见问题" class="headerlink" title="4.3、常见问题"></a>4.3、常见问题</h3><p><strong>问题1:</strong></p>
+<p><img src="/img/django_img/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%981.jpg" alt="常见问题1"></p>
+<p>错误原因：在已经存在的表中新增非空字段时，没指定default默认值</p>
+<p>解决：选2退出，在models.py中指定默认值default</p>
+<p><strong>问题2：</strong></p>
+<p><img src="/img/django_img/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%982.jpg" alt="常见问题2"></p>
+<p><img src="/img/django_img/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%982_2.jpg" alt="常见问题2_2"></p>
+<h3 id="4-4、创建数据"><a href="#4-4、创建数据" class="headerlink" title="4.4、创建数据"></a>4.4、创建数据</h3><p>基本操作包括增删改查操作，即（CRUD操作）</p>
+<p>CRUD是指在做计算处理时的增加（Create）、读取查询（Read）、更新（Update）和删除（Delete）</p>
+<p><strong>ORM CRUD核心 -&gt; 模型类.管理器对象</strong></p>
+<h4 id="4-4-1、管理器对象-objects"><a href="#4-4-1、管理器对象-objects" class="headerlink" title="4.4.1、管理器对象  objects"></a>4.4.1、管理器对象  objects</h4><p>每个继承自models.Model的模型类，都会有一个objects对象被同样继承下来。这个对象叫管理器对象</p>
+<p>数据库的增删改查可以通过模型的管理器实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyModel</span>(models.Model):<br>  	...<br>    <br>MyModel.objects.create(...)  <span class="hljs-comment"># objects 是管理器对象</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="4-4-2、创建数据"><a href="#4-4-2、创建数据" class="headerlink" title="4.4.2、创建数据"></a>4.4.2、创建数据</h4><p>Django ORM 使用一种直观的方式把数据库表中的数据表示成Python对象</p>
+<p>创建数据中的每一条记录就是创建一个数据对象</p>
+<p><strong>方案1:</strong>     <code>MyModel.objects.create(属性1 = 值1, 属性2 = 值2, ...)</code></p>
+<ul>
+<li>成功：返回创建好的实体对象</li>
+<li>失败：抛出异常</li>
+</ul>
+<p><strong>方案2:</strong>  创建MyModel实例对象，并调用save()进行保存</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">obj = MyModel(属性 = 值, 属性 = 值)<br>obj.属性 = 值<br>obj.save()  <span class="hljs-comment"># 只有执行了 .save() 才会存入数据库</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-5、Django-Shell-—-专门为了调试M层"><a href="#4-5、Django-Shell-—-专门为了调试M层" class="headerlink" title="4.5、Django Shell    —     专门为了调试M层"></a>4.5、Django Shell    —     专门为了调试M层</h3><p>在Django提供了一个交互式的操作项目叫 Django Shell 它能够在交互模式用项目工程的代码执行相应的操作</p>
+<p>利用Django Shell 可以代替编写view的代码来进行直接操作</p>
+<p><strong>注意：项目代码发生变化时，需要重新进入Django shell</strong></p>
+<p>启动方式：  <code>python3 manage.py shell</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">In [1]: from bookstore.models import Book<br><br>In [2]: b1 = Book.objects.create(title=&#x27;Python&#x27;,pub=&#x27;清华大学出版社&#x27;,price=20,market_price=25)<br><br>In [3]: <br><br>In [3]: b1<br>Out[3]: &lt;Book: Book object (1)&gt;<br><br><br>In [5]: b2=Book(title=&#x27;Django&#x27;,pub=&#x27;清华大学出版社&#x27;,price=70,market_price=75)<br><br>In [6]: b2.save()<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-6、查询操作"><a href="#4-6、查询操作" class="headerlink" title="4.6、查询操作"></a>4.6、查询操作</h3><ul>
+<li><p>数据库的查询需要使用管理器对象进行</p>
+</li>
+<li><p>通过 MyModel.objects 管理器方法调用查询方法</p>
+<p><img src="/img/django_img/%E6%9F%A5%E8%AF%A2.jpg" alt="查询"></p>
+</li>
+</ul>
+<h4 id="4-6-1、all-方法"><a href="#4-6-1、all-方法" class="headerlink" title="4.6.1、all()方法"></a>4.6.1、all()方法</h4><p>用法：<code>MyModel.objects.all()</code></p>
+<p>作用：查询MyModel实体中的所有数据</p>
+<p>等同于：<code>select * from table;</code></p>
+<p>返回值：QuerySet容器对象【数组】，内部存放MyModel实例</p>
+<p><img src="/img/django_img/%E6%9F%A5%E8%AF%A2%E5%B0%8F%E6%8A%80%E5%B7%A7.jpg" alt="查询小技巧"></p>
+<p><img src="/img/django_img/%E8%B0%83%E6%95%B4%E6%89%93%E5%8D%B0%E6%95%88%E6%9E%9C.jpg" alt="调整打印效果"></p>
+<p><img src="/img/django_img/%E6%95%88%E6%9E%9C.jpg" alt="效果"></p>
+<h4 id="4-6-2、values-‘列1’-‘列2’-…-方法"><a href="#4-6-2、values-‘列1’-‘列2’-…-方法" class="headerlink" title="4.6.2、values(‘列1’, ‘列2’, …)方法"></a>4.6.2、values(‘列1’, ‘列2’, …)方法</h4><p>用法：<code>MyModel.objects.values(...)</code></p>
+<p>作用：查询部分列的数据并返回</p>
+<p>等同于：<code>select 列1, 列2 from table;</code></p>
+<p>返回值: QuerySet容器对象，容器内存字典，每个字典代表一条数据</p>
+<p>​		格式为：<code>&#123;&#39;列1&#39; : &#39;值1&#39;, &#39;列2&#39; : &#39;值2&#39;&#125;</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">In [4]: a2 = Book.objects.values(&#x27;title&#x27;,&#x27;pub&#x27;)<br><br>In [6]: for book in a2:<br>   ...:     print(book[&#x27;title&#x27;])<br>   ...: <br>Python<br>Django<br>JQuery<br>Linux<br>HTML5<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-6-3、values-list-‘列1’-‘列2’-…-方法"><a href="#4-6-3、values-list-‘列1’-‘列2’-…-方法" class="headerlink" title="4.6.3、values_list(‘列1’, ‘列2’, …)方法"></a>4.6.3、values_list(‘列1’, ‘列2’, …)方法</h4><p>用法：<code>MyModel.objects.values_list(...)</code></p>
+<p>作用：返回元组形式的查询结果</p>
+<p>等同于：<code>select 列1, 列2 from table;</code></p>
+<p>返回值：QuerySet容器对象，内部存放 ‘元组’</p>
+<ul>
+<li>会将查询出来的数据封装到元组中，再封装到查询集合QuerySet中</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">In [7]: a3 = Book.objects.values_list(&#x27;title&#x27;,&#x27;pub&#x27;)<br><br>In [8]: for book in a3:<br>   ...:     print(book[0])<br>   ...: <br>Python<br>Django<br>JQuery<br>Linux<br>HTML5<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-6-4、order-by-方法"><a href="#4-6-4、order-by-方法" class="headerlink" title="4.6.4、order_by()方法"></a>4.6.4、order_by()方法</h4><p>用法：<code>MyModel.objects.order_by(&#39;-列1&#39;, &#39;列2&#39;, ...)</code></p>
+<p>作用：与all() 方法不同，它会用SQL语句中的order by 字句对查询结果根据某个字段选择性的进行排序</p>
+<p>说明：默认是按照升序排序，降序排序则需要在列前增加 ‘-‘ 表示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">In [9]: a4 = Book.objects.order_by(&#x27;-price&#x27;)<br><br>In [10]: a4<br>Out[10]: &lt;QuerySet [&lt;Book: JQuery_机械工业出版社_90.00_85.00&gt;, &lt;Book: HTML5_清华大学出版社_90.00_105.00&gt;, &lt;Book: Linux_机械工业出版社_80.00_65.00&gt;, &lt;Book: Django_清华大学出版社_70.00_75.00&gt;, &lt;Book: Python_清华大学出版社_20.00_25.00&gt;]&gt;<br><br>In [11]: a5=Book.objects.values(&#x27;title&#x27;).order_by(&#x27;-price&#x27;)<br><br>In [12]: a5<br>Out[12]: &lt;QuerySet [&#123;&#x27;title&#x27;: &#x27;JQuery&#x27;&#125;, &#123;&#x27;title&#x27;: &#x27;HTML5&#x27;&#125;, &#123;&#x27;title&#x27;: &#x27;Linux&#x27;&#125;, &#123;&#x27;title&#x27;: &#x27;Django&#x27;&#125;, &#123;&#x27;title&#x27;: &#x27;Python&#x27;&#125;]&gt;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">可以通过QuerySet.query获取SQL语句</span><br>In [13]: print(a5.query)<br>SELECT `book`.`title` FROM `book` ORDER BY `book`.`price` DESC<br></code></pre></td></tr></table></figure>
+
+<h4 id="4-6-5、filter-条件-方法"><a href="#4-6-5、filter-条件-方法" class="headerlink" title="4.6.5、filter(条件)方法"></a>4.6.5、filter(条件)方法</h4><p>语法：<code>MyModel.objects.filter(属性1=值1, 属性2=值2)</code></p>
+<p>作用：返回包含此条件的全部的数据集</p>
+<p>返回值：QuerySet容器对象，内部存放MyModel实例</p>
+<p>说明：当多个属性在一起时为‘与’关系，即 and</p>
+<h4 id="4-6-6、exclude-条件-方法"><a href="#4-6-6、exclude-条件-方法" class="headerlink" title="4.6.6、exclude(条件)方法"></a>4.6.6、exclude(条件)方法</h4><p>语法：<code>MyModel.objects.exclude(条件)</code></p>
+<p>作用：返回不包含此 条件 的全部数据集</p>
+<h4 id="4-6-7、get-条件-方法-【只返回一条数据】"><a href="#4-6-7、get-条件-方法-【只返回一条数据】" class="headerlink" title="4.6.7、get(条件)方法              【只返回一条数据】"></a>4.6.7、get(条件)方法              【只返回一条数据】</h4><p>语法：<code>MyModel.objects.get(条件)</code></p>
+<p>作用：返回满足条件的唯一一条数据</p>
+<p>说明：该方法只能返回一条数据，查询结果多于一条数据则抛出 <code>Model.MultipleObjectsReturned异常</code>,查询结果如果没有数据则抛出 <code>Model.DoesNotExist异常</code></p>
+<h4 id="4-6-8、查询谓词"><a href="#4-6-8、查询谓词" class="headerlink" title="4.6.8、查询谓词"></a>4.6.8、查询谓词</h4><p>定义：做更<strong>灵活的条件查询</strong>时需要使用查询谓词</p>
+<p>说明：每一个查询谓词是一个独立的查询功能</p>
+<h5 id="1、-exact：等值匹配【-】"><a href="#1、-exact：等值匹配【-】" class="headerlink" title="1、__exact：等值匹配【 &#x3D; 】"></a>1、__exact：等值匹配【 &#x3D; 】</h5><p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">In [12]: Book.objects.filter(id__exact=1)<br>Out[12]: &lt;QuerySet [&lt;Book: Python_清华大学出版社_20.00_25.00&gt;]&gt;<br></code></pre></td></tr></table></figure>
+
+<h5 id="2、-contains：包含指定值xxx-【-模糊查询-xxx-】"><a href="#2、-contains：包含指定值xxx-【-模糊查询-xxx-】" class="headerlink" title="2、__contains：包含指定值xxx   【 模糊查询  %xxx% 】"></a>2、__contains：包含指定值xxx   【 模糊查询  <code>%xxx%</code> 】</h5><h5 id="3、-startswith：以xxx开始-【-模糊查询-xxx-】"><a href="#3、-startswith：以xxx开始-【-模糊查询-xxx-】" class="headerlink" title="3、__startswith：以xxx开始     【 模糊查询  xxx% 】"></a>3、__startswith：以xxx开始     【 模糊查询  <code>xxx%</code> 】</h5><h5 id="4、-endswith：以xxx结束-【-模糊查询-xxx-】"><a href="#4、-endswith：以xxx结束-【-模糊查询-xxx-】" class="headerlink" title="4、__endswith：以xxx结束     【 模糊查询  %xxx 】"></a>4、__endswith：以xxx结束     【 模糊查询  <code>%xxx</code> 】</h5><h5 id="5、-gt：大于指定值-【-】"><a href="#5、-gt：大于指定值-【-】" class="headerlink" title="5、__gt：大于指定值  【 &gt; 】"></a>5、__gt：大于指定值  【 &gt; 】</h5><h5 id="6、-gte：大于等于-【-】"><a href="#6、-gte：大于等于-【-】" class="headerlink" title="6、__gte：大于等于  【 &gt;&#x3D; 】"></a>6、__gte：大于等于  【 &gt;&#x3D; 】</h5><h5 id="7、-lt：小于-【-】"><a href="#7、-lt：小于-【-】" class="headerlink" title="7、__lt：小于  【 &lt; 】"></a>7、__lt：小于  【 &lt; 】</h5><h5 id="8、-lte：小于等于-【"><a href="#8、-lte：小于等于-【" class="headerlink" title="8、__lte：小于等于  【 &lt;&#x3D; 】"></a>8、__lte：小于等于  【 &lt;&#x3D; 】</h5><h5 id="9、-in：查找数据是否在指定范围内-【-in-后面跟数组-】"><a href="#9、-in：查找数据是否在指定范围内-【-in-后面跟数组-】" class="headerlink" title="9、__in：查找数据是否在指定范围内  【 in  后面跟数组  [] 】"></a>9、__in：查找数据是否在指定范围内  【 in  后面跟数组  <code>[]</code> 】</h5><h5 id="10、-range：查找数据是否在指定的区间范围内-【-between…and…-后面跟范围-a-b-】"><a href="#10、-range：查找数据是否在指定的区间范围内-【-between…and…-后面跟范围-a-b-】" class="headerlink" title="10、__range：查找数据是否在指定的区间范围内  【 between…and…  后面跟范围 (a,b) 】"></a>10、__range：查找数据是否在指定的区间范围内  【 between…and…  后面跟范围 <code>(a,b)</code> 】</h5><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/models/querysets/#field-lookups">https://docs.djangoproject.com/zh-hans/3.2/ref/models/querysets/#field-lookups</a></p>
+<h3 id="4-7、更新数据"><a href="#4-7、更新数据" class="headerlink" title="4.7、更新数据"></a>4.7、更新数据</h3><h4 id="4-7-1、更新单个数据"><a href="#4-7-1、更新单个数据" class="headerlink" title="4.7.1、更新单个数据"></a>4.7.1、更新单个数据</h4><ul>
+<li>修改单个实体的某些字段值的步骤：<ul>
+<li>1、查      - 通过 <code>.get()</code> 得到要修改的实体对象</li>
+<li>2、改      - 通过 <code>对象.属性</code> 的方式修改数据</li>
+<li>3、保存  - 通过 <code>对象.save()</code> 保存数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-7-2、批量更新数据"><a href="#4-7-2、批量更新数据" class="headerlink" title="4.7.2、批量更新数据"></a>4.7.2、批量更新数据</h4><ul>
+<li>直接调用QuerySet的 <code>update(属性 = 值)</code> 实现批量修改<ul>
+<li>1、查      - 通过 <code>.filter(条件)</code> 得到要修改的实体对象</li>
+<li>2、改      - 通过 <code>QuerySet.update(属性 = 值)</code> 的方式修改数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-8、删除操作"><a href="#4-8、删除操作" class="headerlink" title="4.8、删除操作"></a>4.8、删除操作</h3><h4 id="4-8-1、单个数据删除"><a href="#4-8-1、单个数据删除" class="headerlink" title="4.8.1、单个数据删除"></a>4.8.1、单个数据删除</h4><ul>
+<li>1、查找查询结果对应的一个数据对象</li>
+<li>2、调用这个数据对象的delete()方法实现删除</li>
+</ul>
+<h4 id="4-8-2、批量删除"><a href="#4-8-2、批量删除" class="headerlink" title="4.8.2、批量删除"></a>4.8.2、批量删除</h4><ul>
+<li>1、查找查询结果集中满足条件的全部QuerySet查询集合对象</li>
+<li>2、调用查询集合对象的delete()方法实现删除</li>
+</ul>
+<h4 id="4-8-3、伪删除"><a href="#4-8-3、伪删除" class="headerlink" title="4.8.3、伪删除"></a>4.8.3、伪删除</h4><ul>
+<li>通常不会轻易在业务里把数据真正删掉，取而代之的是做伪删除，即在表中添加一个布尔型字段（is_active），默认是True；执行删除时，将删除数据的is_active字段设置为False</li>
+<li>注意：用伪删除时，确保显示数据的地方，均加了 is_active&#x3D;True的过滤查询</li>
+</ul>
+<h2 id="5、F对象和Q对象"><a href="#5、F对象和Q对象" class="headerlink" title="5、F对象和Q对象"></a>5、F对象和Q对象</h2><h3 id="5-1、F对象"><a href="#5-1、F对象" class="headerlink" title="5.1、F对象"></a>5.1、F对象</h3><ul>
+<li><p>一个F对象代表数据库中某条记录的字段的信息</p>
+</li>
+<li><p>作用：</p>
+<ul>
+<li>通常是对数据库中的字段值在不获取的情况下进行操作</li>
+<li>用于类属性（字段）之间的比较</li>
+</ul>
+</li>
+<li><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> F<br>F(<span class="hljs-string">&#x27;列名&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-2、Q对象"><a href="#5-2、Q对象" class="headerlink" title="5.2、Q对象"></a>5.2、Q对象</h3><p>当在获取查询结果集 使用复杂的<code>逻辑或 ｜</code>、<code>逻辑非 ~</code> 等操作可以借助于Q对象进行操作</p>
+<ul>
+<li><p>语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Q<br><span class="hljs-keyword">from</span> bookstore.models <span class="hljs-keyword">import</span> Book<br><br><span class="hljs-comment"># 找出定价低于20 或 清华大学出版社 的全部书</span><br>Book.objects.<span class="hljs-built_in">filter</span>(Q(price_lt=<span class="hljs-number">20</span>)|Q(pub=<span class="hljs-string">&#x27;清华大学出版社&#x27;</span>))<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>作用：在条件中用来实现除 and(&amp;) 以外的 or(|)、not(~)操作</p>
+</li>
+<li><p>运算符：</p>
+<ul>
+<li>&amp; 与操作</li>
+<li>｜或操作</li>
+<li>~ 非操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="6、聚合查询和原生数据库操作"><a href="#6、聚合查询和原生数据库操作" class="headerlink" title="6、聚合查询和原生数据库操作"></a>6、聚合查询和原生数据库操作</h2><h3 id="6-1、聚合查询"><a href="#6-1、聚合查询" class="headerlink" title="6.1、聚合查询"></a>6.1、聚合查询</h3><p>聚合查询是指对一个数据表中的一个字段的数据进行部分或全部进行统计</p>
+<p>聚合查询分为：整表聚合、分组聚合</p>
+<h4 id="6-1-1、整表聚合"><a href="#6-1-1、整表聚合" class="headerlink" title="6.1.1、整表聚合"></a>6.1.1、整表聚合</h4><p>不带分组的聚合查询是指将全部数据进行集中统计查询</p>
+<p>聚合函数[需要导入]:</p>
+<pre><code class="hljs">- 导入方法：``from django.db.models import *``
+- 聚合函数：Sum、Avg、Count、Max、Min
+</code></pre>
+<p>语法：<code>MyModel.objects.aggregate(自定义结果变量名 = 聚合函数(&#39;列&#39;))</code></p>
+<ul>
+<li>返回结果：结果变量名和值组成的字典<ul>
+<li>格式为：<code>&#123;&#39;结果变量名&#39;:&#39;值&#39;&#125;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="6-1-2、分组聚合"><a href="#6-1-2、分组聚合" class="headerlink" title="6.1.2、分组聚合"></a>6.1.2、分组聚合</h4><p>分组聚合是指通过计算查询结果中每一个对象所关联的对象的集合，从而得出总计值（也可以是平均值或总和），即为查询集的每一项生成聚合</p>
+<ul>
+<li><p>语法：</p>
+<ul>
+<li><code>QuerySet.annotate(自定义结果变量名 = 聚合函数(&#39;列&#39;))</code></li>
+</ul>
+</li>
+<li><p>返回值：QuerySet</p>
+</li>
+<li><p>步骤</p>
+<ul>
+<li>1、通过先用查询结果<code>MyModel.objects.values()</code> 查找查询要分组聚合的QuerySet<ul>
+<li>MyModel.objects.values(‘列1’, ‘列2’)</li>
+</ul>
+</li>
+<li>2、通过返回结果的QuerySet.annotate() 方法分组聚合得到分组结果<ul>
+<li>QuerySet.annotate(名 &#x3D; 聚合函数(‘列’))</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2、原生数据库操作"><a href="#6-2、原生数据库操作" class="headerlink" title="6.2、原生数据库操作"></a>6.2、原生数据库操作</h3><p>Django也支持直接用SQL语句的方式通信数据库</p>
+<p>查询：使用<code>MyModel.objects.raw()</code>进行数据库查询操作查询</p>
+<p>语法：<code>MyModel.objects.raw(SQL语句, 拼接参数)</code></p>
+<p>返回值：RawQuerySet集合对象 【 只支持基础操作，比如循环 】</p>
+<p>使用原生语句时小心SQL注入【用户通过数据上传，将恶意的SQL语句提交给服务器】</p>
+<h4 id="cursor"><a href="#cursor" class="headerlink" title="cursor"></a>cursor</h4><p>完全跨过模型类操作数据库  -  查询&#x2F;更新&#x2F;删除</p>
+<ul>
+<li><p>1、导入cursor所在的包</p>
+<ul>
+<li><code>from django.db import connection</code></li>
+</ul>
+</li>
+<li><p>2、用创建cursor类的构造函数创建cursor对象，再使用cursor对象，为保证在出现异常时能释放cursor资源，通常使用with语句进行创建操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> connection<br><br><span class="hljs-keyword">with</span> connection.cursor() <span class="hljs-keyword">as</span> cur:<br>  cur.execute(<span class="hljs-string">&#x27;执行SQL语句&#x27;</span>, <span class="hljs-string">&#x27;拼接参数&#x27;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="三、admin管理后台"><a href="#三、admin管理后台" class="headerlink" title="三、admin管理后台"></a>三、admin管理后台</h1><h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><ul>
+<li>django提供了比较完善的后台管理数据库的借口，可供开发过程中调用和测试使用</li>
+<li>django会搜集所有已注册的模型类，为这些模型类提供数据管理界面</li>
+</ul>
+<h2 id="2、admin配置步骤"><a href="#2、admin配置步骤" class="headerlink" title="2、admin配置步骤"></a>2、admin配置步骤</h2><ul>
+<li><p>1、创建后台管理账号 - 该账号为管理后台最高权限账号</p>
+<ul>
+<li><code>python3 manage.py createsuperuser</code></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">(py36) taoaodeMacBook-Pro:mysite3 taoao$ python3 manage.py createsuperuser<br>用户名 (leave blank to use &#x27;taoao&#x27;): taoao<br>电子邮件地址: 123456@163.com<br>Password: <br>Password (again): <br>Superuser created successfully.<br>(py36) taoaodeMacBook-Pro:mysite3 taoao$ <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>2、输入<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/admin/%E8%BF%9B%E5%85%A5admin%E9%A1%B5%E9%9D%A2">http://127.0.0.1:8000/admin/进入admin页面</a></p>
+<p><img src="/img/django_img/admin.jpg" alt="admin"></p>
+<p><img src="/img/django_img/admin2.jpg" alt="admin2"></p>
+</li>
+</ul>
+<h2 id="3、注册自定义模型类"><a href="#3、注册自定义模型类" class="headerlink" title="3、注册自定义模型类"></a>3、注册自定义模型类</h2><p>若要自己定义的模型类也能在 &#x2F;admin 后台管理界面中显示和管理，需要将自己的类注册到后台管理界面</p>
+<ul>
+<li><p>注册步骤</p>
+<ul>
+<li><p>1、在应用app 的admin.py 中导入要注册和管理的模型models类，如：<code>from .models import Book</code></p>
+<ul>
+<li>2、调用admin.site.register方法进行注册，如：<code>admin.site.register(自定义模型类)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/django_img/%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%B1%BB.jpg" alt="注册自定义模型类"></p>
+<p><img src="/img/django_img/%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%B1%BB2.jpg" alt="注册自定义模型类2"></p>
+<h3 id="3-1、修改自定义模型类的数据样式"><a href="#3-1、修改自定义模型类的数据样式" class="headerlink" title="3.1、修改自定义模型类的数据样式"></a>3.1、修改自定义模型类的数据样式</h3><ul>
+<li>在admin后台管理数据库中对自定义的数据记录都展示为‘xxxx object’ 类型的记录，不便于阅读和判断</li>
+<li>在用户自定义的模型类中可以重写 def _<em>str</em>_(self)：方法解决显示问题</li>
+</ul>
+<h3 id="3-2、模型管理器类"><a href="#3-2、模型管理器类" class="headerlink" title="3.2、模型管理器类"></a>3.2、模型管理器类</h3><p>作用：为后台管理界面添加便于操作的新功能</p>
+<p>说明：后台管理器类须继承自 django.contrib.admin 里的ModelAdmin 类</p>
+<p>使用方法：</p>
+<ul>
+<li><p>1、在&lt;应用app&gt;&#x2F;admin.py 里定义模型管理器类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">xxxManager</span>(admin.ModelAdmin):<br>  ...<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>2、绑定注册模型管理器类和模型类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> .models <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># 绑定自定义模型类 与 管理器类xxxManager</span><br>admin.site.register(自定义模型类, 模型管理器类) <br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/django_img/%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB.jpg" alt="模型管理器类"></p>
+<p><img src="/img/django_img/%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB2.jpg" alt="模型管理器类2"></p>
+</li>
+</ul>
+<p><strong>其它功能：</strong></p>
+<p><img src="/img/django_img/%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB%E5%85%B6%E5%AE%83%E5%8A%9F%E8%83%BD.jpg" alt="模型管理器类其它功能"></p>
+<p><img src="/img/django_img/%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB%E5%85%B6%E5%AE%83%E5%8A%9F%E8%83%BD2.jpg" alt="模型管理器类其它功能2"></p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.2/ref/contrib/admin/">https://docs.djangoproject.com/zh-hans/3.2/ref/contrib/admin/</a></p>
+<h2 id="4、Meta内部类"><a href="#4、Meta内部类" class="headerlink" title="4、Meta内部类"></a>4、Meta内部类</h2><p>通过Meta内部类，定义模型类的属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Book</span>(models.Model):<br>		title = CharField(...)<br>    <br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Meta</span>:<br>      	db_table = <span class="hljs-string">&#x27;数据库表名&#x27;</span>  <span class="hljs-comment"># 该模型所用的数据库表的名称</span><br>        verbose_name = <span class="hljs-string">&#x27;单数名&#x27;</span>  <span class="hljs-comment"># 给模型对象的一个易于理解的名称(单数)，用于显示在 /admin 管理界面中</span><br>        verbose_name_plural = <span class="hljs-string">&#x27;复数名&#x27;</span>  <span class="hljs-comment"># 该对象复数形式的名称(复数)，用于显示在 /admin 管理界面中</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="四、关系映射"><a href="#四、关系映射" class="headerlink" title="四、关系映射"></a>四、关系映射</h1><h2 id="1、定义"><a href="#1、定义" class="headerlink" title="1、定义"></a>1、定义</h2><p>在关系型数据库中，通常不会把所有的数据都放在同一张表中，不易于扩展，常见的关系映射有：</p>
+<ul>
+<li>一对一映射</li>
+<li>一对多映射</li>
+<li>多对多映射</li>
+</ul>
+<h2 id="2、一对一映射"><a href="#2、一对一映射" class="headerlink" title="2、一对一映射"></a>2、一对一映射</h2><h3 id="2-1、创建模型类"><a href="#2-1、创建模型类" class="headerlink" title="2.1、创建模型类"></a>2.1、创建模型类</h3><ul>
+<li><p>语法：<code>OneToOneField(类名, on_delete = xxx)</code>【on_delete ： 级联删除的规则】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Author</span>(models.Model):<br>  ...<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Wife</span>(models.Model):<br>  属性 = models.OneToOneField(Author, on_delete = xxx)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>特殊字段选项【必须】</p>
+<ul>
+<li>on_delete   -    级联删除<ul>
+<li>1、models.CASCADE   【 级联删除】Django模拟SQL约束<code> ON DELETE CASCADE</code>的行为，并删除包括ForeignKey的对象</li>
+<li>2、models.PROTECT  【 删不了 】   抛出ProtectedError 以阻止被引用对象的删除，等同于MySQL默认的RESTRICT</li>
+<li>3、SET_NULL  【 可以删 】  设置ForeignKey null，需要指定null&#x3D;True </li>
+<li>4、SET_DEFAULT  【 可以删，将外键设置为默认值 】   将ForeignKey设置为默认值，必须制定ForeignKey的默认值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2、一对一中-添加数据"><a href="#2-2、一对一中-添加数据" class="headerlink" title="2.2、一对一中 添加数据"></a>2.2、一对一中 添加数据</h3><ul>
+<li><p>1、无外建的模型类【Author】</p>
+<ul>
+<li><pre><code class="python">author1 = Author.objects.create(name = &#39;王老师&#39;)
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><br>- 2、有外建的模型类 【 Wife】<br><br>  - ```python<br>    <span class="hljs-comment"># 方式1   																	类属性名 = 实例化对象obj</span><br>    wife1 = Wife.objects.create<span class="hljs-params">(<span class="hljs-attr">name</span> = &#x27;王夫人&#x27;, <span class="hljs-attr">author</span> = author1)</span>  <span class="hljs-comment"># 关联王老师obj</span><br>    <span class="hljs-comment"># 方式2   																	外建字段名 = 具体的值</span><br>    wife1 = Wife.objects.create<span class="hljs-params">(<span class="hljs-attr">name</span> = &#x27;王夫人&#x27;, <span class="hljs-attr">author_id</span> = 1)</span>  <span class="hljs-comment"># 关联王老师对应的主键值</span><br></code></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3、一对一中-查询数据"><a href="#2-3、一对一中-查询数据" class="headerlink" title="2.3、一对一中 查询数据"></a>2.3、一对一中 查询数据</h3><ul>
+<li><p>1、正向查询：直接通过外建属性查询，称为正向查询 </p>
+<p><img src="/img/django_img/%E6%AD%A3%E5%90%91%E6%9F%A5%E8%AF%A2.jpg" alt="正向查询"></p>
+</li>
+<li><p>2、反向查询：没有外键属性的一方，可以调用反向属性查询到关联的另一方</p>
+<ul>
+<li>反向关联属性为：<code>实例对象.引用类名(小写)</code>，当反向引用不存在时，则会出发异常</li>
+</ul>
+<p><img src="/img/django_img/%E5%8F%8D%E5%90%91%E6%9F%A5%E8%AF%A2.jpg" alt="反向查询"></p>
+</li>
+</ul>
+<h2 id="3、一对多映射"><a href="#3、一对多映射" class="headerlink" title="3、一对多映射"></a>3、一对多映射</h2><h3 id="3-1、创建模型类"><a href="#3-1、创建模型类" class="headerlink" title="3.1、创建模型类"></a>3.1、创建模型类</h3><ul>
+<li><p>语法：当一个A类对象可以关联多个B类对象时.  【 ForeignKey 必须指定on_delete 模式 】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BanClass</span>(models.Model):  <span class="hljs-comment"># 一</span><br>  	...<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>(models.Model):  <span class="hljs-comment"># 多</span><br>  	属性 = models.ForeignKey(BanClass, on_delete=xxx)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-2、一对多中-添加数据"><a href="#3-2、一对多中-添加数据" class="headerlink" title="3.2、一对多中 添加数据"></a>3.2、一对多中 添加数据</h3><p>和 一对一 一样</p>
+<h3 id="3-3、一对多中-查询数据"><a href="#3-3、一对多中-查询数据" class="headerlink" title="3.3、一对多中 查询数据"></a>3.3、一对多中 查询数据</h3><ul>
+<li><p>1、正向查询  跟 一对一 一样</p>
+</li>
+<li><p>2、反向查询  需要用到<strong>反向属性: <code>多对象的对象名_set</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">pub1 = Publisher.objects.get(name=<span class="hljs-string">&#x27;清华大学出版社&#x27;</span>)<br><span class="hljs-comment"># 方式1</span><br>books = pub1.book_set.<span class="hljs-built_in">all</span>()  <span class="hljs-comment"># 通过 book_set获取pub1 对应的多个Book数据对象</span><br><span class="hljs-comment"># 方式2</span><br><span class="hljs-comment"># books = Book.objects.filter(publisher=pub1)  # 也可以采用此方式获取</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4、多对多映射"><a href="#4、多对多映射" class="headerlink" title="4、多对多映射"></a>4、多对多映射</h2><h3 id="4-1、创建模型类"><a href="#4-1、创建模型类" class="headerlink" title="4.1、创建模型类"></a>4.1、创建模型类</h3><p>语法：在关联的两个类中的任意一个类中，增加：<code>属性 = models.ManyToManyField(MyModel)</code></p>
+<p>Django中无需手动创建第三张表，Django自动完成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Teacher</span>(models.Model):  <span class="hljs-comment"># 可以通过 teacher1.student_set.create新增学生 .add关联学生</span><br>  ...<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>(models.Model):  <span class="hljs-comment"># 可以通过 student1.teachers.create新增老师 .add关联老师</span><br>  ...<br>  teachers = models.ManyToManyField(Teacher)<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2、多对多中-添加数据"><a href="#4-2、多对多中-添加数据" class="headerlink" title="4.2、多对多中 添加数据"></a>4.2、多对多中 添加数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方案1  先创建Teacher，再关联Student  # 反向添加</span><br>In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">from</span> mtm.models <span class="hljs-keyword">import</span> *<br><br>In [<span class="hljs-number">2</span>]: t1 = Teacher.objects.create(name=<span class="hljs-string">&#x27;吕老师&#x27;</span>)<br><br>In [<span class="hljs-number">3</span>]: t2 = Teacher.objects.create(name=<span class="hljs-string">&#x27;王老师&#x27;</span>)<br><span class="hljs-comment"># 通过 已经创建好的老师 创建学生</span><br>In [<span class="hljs-number">4</span>]: s11 = t1.student_set.create(title=<span class="hljs-string">&#x27;Python&#x27;</span>)  <span class="hljs-comment"># 通过 student_set</span><br><span class="hljs-comment"># 通过 已经创建号的老师 关联学生</span><br>In [<span class="hljs-number">5</span>]: t2.student_set.add(book11)<br><br><span class="hljs-comment"># 方案2  先创建Student，再关联Teacher  # 正向添加</span><br>In [<span class="hljs-number">6</span>]: s1 = Student.objects.create(title=<span class="hljs-string">&#x27;林同学&#x27;</span>)<br><span class="hljs-comment"># ** obj1.属性.create()  # 通过学生 创建 老师 **</span><br>In [<span class="hljs-number">7</span>]: s1.teachers.create(name=<span class="hljs-string">&#x27;吕老师&#x27;</span>)  <br><span class="hljs-comment"># ** obj1.属性.add()  # 通过学生 关联 老师 **</span><br>In [<span class="hljs-number">8</span>]: s1.teachers.add(t11)<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3、多对多中-查询数据"><a href="#4-3、多对多中-查询数据" class="headerlink" title="4.3、多对多中 查询数据"></a>4.3、多对多中 查询数据</h3><h4 id="4-3-1、正向查询。有多对多属性的对象-查-另一方"><a href="#4-3-1、正向查询。有多对多属性的对象-查-另一方" class="headerlink" title="4.3.1、正向查询。有多对多属性的对象 查 另一方"></a>4.3.1、正向查询。有多对多属性的对象 查 另一方</h4><h4 id="4-3-2、反向查询。没有多对多属性的对象-查-另一方"><a href="#4-3-2、反向查询。没有多对多属性的对象-查-另一方" class="headerlink" title="4.3.2、反向查询。没有多对多属性的对象 查 另一方"></a>4.3.2、反向查询。没有多对多属性的对象 查 另一方</h4><h1 id="五、cookies-和session"><a href="#五、cookies-和session" class="headerlink" title="五、cookies 和session"></a>五、cookies 和session</h1><h2 id="1、会话定义"><a href="#1、会话定义" class="headerlink" title="1、会话定义"></a>1、会话定义</h2><ul>
+<li>从打开浏览器访问一个网站，到关闭浏览器结束此次访问，称之为一次会话</li>
+<li>HTTP协议是无状态的，导致会话状态难以保持</li>
+<li>Cookies 和Session 就是为了保持会话状态而诞生的两个存储技术</li>
+</ul>
+<h2 id="2、Cookies"><a href="#2、Cookies" class="headerlink" title="2、Cookies"></a>2、Cookies</h2><h3 id="2-1、定义"><a href="#2-1、定义" class="headerlink" title="2.1、定义"></a>2.1、定义</h3><p>cookies是保存在客户端浏览器上的存储空间</p>
+<h3 id="2-2、Cookies特点"><a href="#2-2、Cookies特点" class="headerlink" title="2.2、Cookies特点"></a>2.2、Cookies特点</h3><ul>
+<li><p><strong>cookies 在浏览器上是以键值对的形式进行存储的</strong>，键和值都是以ASCII字符串的形式存储（不能是中文字符串）</p>
+</li>
+<li><p>存储的数据带有生命周期</p>
+</li>
+<li><p>cookies 中的数据是按域存储隔离的，不同的域之间无法访问</p>
+</li>
+<li><p>cookies 的内部的数据会在每次访问此网址时都会携带到服务器端，如果cookies 过大会降低响应速度</p>
+</li>
+</ul>
+<h3 id="2-3、Cookies的使用"><a href="#2-3、Cookies的使用" class="headerlink" title="2.3、Cookies的使用"></a>2.3、Cookies的使用</h3><h4 id="2-3-1、存储cookies"><a href="#2-3-1、存储cookies" class="headerlink" title="2.3.1、存储cookies"></a>2.3.1、存储cookies</h4><p>HttpResponse.set_cookie(key, value &#x3D; ‘’, max_age &#x3D; None, expires &#x3D; None)</p>
+<ul>
+<li>key：cookie的名字</li>
+<li>value：cookie的值</li>
+<li>max_age：cookie存活时间，单位是秒</li>
+<li>expires：具体过期时间</li>
+<li>当不指定max_age 和expires 时，关闭浏览器时此数据失效（二选一）</li>
+</ul>
+<p>示例：</p>
+<p>在响应的时候设置：</p>
+<p><img src="/img/django_img/set_cookies.jpg" alt="set_cookies"></p>
+<p><img src="/img/django_img/cookies.jpg" alt="cookies"></p>
+<p>在响应头中可以看到set-cookies的信息，<strong>用于把cookies存到本地浏览器</strong></p>
+<p><img src="/img/django_img/set_cookies2.jpg" alt="set_cookies2"></p>
+<h4 id="2-3-2、删除和获取cookies"><a href="#2-3-2、删除和获取cookies" class="headerlink" title="2.3.2、删除和获取cookies"></a>2.3.2、删除和获取cookies</h4><ul>
+<li>删除Cookies<ul>
+<li><code>HttpResponse.delete_cookie(key)</code></li>
+<li>删除指定的key的Cookie。如果key 不存在则什么也不发生</li>
+</ul>
+</li>
+<li>获取Cookies<ul>
+<li>通过 <code>request.COOKIES</code> 绑定的字典（dict）获取客户端的COOKIES数据</li>
+<li><code>value = request.COOKIES.get(&#39;cookies名&#39;, &#39;默认值&#39;)</code></li>
+</ul>
+</li>
+</ul>
+<p>在请求头中可以看到cookies的信息，<strong>浏览器会自动把cookie发到服务器</strong></p>
+<p><img src="/img/django_img/get_cookies.jpg" alt="get_cookies"></p>
+<h2 id="3、Session"><a href="#3、Session" class="headerlink" title="3、Session"></a>3、Session</h2><h3 id="3-1、定义"><a href="#3-1、定义" class="headerlink" title="3.1、定义"></a>3.1、定义</h3><p>session是在服务器上开辟一段空间用于保留浏览器和服务器交互时的重要数据</p>
+<ul>
+<li>实现方式<ul>
+<li>使用session 需要在浏览器客户端启动cookie，并且在cookie中存储sessionid</li>
+<li>每个客户端都可以在服务器端有一个独立的Session</li>
+<li>注意：不同的请求者之间不会共享这个数据，session与请求者一一对应</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2、Session使用"><a href="#3-2、Session使用" class="headerlink" title="3.2、Session使用"></a>3.2、Session使用</h3><h4 id="3-2-1、session初始配置"><a href="#3-2-1、session初始配置" class="headerlink" title="3.2.1、session初始配置"></a>3.2.1、session初始配置</h4><ul>
+<li><p>在settings.py中配置session</p>
+<p>1、向INSTALLED_APPS 列表中添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">INSTALLED_APPS = [<br>  	<span class="hljs-comment"># 启动 sessions 应用</span><br>  <span class="hljs-string">&#x27;django.contrib.sessions&#x27;</span>,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>2、向MIDDLEWARE 列表中添加：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">MIDDLEWARE = [<br>  	<span class="hljs-comment"># 启动 Session中间件</span><br>  	<span class="hljs-string">&#x27;django.contrib.sessions.middleware.SessionMiddleware&#x27;</span><br>]<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/img/django_img/session%E9%85%8D%E7%BD%AE.jpg" alt="session配置"></p>
+<h4 id="3-2-2、Django中使用session"><a href="#3-2-2、Django中使用session" class="headerlink" title="3.2.2、Django中使用session"></a>3.2.2、Django中使用session</h4><p>session 对象是一个类似于字典的SessionStore 类型的对象，可以用类模拟于字典的方式进行操作</p>
+<p>session能够存储如字符串、整型、字典、列表等</p>
+<p>1、保存session 的值到服务器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">request.session[<span class="hljs-string">&#x27;key&#x27;</span>] = value<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/django_img/set_session.jpg" alt="set_session"></p>
+<p>2、获取session的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 两种方法</span><br>value = request.session[<span class="hljs-string">&#x27;key&#x27;</span>]<br>value = request.session.get(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;默认值&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/django_img/session.jpg" alt="session"></p>
+<p><img src="/img/django_img/set_session.jpg" alt="set_session"></p>
+<p>3、删除session</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">del</span> request.session[<span class="hljs-string">&#x27;key&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-2-3、settings-py-中的相关配置项"><a href="#3-2-3、settings-py-中的相关配置项" class="headerlink" title="3.2.3、settings.py 中的相关配置项"></a>3.2.3、settings.py 中的相关配置项</h4><ul>
+<li>1、SESSION_COOKIE_AGE<ul>
+<li>作用：指定sessionid 在cookies 中的保存时长（默认是2周），例如：</li>
+<li><code>SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 *2</code></li>
+</ul>
+</li>
+<li>2、SESSION_EXPIRE_AT_BROWSER_CLOSE <ul>
+<li>设置只要浏览器关闭时，session就失效【 默认为False 】</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：Django中的session 数据存储在数据库中，所以使用session前需要确保已经执行过 migrate</strong></p>
+<h3 id="3-3、Django-session的问题"><a href="#3-3、Django-session的问题" class="headerlink" title="3.3、Django session的问题"></a>3.3、Django session的问题</h3><ul>
+<li><p>1、django_session 表是单表设计；且该表数据量持续增持【浏览器故意删掉sessionid 和 过期数据未删除】</p>
+</li>
+<li><p>2、可以每晚执行 <code>python3 manage.py clearsessions</code> 【 该命令可删除已经过期的session数据 】</p>
+</li>
+</ul>
+<h1 id="六、缓存"><a href="#六、缓存" class="headerlink" title="六、缓存"></a>六、缓存</h1><h2 id="1、缓存的定义"><a href="#1、缓存的定义" class="headerlink" title="1、缓存的定义"></a>1、缓存的定义</h2><ul>
+<li>定义：缓存是一类可以更快的读取数据的介质统称，也指其它可以加快数据读取的存储方式。一般用来存储临时数据，常用介质的是读取速度很快的内存</li>
+<li>意义：视图渲染有一定成本，数据库的频繁查询过高；所以对于低频变动的页面可以考虑使用缓存技术，减少实际渲染次数；用户拿到响应的时间成本会更低</li>
+</ul>
+<h2 id="2、缓存配置"><a href="#2、缓存配置" class="headerlink" title="2、缓存配置"></a>2、缓存配置</h2><h3 id="2-1、数据库缓存"><a href="#2-1、数据库缓存" class="headerlink" title="2.1、数据库缓存"></a>2.1、数据库缓存</h3><p><strong>将缓存的数据存储在数据库中</strong></p>
+<p>说明：尽管存储介质没有更换，但是当把一次负责查询的结果直接存储到表中，比如多个条件的过滤查询结果，可避免重复进行复杂查询，提升效率</p>
+<p><strong>配置：在settings.py中</strong></p>
+<p><code>缓存配置，这里设置为数据库缓存（需要手动执行创建表的命令【python3 manage.py createcachetable 】）</code></p>
+<p><img src="/img/django_img/%E7%BC%93%E5%AD%981.jpg" alt="缓存1"></p>
+<h3 id="2-2、本地内存缓存"><a href="#2-2、本地内存缓存" class="headerlink" title="2.2、本地内存缓存"></a>2.2、本地内存缓存</h3><p><strong>数据缓存到服务器内存中</strong></p>
+<p><img src="/img/django_img/%E7%BC%93%E5%AD%982.jpg" alt="缓存2"></p>
+<h3 id="2-3、文件系统缓存"><a href="#2-3、文件系统缓存" class="headerlink" title="2.3、文件系统缓存"></a>2.3、文件系统缓存</h3><p><strong>将缓存的数据存储到本地文件中</strong></p>
+<p><img src="/img/django_img/%E7%BC%93%E5%AD%983.jpg" alt="缓存3"></p>
+<h2 id="3、整体缓存策略"><a href="#3、整体缓存策略" class="headerlink" title="3、整体缓存策略"></a>3、整体缓存策略</h2><h3 id="3-1、Django中使用缓存-视图函数中"><a href="#3-1、Django中使用缓存-视图函数中" class="headerlink" title="3.1、Django中使用缓存 - 视图函数中"></a>3.1、Django中使用缓存 - 视图函数中</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">from</span> django.views.decorators.cache <span class="hljs-keyword">import</span> cache_page<br><br><span class="hljs-meta">@cache_page(<span class="hljs-params"><span class="hljs-number">30</span></span>)   </span><span class="hljs-comment"># 30 -&gt;单位 s</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_view</span>(<span class="hljs-params">request</span>):<br>  	...<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2、Django中使用缓存-路由中"><a href="#3-2、Django中使用缓存-路由中" class="headerlink" title="3.2、Django中使用缓存 - 路由中"></a>3.2、Django中使用缓存 - 路由中</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.views.decorators.cache <span class="hljs-keyword">import</span> cache_page<br><br>urlpatterns = [<br>   path(<span class="hljs-string">&#x27;foo/&#x27;</span>, cache_page(<span class="hljs-number">60</span>)(my_view)),  <span class="hljs-comment"># cache_page(60)</span><br>]<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、局部缓存策略"><a href="#4、局部缓存策略" class="headerlink" title="4、局部缓存策略"></a>4、局部缓存策略</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Django/" class="print-no-link">#Django</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Django笔记</div>
+      <div>http://example.com/2024/02/26/Django笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年2月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/26/conda%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="conda基本使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">conda基本使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/26/Docker%E6%90%AD%E5%BB%BAPostgres/" title="Docker搭建Postgres">
+                        <span class="hidden-mobile">Docker搭建Postgres</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://syea01.github.io" target="_blank" rel="nofollow noopener"><span>首页</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
