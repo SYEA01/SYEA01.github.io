@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/sf_img/suanfa.png">
 <meta property="article:published_time" content="2024-03-27T09:56:39.000Z">
-<meta property="article:modified_time" content="2024-06-20T09:57:38.104Z">
+<meta property="article:modified_time" content="2024-06-20T10:05:38.492Z">
 <meta property="article:author" content="Taoao">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="算法">
@@ -1046,11 +1046,17 @@
 <blockquote>
 <p>归并排序（Merge Sort）是一种分而治之的算法，它将一个大列表分成两个相等（或几乎相等）的部分，递归地对这两部分分别进行排序，然后将已排序的部分合并成一个有序的列表。其核心思想是“分治法”——即将复杂问题分解为多个更小、更容易解决的子问题，再将子问题的解合并得到原问题的解。</p>
 <p>归并排序的步骤分为两大部分：分割和合并。</p>
-<h3 id="分割过程"><a href="#分割过程" class="headerlink" title="分割过程"></a>分割过程</h3><ol>
+<ul>
+<li>分割过程</li>
+</ul>
+<ol>
 <li><strong>分解</strong>：将当前区间一分为二，即找到中间位置，然后生成两个子区间。</li>
 <li><strong>递归</strong>：递归地对这两个子区间分别调用归并排序。递归的终止条件通常是区间长度为1，因为单个元素的区间自然视为已排序。</li>
 </ol>
-<h3 id="合并过程"><a href="#合并过程" class="headerlink" title="合并过程"></a>合并过程</h3><ol>
+<ul>
+<li>合并过程</li>
+</ul>
+<ol>
 <li><strong>比较</strong>：当左右两个子区间都已经排好序后，开始合并过程。创建一个临时数组，比较两个子区间的第一个元素，将较小的元素放入临时数组，然后移动指针到下一个元素。</li>
 <li><strong>合并</strong>：重复上述比较和移动过程，直到某一个子区间的所有元素都被放入临时数组。</li>
 <li><strong>剩余元素</strong>：将另一个子区间中剩余的元素依次添加到临时数组的末尾。</li>
