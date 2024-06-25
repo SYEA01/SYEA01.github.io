@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/sf_img/suanfa.png">
 <meta property="article:published_time" content="2024-03-27T09:56:39.000Z">
-<meta property="article:modified_time" content="2024-06-24T10:21:20.984Z">
+<meta property="article:modified_time" content="2024-06-25T03:46:02.827Z">
 <meta property="article:author" content="Taoao">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="算法">
@@ -253,7 +253,7 @@
         
         
         
-          158 分钟
+          160 分钟
         
       </span>
     
@@ -1141,7 +1141,7 @@
 <h6 id="3）、代码实现-3"><a href="#3）、代码实现-3" class="headerlink" title="3）、代码实现"></a>3）、代码实现</h6>
     <div class="fold">
       <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-6bf393a4" role="button" aria-expanded="false" aria-controls="collapse-6bf393a4">
-        <div class="fold-arrow">▶</div>代码实现
+        <div class="fold-arrow">▶</div>代码实现-如果找到就返回下标，如果没有找到就返回-1（递归写法）
       </div>
       <div class="fold-collapse collapse" id="collapse-6bf393a4">
         <div class="fold-content">
@@ -1151,6 +1151,16 @@
     </div>
 
 
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-f49c87a3" role="button" aria-expanded="false" aria-controls="collapse-f49c87a3">
+        <div class="fold-arrow">▶</div>代码实现-返回所有符合的元素的下标（这是不使用递归的写法）
+      </div>
+      <div class="fold-collapse collapse" id="collapse-f49c87a3">
+        <div class="fold-content">
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 二分查找 - 返回所有符合的元素的下标</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> arr 数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> left 左索引</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> right 右索引</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> target 要查找的数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Integer&gt; <span class="hljs-title function_">binarySearch2</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> target)</span> &#123;<br>    List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> (left + right) / <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-keyword">if</span> (arr[mid] &gt; target) &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &lt; target) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            list.add(mid);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> mid - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (l &gt; <span class="hljs-number">0</span> &amp;&amp; arr[l] == target) &#123;<br>                list.add(l--);<br>            &#125;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> mid + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (r &lt; arr.length &amp;&amp; arr[r] == target) &#123;<br>                list.add(r++);<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        mid = (left + right) / <span class="hljs-number">2</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -1334,7 +1344,7 @@ ni
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月24日</div>
+          <div>2024年6月25日</div>
         </div>
       
       
