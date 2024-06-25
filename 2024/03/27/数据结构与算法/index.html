@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/sf_img/suanfa.png">
 <meta property="article:published_time" content="2024-03-27T09:56:39.000Z">
-<meta property="article:modified_time" content="2024-06-25T03:46:02.827Z">
+<meta property="article:modified_time" content="2024-06-25T10:18:08.009Z">
 <meta property="article:author" content="Taoao">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="算法">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          21k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          160 分钟
+          172 分钟
         
       </span>
     
@@ -1153,7 +1153,7 @@
 
     <div class="fold">
       <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-f49c87a3" role="button" aria-expanded="false" aria-controls="collapse-f49c87a3">
-        <div class="fold-arrow">▶</div>代码实现-返回所有符合的元素的下标（这是不使用递归的写法）
+        <div class="fold-arrow">▶</div>代码实现-返回所有符合的元素的下标（while循环写法）
       </div>
       <div class="fold-collapse collapse" id="collapse-f49c87a3">
         <div class="fold-content">
@@ -1161,6 +1161,91 @@
         </div>
       </div>
     </div>
+
+<h5 id="2、插值查找"><a href="#2、插值查找" class="headerlink" title="2、插值查找"></a>2、插值查找</h5><h6 id="1）、基本介绍-9"><a href="#1）、基本介绍-9" class="headerlink" title="1）、基本介绍"></a>1）、基本介绍</h6><p>插值查找（Interpolation Search）是一种在有序数组中查找特定元素的搜索算法。它结合了二分查找的思想，并进一步利用了线性插值的原理来预测目标值可能的位置，从而在某些情况下可以减少查找次数，提高查找效率。尤其在数据量大且分布均匀的情况下，插值查找相较于简单的二分查找可能会有更优的性能。</p>
+<p><strong>基本原理</strong></p>
+<p>插值查找的基本思想是根据要查找的键值和当前查找区间内的最小值、最大值及区间的长度，估计键值在该区间中的位置。公式如下：</p>
+<p><code>估计位置 = low + (high - low) * (key - arr[low]) / (arr[high] - arr[low])  </code></p>
+<p>其中，<code>low</code> 和 <code>high</code> 分别表示当前查找区间的下界和上界，<code>key</code> 是待查找的元素，<code>arr[low]</code> 和 <code>arr[high]</code> 分别是这个区间内的最小值和最大值。</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>计算上述公式得到的估计位置。</li>
+<li>如果估计位置恰好等于<code>key</code>，则查找成功。</li>
+<li>如果估计位置小于<code>key</code>，并且估计位置在数组范围内，则将查找范围缩小到估计位置之后的部分，重复步骤1。</li>
+<li>如果估计位置大于<code>key</code>，并且估计位置在数组范围内，则将查找范围缩小到估计位置之前的部分，重复步骤1。</li>
+<li>如果估计位置超出数组范围或者经过若干次查找后仍未找到，说明数组中不存在该元素，查找失败。</li>
+</ol>
+<p><strong>适用场景</strong></p>
+<ul>
+<li>插值查找适用于数据量较大且数据分布较为均匀的有序数组。</li>
+<li>当数据分布不均时，插值查找的效率可能不如二分查找，因为它基于数据均匀分布的假设进行估算。</li>
+</ul>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>插值查找的时间复杂度在最理想情况下可以达到O(log n)，但最坏情况下仍为O(n)，特别是当数据分布极度不均匀时。</li>
+<li>插值查找需要更多的计算（除法和乘法），相比二分查找，在某些情况下可能会因为额外的计算开销而效率降低。</li>
+</ul>
+<p>总的来说，插值查找是对二分查找的一种改进，适用于特定条件下的有序数组查找，但在选择使用时需要考虑数据的具体分布情况。</p>
+<h6 id="2）、代码实现-7"><a href="#2）、代码实现-7" class="headerlink" title="2）、代码实现"></a>2）、代码实现</h6>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-0bce25b2" role="button" aria-expanded="false" aria-controls="collapse-0bce25b2">
+        <div class="fold-arrow">▶</div>代码实现
+      </div>
+      <div class="fold-collapse collapse" id="collapse-0bce25b2">
+        <div class="fold-content">
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 插值查找算法</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> arr    数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> left   左索引</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> right  右索引</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> target 待查找的值</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 索引</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">insertValueSearch</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-keyword">if</span> (left &gt; right || target &lt; arr[<span class="hljs-number">0</span>] || target &gt; arr[arr.length - <span class="hljs-number">1</span>]) &#123;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> left + (right - left) * (target - arr[left]) / (arr[right] - arr[left]);<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-keyword">if</span> (target &gt; arr[mid]) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &lt; arr[mid]) &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125;<br>        mid = left + (right - left) * (target - arr[left]) / (arr[right] - arr[left]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+<h5 id="3、斐波那契（黄金分割法）查找"><a href="#3、斐波那契（黄金分割法）查找" class="headerlink" title="3、斐波那契（黄金分割法）查找"></a>3、斐波那契（黄金分割法）查找</h5><h6 id="1）、基本介绍-10"><a href="#1）、基本介绍-10" class="headerlink" title="1）、基本介绍"></a>1）、基本介绍</h6><p>斐波那契查找（Fibonacci Search）是一种在有序数组中查找特定元素的算法，它利用了著名的斐波那契数列的特性来分割数组区间，而不是简单地将数组分为两半，因此它在理论上可以提供比传统的二分查找更好的性能，尤其是在数据量较大的情况下。</p>
+<h6 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a><strong>基本思想</strong></h6><ol>
+<li><strong>斐波那契数列</strong>：首先，斐波那契查找依赖于斐波那契数列，这是一个每个数都是前两个数之和的序列（通常从0和1或1和1开始），例如：0, 1, 1, 2, 3, 5, 8, 13, 21, …</li>
+<li><strong>区间划分</strong>：斐波那契查找算法在每次迭代时，会尝试将数组分割成两个部分，其长度分别接近斐波那契数列中的相邻两项。具体来说，如果当前考虑的斐波那契数为<code>F[k]</code>，那么分割后的两个子区间长度大致为<code>F[k-1]</code>和<code>F[k-2]</code>。</li>
+<li><strong>黄金分割点</strong>：由于斐波那契数列的性质，这样的分割接近于黄金分割比例（约0.618），这在数学上被认为是一个高效的分割比例。</li>
+<li><strong>查找过程</strong>：算法首先找到一个足够大的斐波那契数<code>F[k]</code>，使其大于或等于数组的长度。然后，根据斐波那契数列的性质调整数组（如果数组长度不是斐波那契数，则在其后填充重复的最后一个元素直到长度匹配），并计算出中间位置<code>mid</code>。接下来，通过比较目标值与<code>mid</code>处的元素，决定是在左侧的<code>F[k-2]</code>个元素中继续查找，还是在右侧的<code>F[k-1]-1</code>个元素中查找。之后，再次选择合适的斐波那契数来分割新的区间，重复这一过程，直到找到目标值或确定目标值不在数组中。</li>
+</ol>
+<h6 id="特点"><a href="#特点" class="headerlink" title="特点"></a><strong>特点</strong></h6><ul>
+<li><strong>效率</strong>：在最佳情况下，斐波那契查找的时间复杂度为O(log n)，与二分查找相近，但在某些情况下可以更快地收敛。</li>
+<li><strong>适用性</strong>：它要求数据是有序的，适合于大数据集的查找，尤其是当数据访问成本较高时。</li>
+<li><strong>缺点</strong>：需要预先计算斐波那契数列，并可能需要对原数组进行扩展，增加了空间和预处理的开销。</li>
+</ul>
+<p>斐波那契查找展示了利用特殊数列特性优化传统算法的思路，虽然在实际应用中可能不如二分查找普遍，但它仍然是算法学习和研究中的一个重要概念。</p>
+<h6 id="2）、代码实现-8"><a href="#2）、代码实现-8" class="headerlink" title="2）、代码实现"></a>2）、代码实现</h6>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-5824c0ca" role="button" aria-expanded="false" aria-controls="collapse-5824c0ca">
+        <div class="fold-arrow">▶</div>代码实现
+      </div>
+      <div class="fold-collapse collapse" id="collapse-5824c0ca">
+        <div class="fold-content">
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> left + (right - left) * (target - arr[left]) / (arr[right] - arr[left])<br></code></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
