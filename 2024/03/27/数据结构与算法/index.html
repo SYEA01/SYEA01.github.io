@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/sf_img/suanfa.png">
 <meta property="article:published_time" content="2024-03-27T09:56:39.000Z">
-<meta property="article:modified_time" content="2024-08-02T17:21:55.275Z">
+<meta property="article:modified_time" content="2024-08-10T17:21:24.479Z">
 <meta property="article:author" content="Taoao">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="算法">
@@ -253,7 +253,7 @@
         
         
         
-          199 分钟
+          203 分钟
         
       </span>
     
@@ -1347,22 +1347,36 @@
       </div>
     </div>
 
+<h5 id="5、顺序存储二叉树"><a href="#5、顺序存储二叉树" class="headerlink" title="5、顺序存储二叉树"></a>5、顺序存储二叉树</h5><p>顺序存储是一种常用的数据结构用于实现二叉树，尤其适用于完全二叉树。在顺序存储中，二叉树的节点是按照一定的规则存储在一个一维数组中的。这种存储方式利用了完全二叉树的特点：每个位置的节点与其子节点之间有确定的关系，使得我们不需要额外的空间来存储指向子节点的指针。</p>
+<h6 id="顺序存储的特点："><a href="#顺序存储的特点：" class="headerlink" title="顺序存储的特点："></a>顺序存储的特点：</h6><ol>
+<li><p><strong>根节点</strong>通常存储在数组的第一个位置（通常是索引0或1，根据不同的实现而定）。</p>
+</li>
+<li><p>对于第 i 个节点：</p>
+<p>（假设数组从0开始编号）:</p>
+<ul>
+<li>左子节点的位置为 <code>（2 * i） + 1</code>（如果存在）。</li>
+<li>右子节点的位置为 <code>（2 * i） + 2</code>（如果存在）。</li>
+</ul>
+</li>
+<li><p>第i个节点的父节点的位置为 <code>（i - 1） / 2</code> 向下取整（除了根节点外）。</p>
+</li>
+</ol>
+<h6 id="举例说明："><a href="#举例说明：" class="headerlink" title="举例说明："></a>举例说明：</h6><p>假设我们有一个如下所示的完全二叉树：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">     a<br>   /   \<br>  b     c<br> / \   / \<br>d   e f   g<br></code></pre></td></tr></table></figure>
 
+<p>如果我们使用顺序存储，可以将其存储为一个数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">		数组：   [a, b, c, d, e, f, g]<br>假设索引从<span class="hljs-number">0</span>开始：  <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>在这个例子中：</p>
+<ul>
+<li>数组索引0 存储的是根节点a。</li>
+<li>节点b的左子节点是d（索引3），右子节点是e（索引4）。</li>
+<li>节点c的左子节点是f（索引5），右子节点是g（索引6）。</li>
+</ul>
+<h6 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h6><ul>
+<li>当二叉树不是完全二叉树时，可能会出现数组中有些位置为空的情况，导致空间利用率不高。</li>
+<li>插入和删除操作可能需要移动数组中的元素，因此效率相对较低。</li>
+</ul>
 <p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>
 <h3 id="底部"><a href="#底部" class="headerlink" title="底部"></a>底部</h3><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="9.1ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 4022.2 1000" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path id="MJX-1-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-1-TEX-N-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path id="MJX-1-TEX-N-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path><path id="MJX-1-TEX-N-67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z"></path><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-N-2061" d=""></path><path id="MJX-1-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-1-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D442" xlink:href="#MJX-1-TEX-I-1D442"></use></g><g data-mml-node="mo" transform="translate(763,0)"><use data-c="28" xlink:href="#MJX-1-TEX-N-28"></use></g><g data-mml-node="msub" transform="translate(1152,0)"><g data-mml-node="mi"><use data-c="6C" xlink:href="#MJX-1-TEX-N-6C"></use><use data-c="6F" xlink:href="#MJX-1-TEX-N-6F" transform="translate(278,0)"></use><use data-c="67" xlink:href="#MJX-1-TEX-N-67" transform="translate(778,0)"></use></g><g data-mml-node="mn" transform="translate(1311,-241.4) scale(0.707)"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"></use></g></g><g data-mml-node="mo" transform="translate(2866.6,0)"><use data-c="2061" xlink:href="#MJX-1-TEX-N-2061"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(3033.2,0)"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-1-TEX-I-1D45B"></use></g></g><g data-mml-node="mo" transform="translate(3633.2,0)"><use data-c="29" xlink:href="#MJX-1-TEX-N-29"></use></g></g></g></svg></mjx-container>
 
@@ -1370,10 +1384,10 @@
 
 
     <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-cf825fb7" role="button" aria-expanded="false" aria-controls="collapse-cf825fb7">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-98d8ae09" role="button" aria-expanded="false" aria-controls="collapse-98d8ae09">
         <div class="fold-arrow">▶</div>代码实现
       </div>
-      <div class="fold-collapse collapse" id="collapse-cf825fb7">
+      <div class="fold-collapse collapse" id="collapse-98d8ae09">
         <div class="fold-content">
           <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><br></code></pre></td></tr></table></figure>
         </div>
@@ -1533,7 +1547,7 @@ ni
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月3日</div>
+          <div>2024年8月11日</div>
         </div>
       
       
