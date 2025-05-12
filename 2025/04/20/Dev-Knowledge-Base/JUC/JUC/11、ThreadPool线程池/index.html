@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <link rel="icon" href="/img/bg/%E5%A4%B4%E5%83%8F.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Taoao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="下一节：[[12、Fork、Join分支合并框架]]上一节：[[10、BlockingQueue阻塞队列]] 线程池（ThreadPool）是一种管理和复用线程的机制，旨在优化多线程任务的执行效率，减少线程创建和销毁的开销。以下是线程池的核心概念及使用要点：  1. 线程池的优势 资源复用：复用已创建的线程，避免频繁创建和销毁线程的开销。 控制并发：通过参数限制线程数量，防止资源耗尽或过度竞争。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/04/20/Dev-Knowledge-Base/JUC/JUC/11%E3%80%81ThreadPool%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="下一节：[[12、Fork、Join分支合并框架]]上一节：[[10、BlockingQueue阻塞队列]] 线程池（ThreadPool）是一种管理和复用线程的机制，旨在优化多线程任务的执行效率，减少线程创建和销毁的开销。以下是线程池的核心概念及使用要点：  1. 线程池的优势 资源复用：复用已创建的线程，避免频繁创建和销毁线程的开销。 控制并发：通过参数限制线程数量，防止资源耗尽或过度竞争。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-20T15:51:42.247Z">
+<meta property="article:modified_time" content="2025-05-06T15:16:29.633Z">
+<meta property="article:author" content="Taoao">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Taoao</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/aad.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-20 23:51" pubdate>
+          2025年4月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>下一节：[[12、Fork、Join分支合并框架]]<br>上一节：[[10、BlockingQueue阻塞队列]]</p>
+<p>线程池（ThreadPool）是一种管理和复用线程的机制，旨在优化多线程任务的执行效率，减少线程创建和销毁的开销。以下是线程池的核心概念及使用要点：</p>
+<hr>
+<h3 id="1-线程池的优势"><a href="#1-线程池的优势" class="headerlink" title="1. 线程池的优势"></a><strong>1. 线程池的优势</strong></h3><ul>
+<li><strong>资源复用</strong>：复用已创建的线程，避免频繁创建和销毁线程的开销。</li>
+<li><strong>控制并发</strong>：通过参数限制线程数量，防止资源耗尽或过度竞争。</li>
+<li><strong>任务管理</strong>：提供任务队列、拒绝策略等机制，增强系统的稳定性。</li>
+</ul>
+<hr>
+<h3 id="2-线程池核心参数"><a href="#2-线程池核心参数" class="headerlink" title="2. 线程池核心参数"></a><strong>2. 线程池核心参数</strong></h3><ul>
+<li><strong>核心线程数（corePoolSize）</strong>：线程池长期维持的线程数量。</li>
+<li><strong>最大线程数（maximumPoolSize）</strong>：线程池允许创建的最大线程数。</li>
+<li><strong>任务队列（workQueue）</strong>：存放待处理任务的阻塞队列（如 <code>LinkedBlockingQueue</code>、<code>ArrayBlockingQueue</code>）。</li>
+<li><strong>空闲线程存活时间（keepAliveTime）</strong>：非核心线程的空闲存活时间，超时后回收。</li>
+<li><strong>拒绝策略（RejectedExecutionHandler）</strong>：队列和线程池满时的处理策略，如抛出异常或丢弃任务。</li>
+</ul>
+<hr>
+<h3 id="3-线程池工作流程"><a href="#3-线程池工作流程" class="headerlink" title="3. 线程池工作流程"></a><strong>3. 线程池工作流程</strong></h3><ol>
+<li>提交任务时，若当前线程数 &lt; 核心线程数，直接创建新线程执行。</li>
+<li>若线程数 ≥ 核心线程数，任务进入队列等待。</li>
+<li>若队列已满且线程数 &lt; 最大线程数，创建临时线程处理任务。</li>
+<li>若队列和线程数均满，触发拒绝策略。</li>
+</ol>
+<hr>
+<h3 id="4-拒绝策略类型"><a href="#4-拒绝策略类型" class="headerlink" title="4. 拒绝策略类型"></a><strong>4. 拒绝策略类型</strong></h3><ul>
+<li><strong>AbortPolicy</strong>（默认）：抛出 <code>RejectedExecutionException</code>。</li>
+<li><strong>CallerRunsPolicy</strong>：由提交任务的线程直接执行任务。</li>
+<li><strong>DiscardPolicy</strong>：静默丢弃新任务。</li>
+<li><strong>DiscardOldestPolicy</strong>：丢弃队列中最旧的任务，并重试提交。</li>
+</ul>
+<hr>
+<h3 id="5-Java中的线程池实现"><a href="#5-Java中的线程池实现" class="headerlink" title="5. Java中的线程池实现"></a><strong>5. Java中的线程池实现</strong></h3><p>通过 <code>ThreadPoolExecutor</code> 类手动配置，或使用 <code>Executors</code> 工厂类创建预设线程池：</p>
+<ul>
+<li>&#x3D;&#x3D;<strong>newFixedThreadPool</strong>：固定线程数，使用无界队列（适合稳定负载）。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;<strong>newCachedThreadPool</strong>：弹性线程数，适合短时异步任务（可能创建过多线程）。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;<strong>newSingleThreadExecutor</strong>：单线程顺序执行任务。&#x3D;&#x3D;</li>
+<li><strong>newScheduledThreadPool</strong>：支持定时或周期性任务。</li>
+</ul>
+<p><strong>注意</strong>：<code>Executors</code> 提供的部分方法（如 <code>newFixedThreadPool</code>）使用无界队列，需警惕内存溢出风险，建议手动配置参数。</p>
+<hr>
+<h3 id="6-ThreadPoolExecutor的7个参数"><a href="#6-ThreadPoolExecutor的7个参数" class="headerlink" title="6. ThreadPoolExecutor的7个参数"></a>6. ThreadPoolExecutor的7个参数</h3><p><code>ThreadPoolExecutor</code> 是 Java 中实现线程池的核心类，其构造函数包含 <strong>7 个关键参数</strong>，这些参数共同决定了线程池的行为和性能。以下是每个参数的详细说明：</p>
+<h4 id="1-corePoolSize（核心线程数）"><a href="#1-corePoolSize（核心线程数）" class="headerlink" title="1. corePoolSize（核心线程数）"></a><strong>1. <code>corePoolSize</code>（核心线程数）</strong></h4><ul>
+<li><strong>作用</strong>：线程池中长期存活的线程数量（即使线程空闲）。</li>
+<li><strong>规则</strong>：<ul>
+<li>初始时线程池中没有线程，任务提交后才会创建线程。</li>
+<li>线程数达到 <code>corePoolSize</code> 后，新任务会先进入任务队列。</li>
+<li>调用 <code>prestartAllCoreThreads()</code> 可提前创建所有核心线程。</li>
+</ul>
+</li>
+<li><strong>建议</strong>：根据任务类型（CPU 密集型或 IO 密集型）设置，通常为 CPU 核心数的 1~2 倍。</li>
+</ul>
+<h4 id="2-maximumPoolSize（最大线程数）"><a href="#2-maximumPoolSize（最大线程数）" class="headerlink" title="2. maximumPoolSize（最大线程数）"></a><strong>2. <code>maximumPoolSize</code>（最大线程数）</strong></h4><ul>
+<li><strong>作用</strong>：线程池允许创建的最大线程数（包括核心线程和非核心线程）。</li>
+<li><strong>规则</strong>：<ul>
+<li>当任务队列已满且当前线程数 &lt; <code>maximumPoolSize</code> 时，线程池会创建新线程处理任务。</li>
+<li>非核心线程空闲超过 <code>keepAliveTime</code> 后会被回收。</li>
+</ul>
+</li>
+<li><strong>建议</strong>：结合系统资源（如内存、CPU）和任务负载设置，避免资源耗尽。</li>
+</ul>
+<h4 id="3-keepAliveTime（空闲线程存活时间）"><a href="#3-keepAliveTime（空闲线程存活时间）" class="headerlink" title="3. keepAliveTime（空闲线程存活时间）"></a><strong>3. <code>keepAliveTime</code>（空闲线程存活时间）</strong></h4><ul>
+<li><strong>作用</strong>：非核心线程在空闲状态下的存活时间。</li>
+<li><strong>规则</strong>：<ul>
+<li>仅对超出 <code>corePoolSize</code> 的线程生效。</li>
+<li>若线程池允许核心线程超时（通过 <code>allowCoreThreadTimeOut(true)</code>），则核心线程也会受此限制。</li>
+</ul>
+</li>
+<li><strong>建议</strong>：短任务场景可设置较小值（如 60s），长任务场景可适当增大。</li>
+</ul>
+<h4 id="4-unit（时间单位）"><a href="#4-unit（时间单位）" class="headerlink" title="4. unit（时间单位）"></a><strong>4. <code>unit</code>（时间单位）</strong></h4><ul>
+<li><strong>作用</strong>：<code>keepAliveTime</code> 的时间单位。</li>
+<li><strong>可选值</strong>：<code>TimeUnit</code> 枚举（如 <code>SECONDS</code>、<code>MILLISECONDS</code>、<code>MINUTES</code>）。</li>
+<li><strong>示例</strong>：<code>keepAliveTime = 60</code> + <code>unit = TimeUnit.SECONDS</code> 表示存活时间为 60 秒。</li>
+</ul>
+<h4 id="5-workQueue（任务队列）"><a href="#5-workQueue（任务队列）" class="headerlink" title="5. workQueue（任务队列）"></a><strong>5. <code>workQueue</code>（任务队列）</strong></h4><ul>
+<li><strong>作用</strong>：存放待执行任务的阻塞队列。</li>
+<li><strong>常见类型</strong>：<ul>
+<li>**<code>LinkedBlockingQueue</code>**（无界队列）：任务无限堆积，可能导致内存溢出。</li>
+<li>&#x3D;&#x3D;**<code>ArrayBlockingQueue</code>**（有界队列）：需指定容量，队列满时触发拒绝策略。&#x3D;&#x3D;</li>
+<li>**<code>SynchronousQueue</code>**：不存储任务，直接提交给线程（需 <code>maximumPoolSize</code> 足够大）。</li>
+<li>**<code>PriorityBlockingQueue</code>**：支持优先级排序。</li>
+</ul>
+</li>
+<li><strong>建议</strong>：优先使用有界队列，避免内存溢出。</li>
+</ul>
+<h4 id="6-threadFactory（线程工厂）"><a href="#6-threadFactory（线程工厂）" class="headerlink" title="6. threadFactory（线程工厂）"></a><strong>6. <code>threadFactory</code>（线程工厂）</strong></h4><ul>
+<li><strong>作用</strong>：用于创建新线程的工厂类，可自定义线程名称、优先级、是否为守护线程等。</li>
+<li><strong>默认实现</strong>：<code>Executors.defaultThreadFactory()</code>。</li>
+<li><strong>自定义示例</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> r -&gt; &#123;<br>    <span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(r);<br>    thread.setName(<span class="hljs-string">&quot;MyPool-Thread-&quot;</span> + thread.getId());<br>    <span class="hljs-keyword">return</span> thread;<br>&#125;;   <br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="7-handler（拒绝策略）"><a href="#7-handler（拒绝策略）" class="headerlink" title="7. handler（拒绝策略）"></a><strong>7. <code>handler</code>（拒绝策略）</strong></h4><ul>
+<li><strong>作用</strong>：当任务队列已满且线程数达到 <code>maximumPoolSize</code> 时，处理新提交任务的策略。</li>
+<li><strong>内置策略</strong>：<ul>
+<li>&#x3D;&#x3D;**<code>AbortPolicy</code>**（默认）：抛出 <code>RejectedExecutionException</code>。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;**<code>CallerRunsPolicy</code>**：由提交任务的线程直接执行任务。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;**<code>DiscardPolicy</code>**：静默丢弃新任务。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;**<code>DiscardOldestPolicy</code>**：丢弃队列中最旧的任务，然后重试提交。&#x3D;&#x3D;</li>
+</ul>
+</li>
+<li><strong>自定义策略</strong>：实现 <code>RejectedExecutionHandler</code> 接口。</li>
+</ul>
+<h4 id="参数协作流程图"><a href="#参数协作流程图" class="headerlink" title="参数协作流程图"></a><strong>参数协作流程图</strong></h4><h2 id="Pasted-image-20250506230035-png"><a href="#Pasted-image-20250506230035-png" class="headerlink" title="![[Pasted image 20250506230035.png]]"></a>![[Pasted image 20250506230035.png]]<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text"><br>提交任务 → 核心线程未满？ → 创建新线程执行<br>          ↓ 是<br>          ↓ 核心线程已满？ → 任务入队列<br>          ↓ 是<br>          ↓ 队列已满？ → 创建非核心线程执行<br>          ↓ 是<br>          ↓ 线程数已达最大？ → 触发拒绝策略<br></code></pre></td></tr></table></figure></h2><h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a><strong>示例代码</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ThreadPoolExecutor</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>(<br>    <span class="hljs-number">4</span>,                          <span class="hljs-comment">// corePoolSize</span><br>    <span class="hljs-number">8</span>,                          <span class="hljs-comment">// maximumPoolSize</span><br>    <span class="hljs-number">60</span>,                         <span class="hljs-comment">// keepAliveTime</span><br>    TimeUnit.SECONDS,           <span class="hljs-comment">// unit</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBlockingQueue</span>&lt;&gt;(<span class="hljs-number">100</span>),  <span class="hljs-comment">// workQueue</span><br>    Executors.defaultThreadFactory(),  <span class="hljs-comment">// threadFactory</span><br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadPoolExecutor</span>.CallerRunsPolicy()  <span class="hljs-comment">// handler</span><br>);<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="关键注意事项"><a href="#关键注意事项" class="headerlink" title="关键注意事项"></a><strong>关键注意事项</strong></h4><ol>
+<li><strong>避免无界队列</strong>：使用 <code>LinkedBlockingQueue</code> 时需显式设置容量，否则可能导致内存溢出。</li>
+<li><strong>合理设置最大线程数</strong>：过大会导致资源竞争，过小可能无法处理突发流量。</li>
+<li><strong>拒绝策略选择</strong>：根据业务容忍度选择丢弃任务或回退到调用者线程执行。</li>
+<li><strong>监控线程池状态</strong>：通过 <code>getActiveCount()</code>、<code>getQueue().size()</code> 等方法实时监控。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2025/04/20/Dev-Knowledge-Base/JUC/JUC/11、ThreadPool线程池/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Taoao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月20日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年5月6日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/20/Dev-Knowledge-Base/JUC/JUC/12%E3%80%81Fork%E3%80%81Join%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E6%A1%86%E6%9E%B6/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/20/Dev-Knowledge-Base/JUC/JUC/10%E3%80%81BlockingQueue%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-love"></i> <a href="https://syea01.github.io" target="_blank" rel="nofollow noopener"><span>首页</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
